@@ -21,6 +21,7 @@ import {
   Globe,
 } from "lucide-react"
 import Image from "next/image"
+import { WhatsAppButton } from "@/components/whatsapp-button"
 
 export default function HomePage() {
   const [language, setLanguage] = useState<"fr" | "en">("fr")
@@ -347,33 +348,33 @@ export default function HomePage() {
   const t = content[language]
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-amber-50 to-orange-50">
+    <div className="min-h-screen bg-gray-50">
       {/* Navigation */}
-      <nav className="bg-white/90 backdrop-blur-sm border-b border-amber-200 sticky top-0 z-50">
+      <nav className="bg-white shadow-sm sticky top-0 z-40 border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-amber-600 to-orange-600 rounded-full flex items-center justify-center">
+              <div className="w-10 h-10 bg-gradient-to-r from-indigo-500 to-sky-400 rounded-full flex items-center justify-center">
                 <Heart className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h1 className="font-serif text-xl font-bold text-amber-900">Fondation Marie Mwape</h1>
-                <p className="text-sm text-amber-700">pour le Progrès Social</p>
+                <h1 className="font-serif text-xl font-bold text-slate-900">Fondation Marie Mwape</h1>
+                <p className="text-sm text-slate-600">pour le Progrès Social</p>
               </div>
             </div>
 
-            <div className="flex items-center space-x-6">
-              <div className="hidden md:flex space-x-6">
-                <a href="#about" className="text-amber-800 hover:text-amber-600 transition-colors">
+            <div className="flex items-center space-x-8">
+              <div className="hidden md:flex space-x-8">
+                <a href="#about" className="text-slate-700 hover:text-indigo-600 transition-colors font-medium">
                   {t.nav.about}
                 </a>
-                <a href="#programs" className="text-amber-800 hover:text-amber-600 transition-colors">
+                <a href="#programs" className="text-slate-700 hover:text-indigo-600 transition-colors font-medium">
                   {t.nav.programs}
                 </a>
-                <a href="#impact" className="text-amber-800 hover:text-amber-600 transition-colors">
+                <a href="#impact" className="text-slate-700 hover:text-indigo-600 transition-colors font-medium">
                   {t.nav.impact}
                 </a>
-                <a href="#contact" className="text-amber-800 hover:text-amber-600 transition-colors">
+                <a href="#contact" className="text-slate-700 hover:text-indigo-600 transition-colors font-medium">
                   {t.nav.contact}
                 </a>
               </div>
@@ -383,13 +384,13 @@ export default function HomePage() {
                 onClick={toggleLanguage}
                 variant="outline"
                 size="sm"
-                className="border-amber-300 text-amber-800 hover:bg-amber-50 rounded-full px-3 py-1 text-sm font-medium bg-transparent"
+                className="border-slate-200 text-slate-700 hover:bg-slate-50 rounded-lg px-3 py-2 text-sm font-medium bg-transparent"
               >
                 <Globe className="w-4 h-4 mr-2" />
                 {language === "fr" ? "🇫🇷 FR" : "🇬🇧 EN"}
               </Button>
 
-              <Button className="bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white rounded-full">
+              <Button className="bg-gradient-to-r from-indigo-500 to-sky-400 hover:from-indigo-600 hover:to-sky-500 text-white rounded-lg px-6 py-2 font-medium">
                 {t.nav.support}
               </Button>
             </div>
@@ -398,28 +399,27 @@ export default function HomePage() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative py-20 lg:py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-amber-600/20 to-orange-600/20"></div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <section className="py-20 lg:py-32">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="space-y-8">
-              <div className="space-y-4">
-                <Badge className="bg-amber-100 text-amber-800 border-amber-300 rounded-full px-4 py-2">
+              <div className="space-y-6">
+                <Badge className="bg-indigo-50 text-indigo-700 border-indigo-200 rounded-full px-4 py-2 font-medium">
                   {t.hero.location}
                 </Badge>
-                <h1 className="font-serif text-4xl lg:text-6xl font-bold text-amber-900 leading-tight">
+                <h1 className="font-serif text-5xl lg:text-7xl font-bold text-slate-900 leading-tight">
                   {t.hero.title}
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 to-orange-600">
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-sky-400">
                     {" "}
                     {t.hero.titleHighlight}
                   </span>
                 </h1>
-                <p className="text-xl text-amber-800 leading-relaxed">{t.hero.description}</p>
+                <p className="text-xl text-slate-600 leading-relaxed">{t.hero.description}</p>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button
                   size="lg"
-                  className="bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white rounded-full px-8 py-4 text-lg"
+                  className="bg-gradient-to-r from-indigo-500 to-sky-400 hover:from-indigo-600 hover:to-sky-500 text-white rounded-lg px-8 py-4 text-lg font-medium"
                 >
                   {t.hero.supportBtn}
                   <ArrowRight className="ml-2 w-5 h-5" />
@@ -427,14 +427,14 @@ export default function HomePage() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-2 border-amber-600 text-amber-700 hover:bg-amber-50 rounded-full px-8 py-4 text-lg bg-transparent"
+                  className="border-2 border-slate-300 text-slate-700 hover:bg-slate-50 rounded-lg px-8 py-4 text-lg font-medium bg-transparent"
                 >
                   {t.hero.learnBtn}
                 </Button>
               </div>
             </div>
             <div className="relative">
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                 <Image
                   src="/placeholder.svg?height=600&width=500"
                   alt="Enfants souriants au centre communautaire"
@@ -442,16 +442,16 @@ export default function HomePage() {
                   height={600}
                   className="w-full h-auto object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-amber-900/30 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/30 to-transparent"></div>
               </div>
-              <div className="absolute -bottom-6 -left-6 bg-white rounded-2xl p-6 shadow-xl">
+              <div className="absolute -bottom-6 -left-6 bg-white rounded-xl p-6 shadow-xl border border-gray-100">
                 <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-amber-600 to-orange-600 rounded-full flex items-center justify-center">
+                  <div className="w-12 h-12 bg-gradient-to-r from-indigo-500 to-sky-400 rounded-full flex items-center justify-center">
                     <Users className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <p className="font-bold text-2xl text-amber-900">500+</p>
-                    <p className="text-amber-700">{t.hero.statsLabel}</p>
+                    <p className="font-bold text-2xl text-slate-900">500+</p>
+                    <p className="text-slate-600">{t.hero.statsLabel}</p>
                   </div>
                 </div>
               </div>
@@ -465,25 +465,31 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="space-y-8">
-              <div className="space-y-4">
-                <Badge className="bg-amber-100 text-amber-800 border-amber-300 rounded-full">{t.about.badge}</Badge>
-                <h2 className="font-serif text-4xl font-bold text-amber-900">{t.about.title}</h2>
-                <p className="text-lg text-gray-700 leading-relaxed">{t.about.description1}</p>
-                <p className="text-lg text-gray-700 leading-relaxed">{t.about.description2}</p>
+              <div className="space-y-6">
+                <Badge className="bg-indigo-50 text-indigo-700 border-indigo-200 rounded-full px-4 py-2 font-medium">
+                  {t.about.badge}
+                </Badge>
+                <h2 className="font-serif text-4xl font-bold text-slate-900">{t.about.title}</h2>
+                <p className="text-lg text-slate-600 leading-relaxed">{t.about.description1}</p>
+                <p className="text-lg text-slate-600 leading-relaxed">{t.about.description2}</p>
               </div>
               <div className="grid grid-cols-2 gap-6">
-                <div className="text-center p-4 bg-amber-50 rounded-2xl">
-                  <p className="font-bold text-3xl text-amber-900">2018</p>
-                  <p className="text-amber-700">{t.about.foundedYear}</p>
-                </div>
-                <div className="text-center p-4 bg-orange-50 rounded-2xl">
-                  <p className="font-bold text-3xl text-orange-900">5</p>
-                  <p className="text-orange-700">{t.about.activePrograms}</p>
-                </div>
+                <Card className="border-slate-200 hover:shadow-lg transition-shadow">
+                  <CardContent className="text-center p-6">
+                    <p className="font-bold text-3xl text-indigo-600 mb-2">2018</p>
+                    <p className="text-slate-600 font-medium">{t.about.foundedYear}</p>
+                  </CardContent>
+                </Card>
+                <Card className="border-slate-200 hover:shadow-lg transition-shadow">
+                  <CardContent className="text-center p-6">
+                    <p className="font-bold text-3xl text-sky-500 mb-2">5</p>
+                    <p className="text-slate-600 font-medium">{t.about.activePrograms}</p>
+                  </CardContent>
+                </Card>
               </div>
             </div>
             <div className="relative">
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                 <Image
                   src="/placeholder.svg?height=600&width=500"
                   alt="Marie Mwape Kashimbo, Fondatrice"
@@ -492,9 +498,9 @@ export default function HomePage() {
                   className="w-full h-auto object-cover"
                 />
               </div>
-              <div className="absolute -top-6 -right-6 bg-gradient-to-br from-amber-600 to-orange-600 rounded-2xl p-6 text-white shadow-xl">
+              <div className="absolute -top-6 -right-6 bg-gradient-to-r from-indigo-500 to-sky-400 rounded-xl p-6 text-white shadow-xl">
                 <Quote className="w-8 h-8 mb-2" />
-                <p className="font-medium">"{t.about.quote}"</p>
+                <p className="font-medium text-sm">"{t.about.quote}"</p>
               </div>
             </div>
           </div>
@@ -502,12 +508,14 @@ export default function HomePage() {
       </section>
 
       {/* Programs Section */}
-      <section id="programs" className="py-20 bg-gradient-to-b from-amber-50 to-orange-50">
+      <section id="programs" className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center space-y-4 mb-16">
-            <Badge className="bg-amber-100 text-amber-800 border-amber-300 rounded-full">{t.programs.badge}</Badge>
-            <h2 className="font-serif text-4xl font-bold text-amber-900">{t.programs.title}</h2>
-            <p className="text-xl text-gray-700 max-w-3xl mx-auto">{t.programs.description}</p>
+            <Badge className="bg-indigo-50 text-indigo-700 border-indigo-200 rounded-full px-4 py-2 font-medium">
+              {t.programs.badge}
+            </Badge>
+            <h2 className="font-serif text-4xl font-bold text-slate-900">{t.programs.title}</h2>
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto">{t.programs.description}</p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -516,42 +524,47 @@ export default function HomePage() {
                 icon: Heart,
                 color: "from-red-500 to-pink-500",
                 bgColor: "bg-red-50",
+                borderColor: "border-red-200",
               },
               {
                 icon: Shield,
                 color: "from-blue-500 to-indigo-500",
                 bgColor: "bg-blue-50",
+                borderColor: "border-blue-200",
               },
               {
                 icon: Users,
                 color: "from-purple-500 to-pink-500",
                 bgColor: "bg-purple-50",
+                borderColor: "border-purple-200",
               },
               {
                 icon: Star,
                 color: "from-yellow-500 to-orange-500",
                 bgColor: "bg-yellow-50",
+                borderColor: "border-yellow-200",
               },
               {
                 icon: Lightbulb,
                 color: "from-green-500 to-teal-500",
                 bgColor: "bg-green-50",
+                borderColor: "border-green-200",
               },
             ].map((program, index) => (
               <Card
                 key={index}
-                className={`${program.bgColor} border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2`}
+                className={`${program.borderColor} hover:shadow-xl transition-all duration-300 hover:-translate-y-2 bg-white`}
               >
                 <CardHeader className="text-center pb-4">
                   <div
-                    className={`w-16 h-16 mx-auto rounded-full bg-gradient-to-br ${program.color} flex items-center justify-center mb-4`}
+                    className={`w-16 h-16 mx-auto rounded-full bg-gradient-to-r ${program.color} flex items-center justify-center mb-4`}
                   >
                     <program.icon className="w-8 h-8 text-white" />
                   </div>
-                  <CardTitle className="font-serif text-xl text-gray-900">{t.programs.items[index].title}</CardTitle>
+                  <CardTitle className="font-serif text-xl text-slate-900">{t.programs.items[index].title}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <CardDescription className="text-gray-700 text-center leading-relaxed">
+                  <CardDescription className="text-slate-600 text-center leading-relaxed">
                     {t.programs.items[index].description}
                   </CardDescription>
                 </CardContent>
@@ -565,14 +578,16 @@ export default function HomePage() {
       <section id="impact" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center space-y-4 mb-16">
-            <Badge className="bg-amber-100 text-amber-800 border-amber-300 rounded-full">{t.impact.badge}</Badge>
-            <h2 className="font-serif text-4xl font-bold text-amber-900">{t.impact.title}</h2>
-            <p className="text-xl text-gray-700 max-w-3xl mx-auto">{t.impact.description}</p>
+            <Badge className="bg-indigo-50 text-indigo-700 border-indigo-200 rounded-full px-4 py-2 font-medium">
+              {t.impact.badge}
+            </Badge>
+            <h2 className="font-serif text-4xl font-bold text-slate-900">{t.impact.title}</h2>
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto">{t.impact.description}</p>
           </div>
 
           <div className="grid lg:grid-cols-3 gap-8 mb-16">
             {t.impact.stories.map((story, index) => (
-              <Card key={index} className="bg-gradient-to-br from-amber-50 to-orange-50 border-0 shadow-lg">
+              <Card key={index} className="border-slate-200 hover:shadow-lg transition-shadow bg-white">
                 <CardContent className="p-8 text-center space-y-6">
                   <div className="relative">
                     <Image
@@ -582,14 +597,14 @@ export default function HomePage() {
                       height={120}
                       className="w-24 h-24 rounded-full mx-auto object-cover border-4 border-white shadow-lg"
                     />
-                    <div className="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-br from-amber-600 to-orange-600 rounded-full flex items-center justify-center">
+                    <div className="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-r from-indigo-500 to-sky-400 rounded-full flex items-center justify-center">
                       <Quote className="w-4 h-4 text-white" />
                     </div>
                   </div>
-                  <blockquote className="text-gray-700 italic leading-relaxed">"{story.quote}"</blockquote>
+                  <blockquote className="text-slate-600 italic leading-relaxed">"{story.quote}"</blockquote>
                   <div>
-                    <p className="font-bold text-amber-900">{story.name}</p>
-                    <p className="text-amber-700 text-sm">{story.role}</p>
+                    <p className="font-bold text-slate-900">{story.name}</p>
+                    <p className="text-slate-500 text-sm">{story.role}</p>
                   </div>
                 </CardContent>
               </Card>
@@ -599,25 +614,27 @@ export default function HomePage() {
           {/* Impact Stats */}
           <div className="grid md:grid-cols-4 gap-8">
             {t.impact.stats.map((stat, index) => (
-              <div key={index} className="text-center p-6 bg-gradient-to-br from-amber-100 to-orange-100 rounded-2xl">
-                <p className="font-bold text-4xl text-amber-900 mb-2">{stat.number}</p>
-                <p className="text-amber-700 font-medium">{stat.label}</p>
-              </div>
+              <Card key={index} className="border-slate-200 hover:shadow-lg transition-shadow bg-white">
+                <CardContent className="text-center p-6">
+                  <p className="font-bold text-4xl text-indigo-600 mb-2">{stat.number}</p>
+                  <p className="text-slate-600 font-medium">{stat.label}</p>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </div>
       </section>
 
       {/* Get Involved Section */}
-      <section className="py-20 bg-gradient-to-r from-amber-600 to-orange-600 text-white">
+      <section className="py-20 bg-gradient-to-r from-indigo-500 to-sky-400 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="space-y-8">
             <h2 className="font-serif text-4xl font-bold">{t.getInvolved.title}</h2>
-            <p className="text-xl text-amber-100 max-w-3xl mx-auto">{t.getInvolved.description}</p>
+            <p className="text-xl text-indigo-100 max-w-3xl mx-auto">{t.getInvolved.description}</p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <Button
                 size="lg"
-                className="bg-white text-amber-700 hover:bg-amber-50 rounded-full px-8 py-4 text-lg font-semibold"
+                className="bg-white text-indigo-600 hover:bg-indigo-50 rounded-lg px-8 py-4 text-lg font-medium"
               >
                 {t.getInvolved.donateBtn}
                 <Heart className="ml-2 w-5 h-5" />
@@ -625,7 +642,7 @@ export default function HomePage() {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-2 border-white text-white hover:bg-white hover:text-amber-700 rounded-full px-8 py-4 text-lg font-semibold bg-transparent"
+                className="border-2 border-white text-white hover:bg-white hover:text-indigo-600 rounded-lg px-8 py-4 text-lg font-medium bg-transparent"
               >
                 {t.getInvolved.volunteerBtn}
                 <Users className="ml-2 w-5 h-5" />
@@ -639,13 +656,15 @@ export default function HomePage() {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center space-y-4 mb-16">
-            <Badge className="bg-amber-100 text-amber-800 border-amber-300 rounded-full">{t.founder.badge}</Badge>
-            <h2 className="font-serif text-4xl font-bold text-amber-900">{t.founder.title}</h2>
+            <Badge className="bg-indigo-50 text-indigo-700 border-indigo-200 rounded-full px-4 py-2 font-medium">
+              {t.founder.badge}
+            </Badge>
+            <h2 className="font-serif text-4xl font-bold text-slate-900">{t.founder.title}</h2>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="relative">
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                 <Image
                   src="/placeholder.svg?height=600&width=500"
                   alt="Marie Mwape Kashimbo, Fondatrice"
@@ -654,7 +673,7 @@ export default function HomePage() {
                   className="w-full h-auto object-cover"
                 />
               </div>
-              <div className="absolute -bottom-6 -right-6 bg-gradient-to-br from-amber-600 to-orange-600 rounded-2xl p-6 text-white shadow-xl">
+              <div className="absolute -bottom-6 -right-6 bg-gradient-to-r from-indigo-500 to-sky-400 rounded-xl p-6 text-white shadow-xl">
                 <Quote className="w-8 h-8 mb-2" />
                 <p className="font-medium text-sm">"{t.founder.quote}"</p>
               </div>
@@ -662,9 +681,9 @@ export default function HomePage() {
 
             <div className="space-y-8">
               <div className="space-y-6">
-                <p className="text-lg text-gray-700 leading-relaxed">{t.founder.bio1}</p>
-                <p className="text-lg text-gray-700 leading-relaxed">{t.founder.bio2}</p>
-                <blockquote className="border-l-4 border-amber-600 pl-6 italic text-amber-800 text-xl">
+                <p className="text-lg text-slate-600 leading-relaxed">{t.founder.bio1}</p>
+                <p className="text-lg text-slate-600 leading-relaxed">{t.founder.bio2}</p>
+                <blockquote className="border-l-4 border-indigo-500 pl-6 italic text-indigo-700 text-xl">
                   "{t.founder.quote}"
                 </blockquote>
               </div>
@@ -674,26 +693,28 @@ export default function HomePage() {
       </section>
 
       {/* Our Mission Section */}
-      <section className="py-20 bg-gradient-to-b from-amber-50 to-orange-50">
+      <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center space-y-4 mb-16">
-            <Badge className="bg-amber-100 text-amber-800 border-amber-300 rounded-full">{t.mission.badge}</Badge>
-            <h2 className="font-serif text-4xl font-bold text-amber-900">{t.mission.title}</h2>
+            <Badge className="bg-indigo-50 text-indigo-700 border-indigo-200 rounded-full px-4 py-2 font-medium">
+              {t.mission.badge}
+            </Badge>
+            <h2 className="font-serif text-4xl font-bold text-slate-900">{t.mission.title}</h2>
           </div>
 
           <div className="max-w-5xl mx-auto">
-            <Card className="bg-white border-0 shadow-xl p-8">
-              <div className="space-y-6">
-                <div className="flex items-center space-x-3 mb-6">
-                  <div className="w-8 h-8 bg-gradient-to-br from-amber-600 to-orange-600 rounded-full flex items-center justify-center">
+            <Card className="border-slate-200 hover:shadow-lg transition-shadow bg-white">
+              <CardContent className="p-12 text-center">
+                <div className="flex items-center justify-center space-x-3 mb-8">
+                  <div className="w-8 h-8 bg-gradient-to-r from-indigo-500 to-sky-400 rounded-full flex items-center justify-center">
                     <Heart className="w-5 h-5 text-white" />
                   </div>
-                  <h3 className="font-serif text-2xl font-bold text-amber-900">
+                  <h3 className="font-serif text-2xl font-bold text-slate-900">
                     {language === "fr" ? "Français" : "English"}
                   </h3>
                 </div>
-                <p className="text-xl text-gray-700 leading-relaxed">{t.mission.text}</p>
-              </div>
+                <p className="text-xl text-slate-600 leading-relaxed">{t.mission.text}</p>
+              </CardContent>
             </Card>
           </div>
         </div>
@@ -703,16 +724,18 @@ export default function HomePage() {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center space-y-4 mb-16">
-            <Badge className="bg-amber-100 text-amber-800 border-amber-300 rounded-full">{t.blog.badge}</Badge>
-            <h2 className="font-serif text-4xl font-bold text-amber-900">{t.blog.title}</h2>
-            <p className="text-xl text-gray-700 max-w-3xl mx-auto">{t.blog.description}</p>
+            <Badge className="bg-indigo-50 text-indigo-700 border-indigo-200 rounded-full px-4 py-2 font-medium">
+              {t.blog.badge}
+            </Badge>
+            <h2 className="font-serif text-4xl font-bold text-slate-900">{t.blog.title}</h2>
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto">{t.blog.description}</p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
             {t.blog.articles.map((article, index) => (
               <Card
                 key={index}
-                className="overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
+                className="border-slate-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 bg-white overflow-hidden"
               >
                 <div className="relative h-48 overflow-hidden">
                   <Image
@@ -722,21 +745,21 @@ export default function HomePage() {
                     height={300}
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 to-transparent"></div>
                 </div>
                 <CardContent className="p-6 space-y-4">
                   <div className="flex items-center space-x-2">
-                    <Badge variant="secondary" className="text-xs">
+                    <Badge variant="secondary" className="bg-indigo-50 text-indigo-700 text-xs">
                       {article.date}
                     </Badge>
                   </div>
 
                   <div className="space-y-4">
-                    <CardTitle className="font-serif text-lg text-gray-900 leading-tight">{article.title}</CardTitle>
-                    <CardDescription className="text-gray-600 leading-relaxed">{article.summary}</CardDescription>
+                    <CardTitle className="font-serif text-lg text-slate-900 leading-tight">{article.title}</CardTitle>
+                    <CardDescription className="text-slate-600 leading-relaxed">{article.summary}</CardDescription>
                   </div>
 
-                  <Button variant="ghost" className="text-amber-600 hover:text-amber-700 p-0 mt-4">
+                  <Button variant="ghost" className="text-indigo-600 hover:text-indigo-700 hover:bg-indigo-50 p-0 mt-4">
                     {t.blog.readMore}
                     <ArrowRight className="ml-2 w-4 h-4" />
                   </Button>
@@ -748,134 +771,150 @@ export default function HomePage() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 bg-gradient-to-b from-amber-50 to-orange-50">
+      <section id="contact" className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center space-y-4 mb-16">
-            <Badge className="bg-amber-100 text-amber-800 border-amber-300 rounded-full">{t.contact.badge}</Badge>
-            <h2 className="font-serif text-4xl font-bold text-amber-900">{t.contact.title}</h2>
-            <p className="text-xl text-gray-700 max-w-3xl mx-auto">{t.contact.description}</p>
+            <Badge className="bg-indigo-50 text-indigo-700 border-indigo-200 rounded-full px-4 py-2 font-medium">
+              {t.contact.badge}
+            </Badge>
+            <h2 className="font-serif text-4xl font-bold text-slate-900">{t.contact.title}</h2>
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto">{t.contact.description}</p>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-16">
             <div className="space-y-8">
               <div className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-amber-600 to-orange-600 rounded-full flex items-center justify-center flex-shrink-0">
-                    <MapPin className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-lg text-amber-900">{t.contact.address}</h3>
-                    <p className="text-gray-700">Kisangani, République Démocratique du Congo</p>
-                  </div>
-                </div>
+                <Card className="border-slate-200 hover:shadow-lg transition-shadow bg-white">
+                  <CardContent className="p-6">
+                    <div className="flex items-start space-x-4">
+                      <div className="w-12 h-12 bg-gradient-to-r from-indigo-500 to-sky-400 rounded-full flex items-center justify-center flex-shrink-0">
+                        <MapPin className="w-6 h-6 text-white" />
+                      </div>
+                      <div>
+                        <h3 className="font-bold text-lg text-slate-900 mb-2">{t.contact.address}</h3>
+                        <p className="text-slate-600">Kisangani, République Démocratique du Congo</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
 
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-amber-600 to-orange-600 rounded-full flex items-center justify-center flex-shrink-0">
-                    <Mail className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-lg text-amber-900">Email</h3>
-                    <p className="text-gray-700">contact@fondationmariemwape.org</p>
-                  </div>
-                </div>
+                <Card className="border-slate-200 hover:shadow-lg transition-shadow bg-white">
+                  <CardContent className="p-6">
+                    <div className="flex items-start space-x-4">
+                      <div className="w-12 h-12 bg-gradient-to-r from-indigo-500 to-sky-400 rounded-full flex items-center justify-center flex-shrink-0">
+                        <Mail className="w-6 h-6 text-white" />
+                      </div>
+                      <div>
+                        <h3 className="font-bold text-lg text-slate-900 mb-2">Email</h3>
+                        <p className="text-slate-600">contact@fondationmariemwape.org</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
 
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-green-600 to-green-700 rounded-full flex items-center justify-center flex-shrink-0">
-                    <MessageCircle className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-lg text-amber-900">WhatsApp</h3>
-                    <p className="text-gray-700">+243 XXX XXX XXX</p>
-                    <Button className="mt-2 bg-green-600 hover:bg-green-700 text-white rounded-full">
-                      {t.contact.whatsappBtn}
-                      <MessageCircle className="ml-2 w-4 h-4" />
-                    </Button>
-                  </div>
-                </div>
+                <Card className="border-slate-200 hover:shadow-lg transition-shadow bg-white">
+                  <CardContent className="p-6">
+                    <div className="flex items-start space-x-4">
+                      <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-green-600 rounded-full flex items-center justify-center flex-shrink-0">
+                        <MessageCircle className="w-6 h-6 text-white" />
+                      </div>
+                      <div>
+                        <h3 className="font-bold text-lg text-slate-900 mb-2">WhatsApp</h3>
+                        <p className="text-slate-600 mb-3">+243 XXX XXX XXX</p>
+                        <Button className="bg-green-600 hover:bg-green-700 text-white rounded-lg">
+                          {t.contact.whatsappBtn}
+                          <MessageCircle className="ml-2 w-4 h-4" />
+                        </Button>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
               </div>
 
               <div className="space-y-4">
-                <h3 className="font-bold text-lg text-amber-900">{t.contact.followUs}</h3>
+                <h3 className="font-bold text-lg text-slate-900">{t.contact.followUs}</h3>
                 <div className="flex space-x-4">
-                  <Button size="icon" className="bg-blue-600 hover:bg-blue-700 text-white rounded-full">
+                  <Button size="icon" className="bg-blue-600 hover:bg-blue-700 text-white rounded-lg">
                     <Facebook className="w-5 h-5" />
                   </Button>
-                  <Button size="icon" className="bg-sky-500 hover:bg-sky-600 text-white rounded-full">
+                  <Button size="icon" className="bg-sky-500 hover:bg-sky-600 text-white rounded-lg">
                     <Twitter className="w-5 h-5" />
                   </Button>
-                  <Button size="icon" className="bg-pink-600 hover:bg-pink-700 text-white rounded-full">
+                  <Button size="icon" className="bg-pink-600 hover:bg-pink-700 text-white rounded-lg">
                     <Instagram className="w-5 h-5" />
                   </Button>
                 </div>
               </div>
             </div>
 
-            <div className="bg-white rounded-3xl shadow-xl p-8">
-              <h3 className="font-serif text-2xl font-bold text-amber-900 mb-6">{t.contact.sendMessage}</h3>
-              <form className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-4">
+            <Card className="border-slate-200 shadow-lg bg-white">
+              <CardContent className="p-8">
+                <h3 className="font-serif text-2xl font-bold text-slate-900 mb-6">{t.contact.sendMessage}</h3>
+                <form className="space-y-6">
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium text-slate-700 mb-2">{t.contact.firstName}</label>
+                      <input
+                        type="text"
+                        className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                        placeholder={language === "fr" ? "Votre prénom" : "Your first name"}
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-slate-700 mb-2">{t.contact.lastName}</label>
+                      <input
+                        type="text"
+                        className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                        placeholder={language === "fr" ? "Votre nom" : "Your last name"}
+                      />
+                    </div>
+                  </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">{t.contact.firstName}</label>
+                    <label className="block text-sm font-medium text-slate-700 mb-2">Email</label>
                     <input
-                      type="text"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent"
-                      placeholder={language === "fr" ? "Votre prénom" : "Your first name"}
+                      type="email"
+                      className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                      placeholder={language === "fr" ? "votre@email.com" : "your@email.com"}
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">{t.contact.lastName}</label>
-                    <input
-                      type="text"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent"
-                      placeholder={language === "fr" ? "Votre nom" : "Your last name"}
-                    />
+                    <label className="block text-sm font-medium text-slate-700 mb-2">{t.contact.message}</label>
+                    <textarea
+                      rows={4}
+                      className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                      placeholder={language === "fr" ? "Votre message..." : "Your message..."}
+                    ></textarea>
                   </div>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
-                  <input
-                    type="email"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent"
-                    placeholder={language === "fr" ? "votre@email.com" : "your@email.com"}
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">{t.contact.message}</label>
-                  <textarea
-                    rows={4}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent"
-                    placeholder={language === "fr" ? "Votre message..." : "Your message..."}
-                  ></textarea>
-                </div>
-                <Button className="w-full bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white rounded-xl py-3 text-lg">
-                  {t.contact.sendBtn}
-                </Button>
-              </form>
-            </div>
+                  <Button className="w-full bg-gradient-to-r from-indigo-500 to-sky-400 hover:from-indigo-600 hover:to-sky-500 text-white rounded-lg py-3 text-lg font-medium">
+                    {t.contact.sendBtn}
+                  </Button>
+                </form>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-amber-900 text-white py-16">
+      <footer className="bg-slate-900 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-4 gap-8">
             <div className="space-y-4">
               <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 bg-gradient-to-br from-amber-600 to-orange-600 rounded-full flex items-center justify-center">
+                <div className="w-10 h-10 bg-gradient-to-r from-indigo-500 to-sky-400 rounded-full flex items-center justify-center">
                   <Heart className="w-6 h-6 text-white" />
                 </div>
                 <div>
                   <h3 className="font-serif text-xl font-bold">Fondation Marie Mwape</h3>
-                  <p className="text-sm text-amber-200">pour le Progrès Social</p>
+                  <p className="text-sm text-slate-300">pour le Progrès Social</p>
                 </div>
               </div>
-              <p className="text-amber-200 leading-relaxed">{t.footer.tagline}</p>
+              <p className="text-slate-300 leading-relaxed">{t.footer.tagline}</p>
             </div>
 
             <div>
               <h4 className="font-bold text-lg mb-4">{t.footer.programs}</h4>
-              <ul className="space-y-2 text-amber-200">
+              <ul className="space-y-2 text-slate-300">
                 {t.footer.programsList.map((program, index) => (
                   <li key={index}>{program}</li>
                 ))}
@@ -884,7 +923,7 @@ export default function HomePage() {
 
             <div>
               <h4 className="font-bold text-lg mb-4">{t.footer.quickLinks}</h4>
-              <ul className="space-y-2 text-amber-200">
+              <ul className="space-y-2 text-slate-300">
                 <li>
                   <a href="#about" className="hover:text-white transition-colors">
                     {t.nav.about}
@@ -910,30 +949,33 @@ export default function HomePage() {
 
             <div>
               <h4 className="font-bold text-lg mb-4">Contact</h4>
-              <div className="space-y-2 text-amber-200">
+              <div className="space-y-2 text-slate-300">
                 <p>Kisangani, RDC</p>
                 <p>contact@fondationmariemwape.org</p>
                 <p>+243 XXX XXX XXX</p>
               </div>
               <div className="flex space-x-3 mt-4">
-                <Button size="icon" variant="ghost" className="text-amber-200 hover:text-white hover:bg-amber-800">
+                <Button size="icon" variant="ghost" className="text-slate-300 hover:text-white hover:bg-slate-800">
                   <Facebook className="w-5 h-5" />
                 </Button>
-                <Button size="icon" variant="ghost" className="text-amber-200 hover:text-white hover:bg-amber-800">
+                <Button size="icon" variant="ghost" className="text-slate-300 hover:text-white hover:bg-slate-800">
                   <Twitter className="w-5 h-5" />
                 </Button>
-                <Button size="icon" variant="ghost" className="text-amber-200 hover:text-white hover:bg-amber-800">
+                <Button size="icon" variant="ghost" className="text-slate-300 hover:text-white hover:bg-slate-800">
                   <Instagram className="w-5 h-5" />
                 </Button>
               </div>
             </div>
           </div>
 
-          <div className="border-t border-amber-800 mt-12 pt-8 text-center text-amber-200">
+          <div className="border-t border-slate-800 mt-12 pt-8 text-center text-slate-400">
             <p>{t.footer.copyright}</p>
           </div>
         </div>
       </footer>
+
+      {/* WhatsApp Button */}
+      <WhatsAppButton />
     </div>
   )
 }
