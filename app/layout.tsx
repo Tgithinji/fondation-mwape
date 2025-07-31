@@ -20,7 +20,8 @@ export const metadata: Metadata = {
     title: "Fondation Marie Mwape",
     description: "Official site of a philanthropic foundation serving vulnerable communities in Kisangani.",
     images: ["/images/share-thumbnail.jpg"],
-  }
+  },
+    generator: 'v0.dev'
 }
 
 export default function RootLayout({

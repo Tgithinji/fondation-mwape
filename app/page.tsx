@@ -323,7 +323,7 @@ export default function HomePage() {
             title: "Successful reintegration of a woman with mental health issues",
             date: "October 8, 2024",
             summary:
-              "Thanks to our psychological support program, Mama Beatrice has regained her stability and can now provide for her family's needs.",
+              "Thanks to our psychological support program, Mama Beatrice has regained her stability and can now provide for my family's needs.",
           },
           {
             title: "Professional training program for women",
@@ -370,10 +370,10 @@ export default function HomePage() {
                 <Heart className="w-4 h-4 sm:w-6 sm:h-6 text-white" />
               </div>
               <div className="min-w-0">
-                <h1 className="font-serif text-base sm:text-xl font-bold text-slate-900 dark:text-white truncate transition-colors duration-300">
+                <h1 className="font-serif text-base sm:text-xl font-bold text-slate-900 dark:text-white transition-colors duration-300">
                   Fondation Marie Mwape
                 </h1>
-                <p className="text-xs sm:text-sm text-slate-600 dark:text-gray-300 hidden sm:block transition-colors duration-300">
+                <p className="text-xs sm:text-sm text-slate-600 dark:text-gray-300 transition-colors duration-300">
                   pour le Progrès Social
                 </p>
               </div>
