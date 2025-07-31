@@ -8,7 +8,6 @@ export const metadata: Metadata = {
   title: "Fondation Marie Mwape pour le Progrès Social",
   description:
     "Site officiel de la Fondation Marie Mwape — œuvrant pour les orphelins, les femmes, les personnes handicapées et la santé mentale à Kisangani.",
-  generator: "v0.dev",
   openGraph: {
     title: "Fondation Marie Mwape",
     description: "Official site of a philanthropic foundation serving vulnerable communities in Kisangani.",
