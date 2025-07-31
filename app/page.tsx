@@ -1,5 +1,7 @@
 "use client"
 
+import type React from "react"
+
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -39,6 +41,15 @@ export default function HomePage() {
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen((prev) => !prev)
+  }
+
+  const handleSmoothScroll = (event: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+    event.preventDefault()
+    const targetElement = document.getElementById(targetId)
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: "smooth", block: "start" })
+      setMobileMenuOpen(false) // Close mobile menu after clicking a link
+    }
   }
 
   const content = {
@@ -218,7 +229,7 @@ export default function HomePage() {
           "The Marie Mwape Foundation for Social Progress works to transform lives in Kisangani. We support orphans, people with disabilities, women in distress, people with albinism, and those who need mental health assistance.",
         supportBtn: "Support Our Work",
         learnBtn: "Learn More",
-        statsLabel: "Lives Transformed",
+        statsLabel: "Lives Transform",
       },
       about: {
         badge: "Our Story",
@@ -383,24 +394,28 @@ export default function HomePage() {
             <div className="hidden lg:flex items-center space-x-6">
               <a
                 href="#about"
+                onClick={(e) => handleSmoothScroll(e, "about")}
                 className="text-slate-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors font-medium text-sm"
               >
                 {t.nav.about}
               </a>
               <a
                 href="#programs"
+                onClick={(e) => handleSmoothScroll(e, "programs")}
                 className="text-slate-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors font-medium text-sm"
               >
                 {t.nav.programs}
               </a>
               <a
                 href="#impact"
+                onClick={(e) => handleSmoothScroll(e, "impact")}
                 className="text-slate-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors font-medium text-sm"
               >
                 {t.nav.impact}
               </a>
               <a
                 href="#contact"
+                onClick={(e) => handleSmoothScroll(e, "contact")}
                 className="text-slate-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors font-medium text-sm"
               >
                 {t.nav.contact}
@@ -458,28 +473,28 @@ export default function HomePage() {
                 <a
                   href="#about"
                   className="text-slate-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors font-medium py-2 px-2"
-                  onClick={() => setMobileMenuOpen(false)}
+                  onClick={(e) => handleSmoothScroll(e, "about")}
                 >
                   {t.nav.about}
                 </a>
                 <a
                   href="#programs"
                   className="text-slate-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors font-medium py-2 px-2"
-                  onClick={() => setMobileMenuOpen(false)}
+                  onClick={(e) => handleSmoothScroll(e, "programs")}
                 >
                   {t.nav.programs}
                 </a>
                 <a
                   href="#impact"
                   className="text-slate-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors font-medium py-2 px-2"
-                  onClick={() => setMobileMenuOpen(false)}
+                  onClick={(e) => handleSmoothScroll(e, "impact")}
                 >
                   {t.nav.impact}
                 </a>
                 <a
                   href="#contact"
                   className="text-slate-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors font-medium py-2 px-2"
-                  onClick={() => setMobileMenuOpen(false)}
+                  onClick={(e) => handleSmoothScroll(e, "contact")}
                 >
                   {t.nav.contact}
                 </a>
@@ -1132,22 +1147,38 @@ export default function HomePage() {
               <h4 className="font-bold text-lg mb-4">{t.footer.quickLinks}</h4>
               <ul className="space-y-2 text-slate-300 dark:text-gray-400 transition-colors duration-300">
                 <li>
-                  <a href="#about" className="hover:text-white transition-colors">
+                  <a
+                    href="#about"
+                    onClick={(e) => handleSmoothScroll(e, "about")}
+                    className="hover:text-white transition-colors"
+                  >
                     {t.nav.about}
                   </a>
                 </li>
                 <li>
-                  <a href="#programs" className="hover:text-white transition-colors">
+                  <a
+                    href="#programs"
+                    onClick={(e) => handleSmoothScroll(e, "programs")}
+                    className="hover:text-white transition-colors"
+                  >
                     {t.nav.programs}
                   </a>
                 </li>
                 <li>
-                  <a href="#impact" className="hover:text-white transition-colors">
+                  <a
+                    href="#impact"
+                    onClick={(e) => handleSmoothScroll(e, "impact")}
+                    className="hover:text-white transition-colors"
+                  >
                     {t.nav.impact}
                   </a>
                 </li>
                 <li>
-                  <a href="#contact" className="hover:text-white transition-colors">
+                  <a
+                    href="#contact"
+                    onClick={(e) => handleSmoothScroll(e, "contact")}
+                    className="hover:text-white transition-colors"
+                  >
                     {t.nav.contact}
                   </a>
                 </li>
