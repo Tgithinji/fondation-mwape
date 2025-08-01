@@ -29,6 +29,7 @@ import {
 import Image from "next/image"
 import { WhatsAppButton } from "@/components/whatsapp-button"
 import { useDarkMode } from "@/hooks/use-dark-mode"
+import { BackToTopButton } from "@/components/back-to-top-button"
 
 export default function HomePage() {
   const [language, setLanguage] = useState<"fr" | "en">("fr")
@@ -1227,6 +1228,9 @@ export default function HomePage() {
 
       {/* WhatsApp Button */}
       <WhatsAppButton />
+
+      {/* Back to Top Button */}
+      <BackToTopButton />
     </div>
   )
 }
