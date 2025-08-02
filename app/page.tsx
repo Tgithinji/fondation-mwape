@@ -383,8 +383,7 @@ export default function HomePage() {
               </div>
               <div className="min-w-0">
                 <h1 className="font-serif text-base sm:text-xl font-bold text-slate-900 dark:text-white leading-tight transition-colors duration-300">
-                  <span className="block">Fondation</span>
-                  <span className="block">Marie Mwape</span>
+                  <span className="block">Fondation Marie Mwape</span>
                 </h1>
                 <p className="text-xs sm:text-sm text-slate-600 dark:text-gray-300 transition-colors duration-300">
                   pour le Progrès Social
