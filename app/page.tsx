@@ -49,7 +49,7 @@ export default function HomePage() {
     const targetElement = document.getElementById(targetId)
     if (targetElement) {
       targetElement.scrollIntoView({ behavior: "smooth", block: "start" })
-      setMobileMenuOpen(false) // Close mobile menu after clicking a link
+      setMobileMenuOpen(false) // Close mobile menu after clicking link
     }
   }
 
