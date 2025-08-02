@@ -34,7 +34,7 @@ import { BackToTopButton } from "@/components/back-to-top-button"
 export default function HomePage() {
   const [language, setLanguage] = useState<"fr" | "en">("fr")
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const { isDarkMode, toggleDarkMode } = useDarkMode()
+  const { isDarkMode, toggleDarkMode, mounted } = useDarkMode()
 
   const toggleLanguage = () => {
     setLanguage((prev) => (prev === "fr" ? "en" : "fr"))
@@ -61,6 +61,10 @@ export default function HomePage() {
         impact: "Impact",
         contact: "Contact",
         support: "Soutenir Notre Travail",
+      },
+      logo: {
+        title: "Fondation Marie Mwape",
+        subtitle: "pour le Progrès Social",
       },
       hero: {
         location: "Kisangani, République Démocratique du Congo",
@@ -221,6 +225,10 @@ export default function HomePage() {
         impact: "Impact",
         contact: "Contact",
         support: "Support Our Work",
+      },
+      logo: {
+        title: "Marie Mwape Foundation",
+        subtitle: "for Social Progress",
       },
       hero: {
         location: "Kisangani, Democratic Republic of Congo",
@@ -383,10 +391,10 @@ export default function HomePage() {
               </div>
               <div className="min-w-0">
                 <h1 className="font-serif text-base sm:text-xl font-bold text-slate-900 dark:text-white leading-tight transition-colors duration-300">
-                  <span className="block">Fondation Marie Mwape</span>
+                  <span className="block">{t.logo.title}</span>
                 </h1>
                 <p className="text-xs sm:text-sm text-slate-600 dark:text-gray-300 transition-colors duration-300">
-                  pour le Progrès Social
+                  {t.logo.subtitle}
                 </p>
               </div>
             </div>
@@ -427,13 +435,14 @@ export default function HomePage() {
             <div className="hidden md:flex items-center space-x-3">
               {/* Dark Mode Toggle */}
               <Button
-                onClick={toggleDarkMode}
+                onClick={mounted ? toggleDarkMode : undefined}
                 variant="ghost"
                 size="sm"
                 className="p-2 text-slate-700 dark:text-gray-300 hover:bg-slate-100 dark:hover:bg-gray-700 rounded-lg transition-colors duration-300"
                 aria-label="Toggle dark mode"
+                disabled={!mounted}
               >
-                {isDarkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+                {mounted && isDarkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
               </Button>
 
               {/* Language Toggle */}
@@ -527,13 +536,14 @@ export default function HomePage() {
 
                     {/* Dark Mode Toggle */}
                     <Button
-                      onClick={toggleDarkMode}
+                      onClick={mounted ? toggleDarkMode : undefined}
                       variant="outline"
                       size="sm"
                       className="flex-1 border-slate-200 dark:border-gray-600 text-slate-700 dark:text-gray-300 hover:bg-slate-50 dark:hover:bg-gray-700 rounded-lg px-3 py-2 text-sm font-medium bg-transparent transition-colors duration-300"
                       aria-label="Toggle dark mode"
+                      disabled={!mounted}
                     >
-                      {isDarkMode ? (
+                      {mounted && isDarkMode ? (
                         <>
                           <Sun className="w-4 h-4 mr-2" />
                           {language === "fr" ? "Clair" : "Light"}
@@ -1167,9 +1177,9 @@ export default function HomePage() {
                   <Heart className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="font-serif text-xl font-bold">Fondation Marie Mwape</h3>
+                  <h3 className="font-serif text-xl font-bold">{t.logo.title}</h3>
                   <p className="text-sm text-slate-300 dark:text-gray-400 transition-colors duration-300">
-                    pour le Progrès Social
+                    {t.logo.subtitle}
                   </p>
                 </div>
               </div>

@@ -4,18 +4,21 @@ import { useTheme } from "next-themes"
 import { useEffect, useState } from "react"
 
 export function useDarkMode() {
-  const { theme, setTheme } = useTheme()
+  const { theme, setTheme, resolvedTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
     setMounted(true)
   }, [])
 
-  const isDarkMode = mounted ? theme === "dark" : false
+  // Use resolvedTheme for more accurate detection, fallback to theme
+  const isDarkMode = mounted ? (resolvedTheme === "dark" || theme === "dark") : false
 
   const toggleDarkMode = () => {
-    setTheme(theme === "dark" ? "light" : "dark")
+    if (mounted) {
+      setTheme(resolvedTheme === "dark" ? "light" : "dark")
+    }
   }
 
-  return { isDarkMode, toggleDarkMode }
+  return { isDarkMode, toggleDarkMode, mounted }
 }
