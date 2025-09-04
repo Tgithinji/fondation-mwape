@@ -1,11 +1,17 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import {
   Heart,
   Users,
@@ -28,33 +34,38 @@ import {
   Building,
   Target,
   UserCheck,
-} from "lucide-react"
-import Image from "next/image"
-import { WhatsAppButton } from "@/components/whatsapp-button"
-import { useDarkMode } from "@/hooks/use-dark-mode"
-import { BackToTopButton } from "@/components/back-to-top-button"
+  ChevronRight,
+} from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { WhatsAppButton } from "@/components/whatsapp-button";
+import { useDarkMode } from "@/hooks/use-dark-mode";
+import { BackToTopButton } from "@/components/back-to-top-button";
 
 export default function HomePage() {
-  const [language, setLanguage] = useState<"fr" | "en">("fr")
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const { isDarkMode, toggleDarkMode, mounted } = useDarkMode()
+  const [language, setLanguage] = useState<"fr" | "en">("fr");
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { isDarkMode, toggleDarkMode, mounted } = useDarkMode();
 
   const toggleLanguage = () => {
-    setLanguage((prev) => (prev === "fr" ? "en" : "fr"))
-  }
+    setLanguage((prev) => (prev === "fr" ? "en" : "fr"));
+  };
 
   const toggleMobileMenu = () => {
-    setMobileMenuOpen((prev) => !prev)
-  }
+    setMobileMenuOpen((prev) => !prev);
+  };
 
-  const handleSmoothScroll = (event: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
-    event.preventDefault()
-    const targetElement = document.getElementById(targetId)
+  const handleSmoothScroll = (
+    event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
+    targetId: string,
+  ) => {
+    event.preventDefault();
+    const targetElement = document.getElementById(targetId);
     if (targetElement) {
-      targetElement.scrollIntoView({ behavior: "smooth", block: "start" })
-      setMobileMenuOpen(false) // Close mobile menu after clicking link
+      targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
+      setMobileMenuOpen(false); // Close mobile menu after clicking link
     }
-  }
+  };
 
   const content = {
     fr: {
@@ -99,30 +110,36 @@ export default function HomePage() {
         items: [
           {
             title: "Soutien aux Orphelins",
-            description: "Nous offrons un foyer, une éducation et un avenir aux enfants orphelins de Kisangani.",
+            description:
+              "Nous offrons un foyer, une éducation et un avenir aux enfants orphelins de Kisangani.",
           },
           {
             title: "Aide aux Personnes Handicapées",
-            description: "Programmes d'inclusion et de soutien pour les personnes en situation de handicap.",
+            description:
+              "Programmes d'inclusion et de soutien pour les personnes en situation de handicap.",
           },
           {
             title: "Récupération des Femmes",
-            description: "Accompagnement et réinsertion sociale des femmes en situation de détresse.",
+            description:
+              "Accompagnement et réinsertion sociale des femmes en situation de détresse.",
           },
           {
             title: "Soutien aux Personnes Albinos",
-            description: "Protection, sensibilisation et intégration des personnes albinos dans la société.",
+            description:
+              "Protection, sensibilisation et intégration des personnes albinos dans la société.",
           },
           {
             title: "Aide en Santé Mentale",
-            description: "Services de soutien psychologique et de sensibilisation à la santé mentale.",
+            description:
+              "Services de soutien psychologique et de sensibilisation à la santé mentale.",
           },
         ],
       },
       impact: {
         badge: "Notre Impact",
         title: "Histoires de Transformation",
-        description: "Découvrez comment nous changeons des vies et créons de l'espoir dans notre communauté.",
+        description:
+          "Découvrez comment nous changeons des vies et créons de l'espoir dans notre communauté.",
         stories: [
           {
             name: "Mama Beatrice",
@@ -172,29 +189,34 @@ export default function HomePage() {
       governance: {
         badge: "Gouvernance & Statuts",
         title: "Gouvernance & Statuts",
-        description: "Notre structure de gouvernance transparente garantit une gestion éthique et responsable de nos ressources et programmes.",
+        description:
+          "Notre structure de gouvernance transparente garantit une gestion éthique et responsable de nos ressources et programmes.",
         items: [
           {
             icon: "Building",
             title: "Structure Organisationnelle",
-            description: "Une gouvernance claire avec un conseil d'administration indépendant, une direction exécutive et des comités spécialisés pour assurer une gestion transparente et efficace."
+            description:
+              "Une gouvernance claire avec un conseil d'administration indépendant, une direction exécutive et des comités spécialisés pour assurer une gestion transparente et efficace.",
           },
           {
             icon: "Target",
             title: "Objectifs Statutaires",
-            description: "Nos statuts définissent clairement nos objectifs de promotion sociale, d'éducation, de santé mentale et de protection des droits humains dans la région de Kisangani."
+            description:
+              "Nos statuts définissent clairement nos objectifs de promotion sociale, d'éducation, de santé mentale et de protection des droits humains dans la région de Kisangani.",
           },
           {
             icon: "UserCheck",
             title: "Responsabilité & Transparence",
-            description: "Nous nous engageons à maintenir les plus hauts standards de transparence financière et de responsabilité envers nos bénéficiaires et donateurs."
-          }
-        ]
+            description:
+              "Nous nous engageons à maintenir les plus hauts standards de transparence financière et de responsabilité envers nos bénéficiaires et donateurs.",
+          },
+        ],
       },
       blog: {
         badge: "Actualités",
         title: "Dernières Nouvelles",
-        description: "Restez informés de nos dernières actions et succès dans la communauté.",
+        description:
+          "Restez informés de nos dernières actions et succès dans la communauté.",
         readMore: "Lire la suite",
         articles: [
           {
@@ -204,7 +226,8 @@ export default function HomePage() {
               "Nous avons inauguré une nouvelle école qui accueillera 100 enfants orphelins de Kisangani, offrant un environnement d'apprentissage moderne et sécurisé.",
           },
           {
-            title: "Réinsertion réussie d'une femme souffrant de troubles mentaux",
+            title:
+              "Réinsertion réussie d'une femme souffrant de troubles mentaux",
             date: "8 Octobre 2024",
             summary:
               "Grâce à notre programme de soutien psychologique, Mama Beatrice a retrouvé sa stabilité et peut maintenant subvenir aux besoins de sa famille.",
@@ -220,7 +243,8 @@ export default function HomePage() {
       contact: {
         badge: "Contact",
         title: "Contactez-Nous",
-        description: "Nous sommes là pour répondre à vos questions et accueillir votre soutien.",
+        description:
+          "Nous sommes là pour répondre à vos questions et accueillir votre soutien.",
         address: "Adresse",
         followUs: "Suivez-nous",
         sendMessage: "Envoyez-nous un Message",
@@ -231,7 +255,8 @@ export default function HomePage() {
         whatsappBtn: "Nous Contacter sur WhatsApp",
       },
       footer: {
-        tagline: "Transformant des vies et créant de l'espoir dans la communauté de Kisangani depuis 2018.",
+        tagline:
+          "Transformant des vies et créant de l'espoir dans la communauté de Kisangani depuis 2018.",
         programs: "Programmes",
         quickLinks: "Liens Rapides",
         programsList: [
@@ -241,7 +266,8 @@ export default function HomePage() {
           "Soutien aux Albinos",
           "Santé Mentale",
         ],
-        copyright: "© 2024 Fondation Marie Mwape pour le Progrès Social. Tous droits réservés.",
+        copyright:
+          "© 2024 Fondation Marie Mwape pour le Progrès Social. Tous droits réservés.",
       },
     },
     en: {
@@ -281,34 +307,41 @@ export default function HomePage() {
       programs: {
         badge: "Our Programs",
         title: "Areas of Intervention",
-        description: "We focus our efforts on five key areas to create lasting impact in the Kisangani community.",
+        description:
+          "We focus our efforts on five key areas to create lasting impact in the Kisangani community.",
         items: [
           {
             title: "Support for Orphans",
-            description: "We provide a home, education and future for orphaned children in Kisangani.",
+            description:
+              "We provide a home, education and future for orphaned children in Kisangani.",
           },
           {
             title: "Assistance for People with Disabilities",
-            description: "Inclusion and support programs for people with disabilities.",
+            description:
+              "Inclusion and support programs for people with disabilities.",
           },
           {
             title: "Women's Recovery",
-            description: "Support and social reintegration for women in distress.",
+            description:
+              "Support and social reintegration for women in distress.",
           },
           {
             title: "Support for People with Albinism",
-            description: "Protection, awareness and integration of people with albinism in society.",
+            description:
+              "Protection, awareness and integration of people with albinism in society.",
           },
           {
             title: "Mental Health Support",
-            description: "Psychological support services and mental health awareness.",
+            description:
+              "Psychological support services and mental health awareness.",
           },
         ],
       },
       impact: {
         badge: "Our Impact",
         title: "Transformation Stories",
-        description: "Discover how we change lives and create hope in our community.",
+        description:
+          "Discover how we change lives and create hope in our community.",
         stories: [
           {
             name: "Mama Beatrice",
@@ -319,7 +352,8 @@ export default function HomePage() {
           {
             name: "Jean-Claude",
             role: "Former Orphan",
-            quote: "The foundation gave me a family and an education. Today, I am a teacher and I help other children.",
+            quote:
+              "The foundation gave me a family and an education. Today, I am a teacher and I help other children.",
           },
           {
             name: "Marie-Claire",
@@ -357,29 +391,34 @@ export default function HomePage() {
       governance: {
         badge: "Governance & Statutes",
         title: "Governance & Statutes",
-        description: "Our transparent governance structure ensures ethical and responsible management of our resources and programs.",
+        description:
+          "Our transparent governance structure ensures ethical and responsible management of our resources and programs.",
         items: [
           {
             icon: "Building",
             title: "Organizational Structure",
-            description: "Clear governance with an independent board of directors, executive management, and specialized committees to ensure transparent and efficient management."
+            description:
+              "Clear governance with an independent board of directors, executive management, and specialized committees to ensure transparent and efficient management.",
           },
           {
             icon: "Target",
             title: "Statutory Objectives",
-            description: "Our statutes clearly define our objectives of social promotion, education, mental health, and human rights protection in the Kisangani region."
+            description:
+              "Our statutes clearly define our objectives of social promotion, education, mental health, and human rights protection in the Kisangani region.",
           },
           {
             icon: "UserCheck",
             title: "Accountability & Transparency",
-            description: "We are committed to maintaining the highest standards of financial transparency and accountability to our beneficiaries and donors."
-          }
-        ]
+            description:
+              "We are committed to maintaining the highest standards of financial transparency and accountability to our beneficiaries and donors.",
+          },
+        ],
       },
       blog: {
         badge: "News",
         title: "Latest News",
-        description: "Stay informed about our latest actions and successes in the community.",
+        description:
+          "Stay informed about our latest actions and successes in the community.",
         readMore: "Read more",
         articles: [
           {
@@ -389,7 +428,8 @@ export default function HomePage() {
               "We inaugurated a new school that will welcome 100 orphaned children from Kisangani, providing a modern and secure learning environment.",
           },
           {
-            title: "Successful reintegration of a woman with mental health issues",
+            title:
+              "Successful reintegration of a woman with mental health issues",
             date: "October 8, 2024",
             summary:
               "Thanks to our psychological support program, Mama Beatrice has regained her stability and can now provide for my family's needs.",
@@ -405,7 +445,8 @@ export default function HomePage() {
       contact: {
         badge: "Contact",
         title: "Contact Us",
-        description: "We are here to answer your questions and welcome your support.",
+        description:
+          "We are here to answer your questions and welcome your support.",
         address: "Address",
         followUs: "Follow Us",
         sendMessage: "Send Us a Message",
@@ -416,16 +457,24 @@ export default function HomePage() {
         whatsappBtn: "Contact Us on WhatsApp",
       },
       footer: {
-        tagline: "Transforming lives and creating hope in the Kisangani community since 2018.",
+        tagline:
+          "Transforming lives and creating hope in the Kisangani community since 2018.",
         programs: "Programs",
         quickLinks: "Quick Links",
-        programsList: ["Orphan Support", "Disability Aid", "Women's Recovery", "Albinism Support", "Mental Health"],
-        copyright: "© 2024 Marie Mwape Foundation for Social Progress. All rights reserved.",
+        programsList: [
+          "Orphan Support",
+          "Disability Aid",
+          "Women's Recovery",
+          "Albinism Support",
+          "Mental Health",
+        ],
+        copyright:
+          "© 2024 Marie Mwape Foundation for Social Progress. All rights reserved.",
       },
     },
-  }
+  };
 
-  const t = content[language]
+  const t = content[language];
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
@@ -465,7 +514,8 @@ export default function HomePage() {
                 {t.nav.programs}
               </a>
               <a
-                href="/governance"
+                href="#governance"
+                onClick={(e) => handleSmoothScroll(e, "governance")}
                 className="text-slate-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors font-medium text-sm"
               >
                 {t.nav.governance}
@@ -497,7 +547,11 @@ export default function HomePage() {
                 aria-label="Toggle dark mode"
                 disabled={!mounted}
               >
-                {mounted && isDarkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+                {mounted && isDarkMode ? (
+                  <Sun className="w-4 h-4" />
+                ) : (
+                  <Moon className="w-4 h-4" />
+                )}
               </Button>
 
               {/* Language Toggle */}
@@ -512,7 +566,10 @@ export default function HomePage() {
               </Button>
 
               {/* Support Button */}
-              <Button className="bg-gradient-to-r from-indigo-500 to-sky-400 hover:from-indigo-600 hover:to-sky-500 text-white rounded-lg px-4 py-2 text-sm font-medium transition-all duration-300">
+              <Button
+                className="bg-gradient-to-r from-indigo-500 to-sky-400 hover:from-indigo-600 hover:to-sky-500 text-white rounded-lg px-4 py-2 text-sm font-medium transition-all duration-300"
+                onClick={(e) => handleSmoothScroll(e, "get-involved")}
+              >
                 {t.nav.support}
               </Button>
             </div>
@@ -527,7 +584,11 @@ export default function HomePage() {
                 aria-label="Toggle mobile menu"
                 aria-expanded={mobileMenuOpen}
               >
-                {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                {mobileMenuOpen ? (
+                  <X className="w-6 h-6" />
+                ) : (
+                  <Menu className="w-6 h-6" />
+                )}
               </Button>
             </div>
           </div>
@@ -552,9 +613,9 @@ export default function HomePage() {
                   {t.nav.programs}
                 </a>
                 <a
-                  href="/governance"
+                  href="#governance"
                   className="block px-3 py-2 text-slate-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-50 dark:hover:bg-gray-700 rounded-md transition-colors font-medium"
-                  onClick={() => setMobileMenuOpen(false)}
+                  onClick={(e) => handleSmoothScroll(e, "governance")}
                 >
                   {t.nav.governance}
                 </a>
@@ -579,7 +640,10 @@ export default function HomePage() {
                 {/* Mobile Controls */}
                 <div className="space-y-3 px-3">
                   {/* Support Button */}
-                  <Button className="w-full bg-gradient-to-r from-indigo-500 to-sky-400 hover:from-indigo-600 hover:to-sky-500 text-white rounded-lg py-3 text-sm font-medium transition-all duration-300">
+                  <Button
+                    className="w-full bg-gradient-to-r from-indigo-500 to-sky-400 hover:from-indigo-600 hover:to-sky-500 text-white rounded-lg py-3 text-sm font-medium transition-all duration-300"
+                    onClick={(e) => handleSmoothScroll(e, "get-involved")}
+                  >
                     {t.nav.support}
                   </Button>
 
@@ -649,6 +713,7 @@ export default function HomePage() {
                 <Button
                   size="lg"
                   className="bg-gradient-to-r from-indigo-500 to-sky-400 hover:from-indigo-600 hover:to-sky-500 text-white rounded-lg px-8 py-4 text-lg font-medium transition-all duration-300"
+                  onClick={(e) => handleSmoothScroll(e, "get-involved")}
                 >
                   {t.hero.supportBtn}
                   <ArrowRight className="ml-2 w-5 h-5" />
@@ -694,7 +759,10 @@ export default function HomePage() {
       </section>
 
       {/* About Us Section */}
-      <section id="about" className="py-20 bg-white dark:bg-gray-800 transition-colors duration-300">
+      <section
+        id="about"
+        className="py-20 bg-white dark:bg-gray-800 transition-colors duration-300"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="space-y-8">
@@ -755,7 +823,10 @@ export default function HomePage() {
       </section>
 
       {/* Programs Section */}
-      <section id="programs" className="py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+      <section
+        id="programs"
+        className="py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-300"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center space-y-4 mb-16">
             <Badge className="bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 border-indigo-200 dark:border-indigo-700 rounded-full px-4 py-2 font-medium transition-colors duration-300">
@@ -817,9 +888,18 @@ export default function HomePage() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <CardDescription className="text-slate-600 dark:text-gray-300 text-center leading-relaxed transition-colors duration-300">
+                  <CardDescription className="text-slate-600 dark:text-gray-300 text-center leading-relaxed transition-colors duration-300 mb-6">
                     {t.programs.items[index].description}
                   </CardDescription>
+                  <div className="text-center">
+                    <a
+                      href="/programs"
+                      className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-indigo-500 to-sky-400 text-white text-sm font-medium rounded-lg hover:from-indigo-600 hover:to-sky-500 transition-all duration-300 shadow-md hover:shadow-lg"
+                    >
+                      {language === "fr" ? "En Savoir Plus" : "Learn More"}
+                      <ChevronRight className="w-4 h-4 ml-2" />
+                    </a>
+                  </div>
                 </CardContent>
               </Card>
             ))}
@@ -828,7 +908,10 @@ export default function HomePage() {
       </section>
 
       {/* Impact Section */}
-      <section id="impact" className="py-20 bg-white dark:bg-gray-800 transition-colors duration-300">
+      <section
+        id="impact"
+        className="py-20 bg-white dark:bg-gray-800 transition-colors duration-300"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center space-y-4 mb-16">
             <Badge className="bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 border-indigo-200 dark:border-indigo-700 rounded-full px-4 py-2 font-medium transition-colors duration-300">
@@ -899,27 +982,38 @@ export default function HomePage() {
       </section>
 
       {/* Get Involved Section */}
-      <section className="py-20 bg-gradient-to-r from-indigo-500 to-sky-400 text-white">
+      <section
+        id="get-involved"
+        className="py-20 bg-gradient-to-r from-indigo-500 to-sky-400 text-white"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="space-y-8">
-            <h2 className="font-serif text-4xl font-bold">{t.getInvolved.title}</h2>
-            <p className="text-xl text-indigo-100 max-w-3xl mx-auto">{t.getInvolved.description}</p>
+            <h2 className="font-serif text-4xl font-bold">
+              {t.getInvolved.title}
+            </h2>
+            <p className="text-xl text-indigo-100 max-w-3xl mx-auto">
+              {t.getInvolved.description}
+            </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <Button
-                size="lg"
-                className="bg-white text-indigo-600 hover:bg-indigo-50 rounded-lg px-8 py-4 text-lg font-medium transition-all duration-300"
-              >
-                {t.getInvolved.donateBtn}
-                <Heart className="ml-2 w-5 h-5" />
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-2 border-white text-white hover:bg-white hover:text-indigo-600 rounded-lg px-8 py-4 text-lg font-medium bg-transparent transition-all duration-300"
-              >
-                {t.getInvolved.volunteerBtn}
-                <Users className="ml-2 w-5 h-5" />
-              </Button>
+              <Link href="/donate">
+                <Button
+                  size="lg"
+                  className="bg-white text-indigo-600 hover:bg-indigo-50 rounded-lg px-8 py-4 text-lg font-medium transition-all duration-300"
+                >
+                  {t.getInvolved.donateBtn}
+                  <Heart className="ml-2 w-5 h-5" />
+                </Button>
+              </Link>
+              <Link href="/volunteer">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-2 border-white text-white hover:bg-white hover:text-indigo-600 rounded-lg px-8 py-4 text-lg font-medium bg-transparent transition-all duration-300"
+                >
+                  {t.getInvolved.volunteerBtn}
+                  <Users className="ml-2 w-5 h-5" />
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
@@ -1004,7 +1098,10 @@ export default function HomePage() {
       </section>
 
       {/* Governance & Statutes Section */}
-      <section className="py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+      <section
+        id="governance"
+        className="py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-300"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center space-y-4 mb-16">
             <Badge className="bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 border-indigo-200 dark:border-indigo-700 rounded-full px-4 py-2 font-medium transition-colors duration-300">
@@ -1020,9 +1117,17 @@ export default function HomePage() {
 
           <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
             {t.governance.items.map((item, index) => {
-              const IconComponent = item.icon === "Building" ? Building : item.icon === "Target" ? Target : UserCheck;
+              const IconComponent =
+                item.icon === "Building"
+                  ? Building
+                  : item.icon === "Target"
+                    ? Target
+                    : UserCheck;
               return (
-                <Card key={index} className="border-slate-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300 bg-white dark:bg-gray-800">
+                <Card
+                  key={index}
+                  className="border-slate-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300 bg-white dark:bg-gray-800"
+                >
                   <CardContent className="p-8">
                     <div className="flex items-start space-x-4">
                       <div className="w-12 h-12 bg-gradient-to-r from-indigo-500 to-sky-400 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -1048,7 +1153,8 @@ export default function HomePage() {
               href="/governance"
               className="inline-flex items-center rounded-lg bg-indigo-600 px-6 py-3 text-base font-semibold text-white shadow-md hover:bg-indigo-700 transition"
             >
-              {language === "fr" ? "En savoir plus" : "Learn More"}
+              {language === "fr" ? "Voir les détails" : "View Details"}
+              <ChevronRight className="ml-2 w-4 h-4" />
             </a>
           </div>
         </div>
@@ -1119,7 +1225,10 @@ export default function HomePage() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+      <section
+        id="contact"
+        className="py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-300"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center space-y-4 mb-16">
             <Badge className="bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 border-indigo-200 dark:border-indigo-700 rounded-full px-4 py-2 font-medium transition-colors duration-300">
@@ -1236,7 +1345,9 @@ export default function HomePage() {
                       <input
                         type="text"
                         className="w-full px-4 py-3 border border-slate-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent bg-white dark:bg-gray-700 text-slate-900 dark:text-white transition-colors duration-300"
-                        placeholder={language === "fr" ? "Votre prénom" : "Your first name"}
+                        placeholder={
+                          language === "fr" ? "Votre prénom" : "Your first name"
+                        }
                       />
                     </div>
                     <div>
@@ -1246,7 +1357,9 @@ export default function HomePage() {
                       <input
                         type="text"
                         className="w-full px-4 py-3 border border-slate-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent bg-white dark:bg-gray-700 text-slate-900 dark:text-white transition-colors duration-300"
-                        placeholder={language === "fr" ? "Votre nom" : "Your last name"}
+                        placeholder={
+                          language === "fr" ? "Votre nom" : "Your last name"
+                        }
                       />
                     </div>
                   </div>
@@ -1257,7 +1370,9 @@ export default function HomePage() {
                     <input
                       type="email"
                       className="w-full px-4 py-3 border border-slate-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent bg-white dark:bg-gray-700 text-slate-900 dark:text-white transition-colors duration-300"
-                      placeholder={language === "fr" ? "votre@email.com" : "your@email.com"}
+                      placeholder={
+                        language === "fr" ? "votre@email.com" : "your@email.com"
+                      }
                     />
                   </div>
                   <div>
@@ -1267,7 +1382,11 @@ export default function HomePage() {
                     <textarea
                       rows={4}
                       className="w-full px-4 py-3 border border-slate-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent bg-white dark:bg-gray-700 text-slate-900 dark:text-white transition-colors duration-300"
-                      placeholder={language === "fr" ? "Votre message..." : "Your message..."}
+                      placeholder={
+                        language === "fr"
+                          ? "Votre message..."
+                          : "Your message..."
+                      }
                     ></textarea>
                   </div>
                   <Button className="w-full bg-gradient-to-r from-indigo-500 to-sky-400 hover:from-indigo-600 hover:to-sky-500 text-white rounded-lg py-3 text-lg font-medium transition-all duration-300">
@@ -1290,7 +1409,9 @@ export default function HomePage() {
                   <Heart className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="font-serif text-xl font-bold">{t.logo.title}</h3>
+                  <h3 className="font-serif text-xl font-bold">
+                    {t.logo.title}
+                  </h3>
                   <p className="text-sm text-slate-300 dark:text-gray-400 transition-colors duration-300">
                     {t.logo.subtitle}
                   </p>
@@ -1351,7 +1472,8 @@ export default function HomePage() {
                 </li>
                 <li>
                   <a
-                    href="/governance"
+                    href="#governance"
+                    onClick={(e) => handleSmoothScroll(e, "governance")}
                     className="hover:text-white transition-colors"
                   >
                     {t.nav.governance}
@@ -1405,5 +1527,5 @@ export default function HomePage() {
       {/* Back to Top Button */}
       <BackToTopButton />
     </div>
-  )
+  );
 }

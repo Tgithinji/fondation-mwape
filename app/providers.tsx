@@ -11,7 +11,6 @@ export function Providers({ children }: { children: React.ReactNode }) {
       enableSystem={true}
       disableTransitionOnChange={false}
       storageKey="fondation-mwape-theme"
-      suppressHydrationWarning={true}
     >
       {children}
     </ThemeProvider>

@@ -19,6 +19,8 @@ import {
   Moon,
   Sun,
 } from "lucide-react";
+import { WhatsAppButton } from "@/components/whatsapp-button";
+import { BackToTopButton } from "@/components/back-to-top-button";
 
 export default function GovernancePage() {
   // Local language toggle
@@ -30,20 +32,22 @@ export default function GovernancePage() {
   // Initialize dark mode from localStorage
   useEffect(() => {
     setMounted(true);
-    const stored = localStorage.getItem('darkMode');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const shouldBeDark = stored === 'true' || (stored === null && prefersDark);
+    const stored = localStorage.getItem("darkMode");
+    const prefersDark = window.matchMedia(
+      "(prefers-color-scheme: dark)",
+    ).matches;
+    const shouldBeDark = stored === "true" || (stored === null && prefersDark);
 
     setIsDarkMode(shouldBeDark);
-    document.documentElement.classList.toggle('dark', shouldBeDark);
+    document.documentElement.classList.toggle("dark", shouldBeDark);
   }, []);
 
   // Toggle dark mode
   const toggleDarkMode = () => {
     const newDarkMode = !isDarkMode;
     setIsDarkMode(newDarkMode);
-    localStorage.setItem('darkMode', newDarkMode.toString());
-    document.documentElement.classList.toggle('dark', newDarkMode);
+    localStorage.setItem("darkMode", newDarkMode.toString());
+    document.documentElement.classList.toggle("dark", newDarkMode);
   };
 
   const content = {
@@ -75,26 +79,22 @@ export default function GovernancePage() {
         cards: [
           {
             title: "Founding Members",
-            body:
-              "Initiators listed in the constitutive declaration. May serve in organs if they meet active member conditions.",
+            body: "Initiators listed in the constitutive declaration. May serve in organs if they meet active member conditions.",
             icon: "Landmark",
           },
           {
             title: "Active Members",
-            body:
-              "Adhere to the statutes and regularly pay dues (5,000 CDF/month). Enjoy voting rights and may hold positions.",
+            body: "Adhere to the statutes and regularly pay dues (5,000 CDF/month). Enjoy voting rights and may hold positions.",
             icon: "Users",
           },
           {
             title: "Honorary Members",
-            body:
-              "Persons or entities offering moral, material, or financial support; attend events without deliberative vote.",
+            body: "Persons or entities offering moral, material, or financial support; attend events without deliberative vote.",
             icon: "Shield",
           },
           {
             title: "Benefactor Members",
-            body:
-              "Supporters who encourage others and assist materially, morally, or financially to achieve the foundation's goals.",
+            body: "Supporters who encourage others and assist materially, morally, or financially to achieve the foundation's goals.",
             icon: "Network",
           },
         ],
@@ -111,28 +111,25 @@ export default function GovernancePage() {
         sections: [
           {
             title: "Founding Member",
-            body:
-              "The sole Founding Member is Mrs. Marie Mwape Kashimbo. She sets the vision and supports the foundation materially and financially.",
-            extra: "Guardian of the foundation's mission and philosophy, providing oversight and strategic direction.",
+            body: "The sole Founding Member is Mrs. Marie Mwape Kashimbo. She sets the vision and supports the foundation materially and financially.",
+            extra:
+              "Guardian of the foundation's mission and philosophy, providing oversight and strategic direction.",
           },
           {
             title: "Board of Directors",
-            body:
-              "Decision-making, management, and orientation organ. Ensures objectives are respected, supports the program of activities, mobilizes resources, and resolves disputes.",
+            body: "Decision-making, management, and orientation organ. Ensures objectives are respected, supports the program of activities, mobilizes resources, and resolves disputes.",
             extra:
               "Chaired by Dr. YANGONGO Fabien; members are appointed by the Founding Member. Mandate: 3 years, renewable. Meets monthly or as needed.",
           },
           {
             title: "Management Committee",
-            body:
-              "Executive body implementing the action program. Composed of President, Vice-Presidents, and Financial Secretary; members chosen among active members in good standing.",
+            body: "Executive body implementing the action program. Composed of President, Vice-Presidents, and Financial Secretary; members chosen among active members in good standing.",
             extra:
               "Mandate: 2 years, renewable. Can end by death, resignation, or revocation by the Board after advice.",
           },
           {
             title: "Advisors & Companions",
-            body:
-              "Representatives across communes and sectors who regroup active members, collect contributions, and support operations.",
+            body: "Representatives across communes and sectors who regroup active members, collect contributions, and support operations.",
             extra:
               "Areas include: Logistics, Legal, Protocol, Security, Gender/Family/Child, Youth.",
           },
@@ -141,70 +138,80 @@ export default function GovernancePage() {
       finance: {
         badge: "Finance",
         title: "Financial Resources & Controls",
-        description: "Our foundation is funded through diverse sources to ensure sustainability:",
+        description:
+          "Our foundation is funded through diverse sources to ensure sustainability:",
         items: [
           "Members' contributions",
           "Donations and legacies",
           "Funds from activities",
           "Public and private subsidies",
         ],
-        note:
-          "Resources are used exclusively to achieve the foundation's objectives. 'Let us not love with words or speech but with actions and in truth.' (1 John 3:18)",
-        control: "The President controls finances; accounts require joint signature of the President and the General Treasurer.",
+        note: "Resources are used exclusively to achieve the foundation's objectives. 'Let us not love with words or speech but with actions and in truth.' (1 John 3:18)",
+        control:
+          "The President controls finances; accounts require joint signature of the President and the General Treasurer.",
       },
       org: {
         badge: "Structure",
         title: "Organizational Hierarchy",
-        description: "Our organizational structure ensures clear lines of authority, accountability, and effective coordination across all levels.",
+        description:
+          "Our organizational structure ensures clear lines of authority, accountability, and effective coordination across all levels.",
         cards: [
           {
             title: "Founding Member",
             name: "Marie Mwape Kashimbo",
-            description: "Guardian of the foundation's vision and mission, providing strategic oversight and foundational support.",
-            level: 1
+            description:
+              "Guardian of the foundation's vision and mission, providing strategic oversight and foundational support.",
+            level: 1,
           },
           {
             title: "Assistant to Founding Member",
             name: "",
-            description: "Provides direct support to the Founding Member in strategic planning and organizational oversight.",
-            level: 2
+            description:
+              "Provides direct support to the Founding Member in strategic planning and organizational oversight.",
+            level: 2,
           },
           {
             title: "President of the Board of Directors",
             name: "Dr. YANGONGO Fabien",
-            description: "Leads the Board in strategic decision-making, governance oversight, and organizational direction.",
-            level: 3
+            description:
+              "Leads the Board in strategic decision-making, governance oversight, and organizational direction.",
+            level: 3,
           },
           {
             title: "Secretariat & Finance Department",
             name: "",
-            description: "Manages administrative operations, financial controls, and organizational documentation.",
-            level: 4
+            description:
+              "Manages administrative operations, financial controls, and organizational documentation.",
+            level: 4,
           },
           {
             title: "President of the Management Committee",
             name: "",
-            description: "Oversees daily operations, program implementation, and coordination of management activities.",
-            level: 5
+            description:
+              "Oversees daily operations, program implementation, and coordination of management activities.",
+            level: 5,
           },
           {
             title: "Regional Counselors",
             name: "Makiso, Kabondo, Mangobo, Tshopo, Kisangani, Lubunga, Lubuya Bera",
-            description: "Represent the foundation across different regions, coordinate local activities and member engagement.",
-            level: 6
+            description:
+              "Represent the foundation across different regions, coordinate local activities and member engagement.",
+            level: 6,
           },
           {
             title: "Specialized Companions",
             name: "Logistics, Legal, Protocol, Security, Gender/Family/Child, Youth",
-            description: "Provide specialized expertise and support across key operational and programmatic areas.",
-            level: 7
+            description:
+              "Provide specialized expertise and support across key operational and programmatic areas.",
+            level: 7,
           },
           {
             title: "Target Beneficiaries",
             name: "Albinos, Homeless children, Widows/Single mothers, Physically disabled, Athletes",
-            description: "The communities and individuals we serve through our various programs and initiatives.",
-            level: 8
-          }
+            description:
+              "The communities and individuals we serve through our various programs and initiatives.",
+            level: 8,
+          },
         ],
       },
       internal: {
@@ -241,8 +248,7 @@ export default function GovernancePage() {
           "Sanctions for behavior contrary to objectives include: reminder to order, suspension, or exclusion (decided by the Board with simple majority).",
       },
       closing: {
-        cta:
-          "We commit to transparency, inclusion, and measurable impact for those we serve through strong governance and dedicated service.",
+        cta: "We commit to transparency, inclusion, and measurable impact for those we serve through strong governance and dedicated service.",
         switch: "Voir en Français",
         backHome: "Back to Home",
       },
@@ -275,26 +281,22 @@ export default function GovernancePage() {
         cards: [
           {
             title: "Membres Fondateurs",
-            body:
-              "Initiateurs repris dans la déclaration constitutive. Peuvent siéger s'ils remplissent les conditions de membres actifs.",
+            body: "Initiateurs repris dans la déclaration constitutive. Peuvent siéger s'ils remplissent les conditions de membres actifs.",
             icon: "Landmark",
           },
           {
             title: "Membres Actifs",
-            body:
-              "Adhèrent aux statuts et paient régulièrement les cotisations (5 000 CDF/mois). Bénéficient du droit de vote et peuvent exercer des fonctions.",
+            body: "Adhèrent aux statuts et paient régulièrement les cotisations (5 000 CDF/mois). Bénéficient du droit de vote et peuvent exercer des fonctions.",
             icon: "Users",
           },
           {
             title: "Membres Honoraires",
-            body:
-              "Personnes ou entités apportant un soutien moral, matériel ou financier ; participent sans voix délibérative.",
+            body: "Personnes ou entités apportant un soutien moral, matériel ou financier ; participent sans voix délibérative.",
             icon: "Shield",
           },
           {
             title: "Membres Bienfaiteurs",
-            body:
-              "Contributeurs encourageant d'autres personnes et aidant matériellement, moralement ou financièrement.",
+            body: "Contributeurs encourageant d'autres personnes et aidant matériellement, moralement ou financièrement.",
             icon: "Network",
           },
         ],
@@ -311,28 +313,25 @@ export default function GovernancePage() {
         sections: [
           {
             title: "Membre Fondateur",
-            body:
-              "L'unique Membre Fondateur est Mme Marie Mwape Kashimbo. Elle dicte la vision et soutient matériellement et financièrement la fondation.",
-            extra: "Gardienne de la mission et de la philosophie de la fondation, assurant supervision et orientation stratégique.",
+            body: "L'unique Membre Fondateur est Mme Marie Mwape Kashimbo. Elle dicte la vision et soutient matériellement et financièrement la fondation.",
+            extra:
+              "Gardienne de la mission et de la philosophie de la fondation, assurant supervision et orientation stratégique.",
           },
           {
             title: "Conseil d'Administration",
-            body:
-              "Organe de décision, de gestion et d'orientation. Veille au respect des objectifs, soutient le programme d'activités, mobilise des ressources et règle les différends.",
+            body: "Organe de décision, de gestion et d'orientation. Veille au respect des objectifs, soutient le programme d'activités, mobilise des ressources et règle les différends.",
             extra:
               "Présidé par le Dr YANGONGO Fabien ; membres nommés par le Membre Fondateur. Mandat : 3 ans, renouvelable. Réunion mensuelle ou selon besoin.",
           },
           {
             title: "Comité de Gestion",
-            body:
-              "Organe exécutif d'application du programme d'action. Composé du Président, des Vice-Présidents et du Secrétaire Financier ; membres choisis parmi les actifs en règle.",
+            body: "Organe exécutif d'application du programme d'action. Composé du Président, des Vice-Présidents et du Secrétaire Financier ; membres choisis parmi les actifs en règle.",
             extra:
               "Mandat : 2 ans, renouvelable. Fin par décès, démission ou révocation par le Conseil après avis.",
           },
           {
             title: "Conseillers & Compagnons",
-            body:
-              "Représentants dans les communes et secteurs regroupant les membres actifs, collectant les cotisations et soutenant l'opérationnel.",
+            body: "Représentants dans les communes et secteurs regroupant les membres actifs, collectant les cotisations et soutenant l'opérationnel.",
             extra:
               "Domaines : Logistique, Juridique, Protocole, Sécurité, Genre/Famille/Enfant, Jeunesse.",
           },
@@ -341,70 +340,80 @@ export default function GovernancePage() {
       finance: {
         badge: "Finances",
         title: "Ressources & Contrôles Financiers",
-        description: "Notre fondation est financée par diverses sources pour assurer la durabilité :",
+        description:
+          "Notre fondation est financée par diverses sources pour assurer la durabilité :",
         items: [
           "Cotisations des membres",
           "Dons et legs",
           "Fonds issus des activités",
           "Subventions publiques et privées",
         ],
-        note:
-          "Les ressources servent exclusivement à réaliser les objectifs. « N'aimons pas en paroles et avec la langue, mais en actions et avec vérité. » (1 Jean 3:18)",
-        control: "Le Président contrôle les finances ; les comptes requièrent la double signature du Président et du Trésorier Général.",
+        note: "Les ressources servent exclusivement à réaliser les objectifs. « N'aimons pas en paroles et avec la langue, mais en actions et avec vérité. » (1 Jean 3:18)",
+        control:
+          "Le Président contrôle les finances ; les comptes requièrent la double signature du Président et du Trésorier Général.",
       },
       org: {
         badge: "Structure",
         title: "Hiérarchie Organisationnelle",
-        description: "Notre structure organisationnelle assure des lignes claires d'autorité, de responsabilité et de coordination efficace à tous les niveaux.",
+        description:
+          "Notre structure organisationnelle assure des lignes claires d'autorité, de responsabilité et de coordination efficace à tous les niveaux.",
         cards: [
           {
             title: "Membre Fondateur",
             name: "Marie Mwape Kashimbo",
-            description: "Gardienne de la vision et de la mission de la fondation, assurant la supervision stratégique et le soutien fondamental.",
-            level: 1
+            description:
+              "Gardienne de la vision et de la mission de la fondation, assurant la supervision stratégique et le soutien fondamental.",
+            level: 1,
           },
           {
             title: "Assistant du Membre Fondateur",
             name: "",
-            description: "Fournit un soutien direct au Membre Fondateur dans la planification stratégique et la supervision organisationnelle.",
-            level: 2
+            description:
+              "Fournit un soutien direct au Membre Fondateur dans la planification stratégique et la supervision organisationnelle.",
+            level: 2,
           },
           {
             title: "Président du Conseil d'Administration",
             name: "Dr YANGONGO Fabien",
-            description: "Dirige le Conseil dans la prise de décisions stratégiques, la supervision de la gouvernance et l'orientation organisationnelle.",
-            level: 3
+            description:
+              "Dirige le Conseil dans la prise de décisions stratégiques, la supervision de la gouvernance et l'orientation organisationnelle.",
+            level: 3,
           },
           {
             title: "Secrétariat & Département des Finances",
             name: "",
-            description: "Gère les opérations administratives, les contrôles financiers et la documentation organisationnelle.",
-            level: 4
+            description:
+              "Gère les opérations administratives, les contrôles financiers et la documentation organisationnelle.",
+            level: 4,
           },
           {
             title: "Président du Comité de Gestion",
             name: "",
-            description: "Supervise les opérations quotidiennes, la mise en œuvre des programmes et la coordination des activités de gestion.",
-            level: 5
+            description:
+              "Supervise les opérations quotidiennes, la mise en œuvre des programmes et la coordination des activités de gestion.",
+            level: 5,
           },
           {
             title: "Conseillers Régionaux",
             name: "Makiso, Kabondo, Mangobo, Tshopo, Kisangani, Lubunga, Lubuya Bera",
-            description: "Représentent la fondation dans différentes régions, coordonnent les activités locales et l'engagement des membres.",
-            level: 6
+            description:
+              "Représentent la fondation dans différentes régions, coordonnent les activités locales et l'engagement des membres.",
+            level: 6,
           },
           {
             title: "Compagnons Spécialisés",
             name: "Logistique, Juridique, Protocole, Sécurité, Genre/Famille/Enfant, Jeunesse",
-            description: "Fournissent une expertise spécialisée et un soutien dans les domaines opérationnels et programmatiques clés.",
-            level: 7
+            description:
+              "Fournissent une expertise spécialisée et un soutien dans les domaines opérationnels et programmatiques clés.",
+            level: 7,
           },
           {
             title: "Bénéficiaires Cibles",
             name: "Albinos, Enfants sans abri, Veuves/Mères célibataires, Handicapés physiques, Athlètes",
-            description: "Les communautés et individus que nous servons à travers nos divers programmes et initiatives.",
-            level: 8
-          }
+            description:
+              "Les communautés et individus que nous servons à travers nos divers programmes et initiatives.",
+            level: 8,
+          },
         ],
       },
       internal: {
@@ -427,7 +436,8 @@ export default function GovernancePage() {
               "Conçoit des techniques pour assister les vulnérables, notamment les enfants autochtones et les personnes handicapées à travers des programmes spécialisés.",
           },
           {
-            title: "Conseillers (Pédagogique, Spirituel, Juridique, Communication)",
+            title:
+              "Conseillers (Pédagogique, Spirituel, Juridique, Communication)",
             details:
               "Fournissent une expertise spécialisée : initiatives éducatives, soutien spirituel, assistance juridique, information publique et mobilisation stratégique.",
           },
@@ -441,8 +451,7 @@ export default function GovernancePage() {
           "Sanctions pour comportement contraire aux objectifs : rappel à l'ordre, suspension, ou exclusion (décidée par le Conseil d'Administration à la majorité simple).",
       },
       closing: {
-        cta:
-          "Nous nous engageons à la transparence, à l'inclusion et à un impact mesurable pour ceux que nous servons à travers une gouvernance solide et un service dévoué.",
+        cta: "Nous nous engageons à la transparence, à l'inclusion et à un impact mesurable pour ceux que nous servons à travers une gouvernance solide et un service dévoué.",
         switch: "View in English",
         backHome: "Retour à l'Accueil",
       },
@@ -496,7 +505,11 @@ export default function GovernancePage() {
                 aria-label="Toggle dark mode"
                 disabled={!mounted}
               >
-                {mounted && isDarkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+                {mounted && isDarkMode ? (
+                  <Sun className="w-4 h-4" />
+                ) : (
+                  <Moon className="w-4 h-4" />
+                )}
               </button>
 
               {/* Language Toggle */}
@@ -505,7 +518,9 @@ export default function GovernancePage() {
                 className="flex items-center space-x-2 text-slate-700 dark:text-gray-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-gray-700 rounded-lg transition-colors duration-300 px-3 py-2"
               >
                 <Globe className="w-4 h-4" />
-                <span className="text-sm font-medium">{language === "fr" ? "🇫🇷 FR" : "🇬🇧 EN"}</span>
+                <span className="text-sm font-medium">
+                  {language === "fr" ? "🇫🇷 FR" : "🇬🇧 EN"}
+                </span>
               </button>
             </div>
           </div>
@@ -531,7 +546,9 @@ export default function GovernancePage() {
           <h2 className="text-3xl font-bold mt-2 mb-4 text-slate-900 dark:text-white transition-colors duration-300">
             {t.objectives.title}
           </h2>
-          <p className="text-slate-600 dark:text-gray-300 mb-6 transition-colors duration-300">{t.objectives.intro}</p>
+          <p className="text-slate-600 dark:text-gray-300 mb-6 transition-colors duration-300">
+            {t.objectives.intro}
+          </p>
           <div className="bg-white dark:bg-gray-800 p-8 rounded-lg border border-slate-200 dark:border-gray-700 transition-colors duration-300">
             <div className="flex items-center space-x-3 mb-6">
               <div className="w-12 h-12 bg-gradient-to-r from-indigo-500 to-sky-400 rounded-lg flex items-center justify-center">
@@ -545,7 +562,9 @@ export default function GovernancePage() {
               {t.objectives.targets.map((target, idx) => (
                 <li key={idx} className="flex items-center space-x-3">
                   <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
-                  <span className="text-slate-600 dark:text-gray-300 transition-colors duration-300">{target}</span>
+                  <span className="text-slate-600 dark:text-gray-300 transition-colors duration-300">
+                    {target}
+                  </span>
                 </li>
               ))}
             </ul>
@@ -560,18 +579,27 @@ export default function GovernancePage() {
           <h2 className="text-3xl font-bold mt-2 mb-4 text-slate-900 dark:text-white transition-colors duration-300">
             {t.membership.title}
           </h2>
-          <p className="text-slate-600 dark:text-gray-300 mb-8 transition-colors duration-300">{t.membership.intro}</p>
+          <p className="text-slate-600 dark:text-gray-300 mb-8 transition-colors duration-300">
+            {t.membership.intro}
+          </p>
 
           <div className="grid md:grid-cols-2 gap-6 mb-8">
             {t.membership.cards.map((card, index) => (
-              <div key={index} className="bg-white dark:bg-gray-800 p-6 rounded-lg border border-slate-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300">
+              <div
+                key={index}
+                className="bg-white dark:bg-gray-800 p-6 rounded-lg border border-slate-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300"
+              >
                 <div className="flex items-center space-x-3 mb-4">
                   <div className="w-10 h-10 bg-gradient-to-r from-indigo-500 to-sky-400 rounded-lg flex items-center justify-center">
                     {renderIcon(card.icon)}
                   </div>
-                  <h3 className="font-semibold text-slate-900 dark:text-white transition-colors duration-300">{card.title}</h3>
+                  <h3 className="font-semibold text-slate-900 dark:text-white transition-colors duration-300">
+                    {card.title}
+                  </h3>
                 </div>
-                <p className="text-slate-600 dark:text-gray-300 transition-colors duration-300">{card.body}</p>
+                <p className="text-slate-600 dark:text-gray-300 transition-colors duration-300">
+                  {card.body}
+                </p>
               </div>
             ))}
           </div>
@@ -584,7 +612,9 @@ export default function GovernancePage() {
                   {language === "fr" ? "Droits" : "Rights"}
                 </h3>
               </div>
-              <p className="text-green-700 dark:text-green-300 transition-colors duration-300">{t.membership.rights}</p>
+              <p className="text-green-700 dark:text-green-300 transition-colors duration-300">
+                {t.membership.rights}
+              </p>
             </div>
             <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-lg border border-blue-200 dark:border-blue-700 transition-colors duration-300">
               <div className="flex items-center space-x-2 mb-3">
@@ -593,7 +623,9 @@ export default function GovernancePage() {
                   {language === "fr" ? "Obligations" : "Obligations"}
                 </h3>
               </div>
-              <p className="text-blue-700 dark:text-blue-300 transition-colors duration-300">{t.membership.obligations}</p>
+              <p className="text-blue-700 dark:text-blue-300 transition-colors duration-300">
+                {t.membership.obligations}
+              </p>
             </div>
           </div>
         </section>
@@ -606,24 +638,35 @@ export default function GovernancePage() {
           <h2 className="text-3xl font-bold mt-2 mb-4 text-slate-900 dark:text-white transition-colors duration-300">
             {t.governance.title}
           </h2>
-          <p className="text-slate-600 dark:text-gray-300 mb-8 transition-colors duration-300">{t.governance.intro}</p>
+          <p className="text-slate-600 dark:text-gray-300 mb-8 transition-colors duration-300">
+            {t.governance.intro}
+          </p>
 
           <div className="space-y-4">
             {t.governance.sections.map((section, index) => (
-              <details key={index} className="bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-lg transition-colors duration-300">
+              <details
+                key={index}
+                className="bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-lg transition-colors duration-300"
+              >
                 <summary className="cursor-pointer p-6 hover:bg-slate-50 dark:hover:bg-gray-700 transition-colors duration-300">
                   <div className="flex items-center space-x-3">
                     <div className="w-8 h-8 bg-gradient-to-r from-indigo-500 to-sky-400 rounded-full flex items-center justify-center">
                       <Users className="w-4 h-4 text-white" />
                     </div>
-                    <h3 className="font-semibold text-slate-900 dark:text-white transition-colors duration-300">{section.title}</h3>
+                    <h3 className="font-semibold text-slate-900 dark:text-white transition-colors duration-300">
+                      {section.title}
+                    </h3>
                     <ChevronRight className="w-5 h-5 text-slate-400 dark:text-gray-400 ml-auto" />
                   </div>
                 </summary>
                 <div className="px-6 pb-6">
-                  <p className="text-slate-600 dark:text-gray-300 ml-11 mb-3 transition-colors duration-300">{section.body}</p>
+                  <p className="text-slate-600 dark:text-gray-300 ml-11 mb-3 transition-colors duration-300">
+                    {section.body}
+                  </p>
                   {section.extra && (
-                    <p className="text-slate-500 dark:text-gray-400 ml-11 text-sm transition-colors duration-300">{section.extra}</p>
+                    <p className="text-slate-500 dark:text-gray-400 ml-11 text-sm transition-colors duration-300">
+                      {section.extra}
+                    </p>
                   )}
                 </div>
               </details>
@@ -647,9 +690,13 @@ export default function GovernancePage() {
               </div>
               <div>
                 <h3 className="text-xl font-semibold text-slate-900 dark:text-white transition-colors duration-300">
-                  {language === "fr" ? "Sources de Financement" : "Funding Sources"}
+                  {language === "fr"
+                    ? "Sources de Financement"
+                    : "Funding Sources"}
                 </h3>
-                <p className="text-slate-600 dark:text-gray-300 transition-colors duration-300">{t.finance.description}</p>
+                <p className="text-slate-600 dark:text-gray-300 transition-colors duration-300">
+                  {t.finance.description}
+                </p>
               </div>
             </div>
 
@@ -657,7 +704,9 @@ export default function GovernancePage() {
               {t.finance.items.map((source, index) => (
                 <li key={index} className="flex items-center space-x-3">
                   <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
-                  <span className="text-slate-600 dark:text-gray-300 transition-colors duration-300">{source}</span>
+                  <span className="text-slate-600 dark:text-gray-300 transition-colors duration-300">
+                    {source}
+                  </span>
                 </li>
               ))}
             </ul>
@@ -665,12 +714,16 @@ export default function GovernancePage() {
             <div className="bg-gradient-to-r from-indigo-50 to-sky-50 dark:from-indigo-900/20 dark:to-sky-900/20 p-6 rounded-lg border border-indigo-200 dark:border-indigo-700 mb-4 transition-colors duration-300">
               <div className="flex items-start space-x-3">
                 <Heart className="w-6 h-6 text-indigo-600 dark:text-indigo-400 flex-shrink-0 mt-1" />
-                <p className="text-slate-600 dark:text-gray-300 italic transition-colors duration-300">{t.finance.note}</p>
+                <p className="text-slate-600 dark:text-gray-300 italic transition-colors duration-300">
+                  {t.finance.note}
+                </p>
               </div>
             </div>
 
             <div className="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border border-amber-200 dark:border-amber-700 transition-colors duration-300">
-              <p className="text-amber-700 dark:text-amber-300 transition-colors duration-300 text-sm">{t.finance.control}</p>
+              <p className="text-amber-700 dark:text-amber-300 transition-colors duration-300 text-sm">
+                {t.finance.control}
+              </p>
             </div>
           </div>
         </section>
@@ -683,7 +736,9 @@ export default function GovernancePage() {
           <h2 className="text-3xl font-bold mt-2 mb-4 text-slate-900 dark:text-white transition-colors duration-300">
             {t.org.title}
           </h2>
-          <p className="text-slate-600 dark:text-gray-300 mb-8 transition-colors duration-300">{t.org.description}</p>
+          <p className="text-slate-600 dark:text-gray-300 mb-8 transition-colors duration-300">
+            {t.org.description}
+          </p>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6">
             {t.org.cards.map((card, index) => (
@@ -692,17 +747,21 @@ export default function GovernancePage() {
                 className="bg-white dark:bg-gray-800 p-6 rounded-lg border border-slate-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300"
               >
                 <div className="flex items-start space-x-3 mb-4">
-                  <div className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${
-                    card.level <= 2
-                      ? 'bg-gradient-to-r from-purple-500 to-indigo-500'
-                      : card.level <= 4
-                      ? 'bg-gradient-to-r from-indigo-500 to-sky-400'
-                      : card.level <= 6
-                      ? 'bg-gradient-to-r from-sky-400 to-blue-500'
-                      : 'bg-gradient-to-r from-blue-500 to-green-500'
-                  }`}>
+                  <div
+                    className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${
+                      card.level <= 2
+                        ? "bg-gradient-to-r from-purple-500 to-indigo-500"
+                        : card.level <= 4
+                          ? "bg-gradient-to-r from-indigo-500 to-sky-400"
+                          : card.level <= 6
+                            ? "bg-gradient-to-r from-sky-400 to-blue-500"
+                            : "bg-gradient-to-r from-blue-500 to-green-500"
+                    }`}
+                  >
                     <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center">
-                      <span className="text-xs font-bold text-gray-800">{card.level}</span>
+                      <span className="text-xs font-bold text-gray-800">
+                        {card.level}
+                      </span>
                     </div>
                   </div>
                   <div className="flex-1 min-w-0">
@@ -735,18 +794,25 @@ export default function GovernancePage() {
 
           <div className="space-y-4 mb-8">
             {t.internal.roles.map((role, index) => (
-              <details key={index} className="bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-lg transition-colors duration-300">
+              <details
+                key={index}
+                className="bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-lg transition-colors duration-300"
+              >
                 <summary className="cursor-pointer p-6 hover:bg-slate-50 dark:hover:bg-gray-700 transition-colors duration-300">
                   <div className="flex items-center space-x-3">
                     <div className="w-8 h-8 bg-gradient-to-r from-indigo-500 to-sky-400 rounded-full flex items-center justify-center">
                       <ScrollText className="w-4 h-4 text-white" />
                     </div>
-                    <h3 className="font-semibold text-slate-900 dark:text-white transition-colors duration-300">{role.title}</h3>
+                    <h3 className="font-semibold text-slate-900 dark:text-white transition-colors duration-300">
+                      {role.title}
+                    </h3>
                     <ChevronRight className="w-5 h-5 text-slate-400 dark:text-gray-400 ml-auto" />
                   </div>
                 </summary>
                 <div className="px-6 pb-6">
-                  <p className="text-slate-600 dark:text-gray-300 ml-11 transition-colors duration-300">{role.details}</p>
+                  <p className="text-slate-600 dark:text-gray-300 ml-11 transition-colors duration-300">
+                    {role.details}
+                  </p>
                 </div>
               </details>
             ))}
@@ -759,7 +825,9 @@ export default function GovernancePage() {
                 {language === "fr" ? "Discipline" : "Discipline"}
               </h3>
             </div>
-            <p className="text-amber-700 dark:text-amber-300 transition-colors duration-300">{t.internal.discipline}</p>
+            <p className="text-amber-700 dark:text-amber-300 transition-colors duration-300">
+              {t.internal.discipline}
+            </p>
           </div>
         </section>
 
@@ -791,6 +859,10 @@ export default function GovernancePage() {
           </div>
         </section>
       </div>
+
+      {/* Floating Buttons */}
+      <WhatsAppButton />
+      <BackToTopButton />
     </div>
   );
 }
