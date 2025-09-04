@@ -25,6 +25,9 @@ import {
   X,
   Moon,
   Sun,
+  Building,
+  Target,
+  UserCheck,
 } from "lucide-react"
 import Image from "next/image"
 import { WhatsAppButton } from "@/components/whatsapp-button"
@@ -58,6 +61,7 @@ export default function HomePage() {
       nav: {
         about: "À Propos",
         programs: "Programmes",
+        governance: "Gouvernance",
         impact: "Impact",
         contact: "Contact",
         support: "Soutenir Notre Travail",
@@ -165,6 +169,28 @@ export default function HomePage() {
         title: "Notre Mission",
         text: "Notre mission est de redonner espoir, dignité et autonomie aux populations les plus vulnérables de Kisangani, à travers des actions concrètes et durables dans les domaines de l'éducation, la santé mentale, l'inclusion sociale, et la protection des droits humains.",
       },
+      governance: {
+        badge: "Gouvernance & Statuts",
+        title: "Gouvernance & Statuts",
+        description: "Notre structure de gouvernance transparente garantit une gestion éthique et responsable de nos ressources et programmes.",
+        items: [
+          {
+            icon: "Building",
+            title: "Structure Organisationnelle",
+            description: "Une gouvernance claire avec un conseil d'administration indépendant, une direction exécutive et des comités spécialisés pour assurer une gestion transparente et efficace."
+          },
+          {
+            icon: "Target",
+            title: "Objectifs Statutaires",
+            description: "Nos statuts définissent clairement nos objectifs de promotion sociale, d'éducation, de santé mentale et de protection des droits humains dans la région de Kisangani."
+          },
+          {
+            icon: "UserCheck",
+            title: "Responsabilité & Transparence",
+            description: "Nous nous engageons à maintenir les plus hauts standards de transparence financière et de responsabilité envers nos bénéficiaires et donateurs."
+          }
+        ]
+      },
       blog: {
         badge: "Actualités",
         title: "Dernières Nouvelles",
@@ -222,6 +248,7 @@ export default function HomePage() {
       nav: {
         about: "About",
         programs: "Programs",
+        governance: "Governance",
         impact: "Impact",
         contact: "Contact",
         support: "Support Our Work",
@@ -327,6 +354,28 @@ export default function HomePage() {
         title: "Our Mission",
         text: "Our mission is to restore hope, dignity, and empowerment to the most vulnerable communities in Kisangani through sustainable and meaningful action in education, mental health, social inclusion, and human rights protection.",
       },
+      governance: {
+        badge: "Governance & Statutes",
+        title: "Governance & Statutes",
+        description: "Our transparent governance structure ensures ethical and responsible management of our resources and programs.",
+        items: [
+          {
+            icon: "Building",
+            title: "Organizational Structure",
+            description: "Clear governance with an independent board of directors, executive management, and specialized committees to ensure transparent and efficient management."
+          },
+          {
+            icon: "Target",
+            title: "Statutory Objectives",
+            description: "Our statutes clearly define our objectives of social promotion, education, mental health, and human rights protection in the Kisangani region."
+          },
+          {
+            icon: "UserCheck",
+            title: "Accountability & Transparency",
+            description: "We are committed to maintaining the highest standards of financial transparency and accountability to our beneficiaries and donors."
+          }
+        ]
+      },
       blog: {
         badge: "News",
         title: "Latest News",
@@ -416,6 +465,12 @@ export default function HomePage() {
                 {t.nav.programs}
               </a>
               <a
+                href="/governance"
+                className="text-slate-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors font-medium text-sm"
+              >
+                {t.nav.governance}
+              </a>
+              <a
                 href="#impact"
                 onClick={(e) => handleSmoothScroll(e, "impact")}
                 className="text-slate-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors font-medium text-sm"
@@ -495,6 +550,13 @@ export default function HomePage() {
                   onClick={(e) => handleSmoothScroll(e, "programs")}
                 >
                   {t.nav.programs}
+                </a>
+                <a
+                  href="/governance"
+                  className="block px-3 py-2 text-slate-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-50 dark:hover:bg-gray-700 rounded-md transition-colors font-medium"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {t.nav.governance}
                 </a>
                 <a
                   href="#impact"
@@ -941,6 +1003,57 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Governance & Statutes Section */}
+      <section className="py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center space-y-4 mb-16">
+            <Badge className="bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 border-indigo-200 dark:border-indigo-700 rounded-full px-4 py-2 font-medium transition-colors duration-300">
+              {t.governance.badge}
+            </Badge>
+            <h2 className="font-serif text-4xl font-bold text-slate-900 dark:text-white transition-colors duration-300">
+              {t.governance.title}
+            </h2>
+            <p className="text-xl text-slate-600 dark:text-gray-300 max-w-3xl mx-auto transition-colors duration-300">
+              {t.governance.description}
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+            {t.governance.items.map((item, index) => {
+              const IconComponent = item.icon === "Building" ? Building : item.icon === "Target" ? Target : UserCheck;
+              return (
+                <Card key={index} className="border-slate-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300 bg-white dark:bg-gray-800">
+                  <CardContent className="p-8">
+                    <div className="flex items-start space-x-4">
+                      <div className="w-12 h-12 bg-gradient-to-r from-indigo-500 to-sky-400 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <IconComponent className="w-6 h-6 text-white" />
+                      </div>
+                      <div>
+                        <h3 className="font-serif text-xl font-bold text-slate-900 dark:text-white mb-3 transition-colors duration-300">
+                          {item.title}
+                        </h3>
+                        <p className="text-slate-600 dark:text-gray-300 leading-relaxed transition-colors duration-300">
+                          {item.description}
+                        </p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
+
+          <div className="mt-10 text-center">
+            <a
+              href="/governance"
+              className="inline-flex items-center rounded-lg bg-indigo-600 px-6 py-3 text-base font-semibold text-white shadow-md hover:bg-indigo-700 transition"
+            >
+              {language === "fr" ? "En savoir plus" : "Learn More"}
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* Blog/News Section */}
       <section className="py-20 bg-white dark:bg-gray-800 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1234,6 +1347,14 @@ export default function HomePage() {
                     className="hover:text-white transition-colors"
                   >
                     {t.nav.contact}
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/governance"
+                    className="hover:text-white transition-colors"
+                  >
+                    {t.nav.governance}
                   </a>
                 </li>
               </ul>
