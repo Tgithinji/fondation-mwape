@@ -369,6 +369,21 @@ export default function ProgramsPage() {
               >
                 {t.nav.home}
               </Link>
+              <span className="text-indigo-600 dark:text-indigo-400 font-medium">
+                {t.nav.programs}
+              </span>
+              <Link
+                href="/governance"
+                className="text-slate-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-300"
+              >
+                {t.nav.governance}
+              </Link>
+              <Link
+                href="/#contact"
+                className="text-slate-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-300"
+              >
+                {t.nav.contact}
+              </Link>
 
               {/* Dark Mode Toggle */}
               <Button
@@ -436,6 +451,23 @@ export default function ProgramsPage() {
                   onClick={toggleMobileMenu}
                 >
                   {t.nav.home}
+                </Link>
+                <span className="text-indigo-600 dark:text-indigo-400 font-medium">
+                  {t.nav.programs}
+                </span>
+                <Link
+                  href="/governance"
+                  className="text-slate-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-300"
+                  onClick={toggleMobileMenu}
+                >
+                  {t.nav.governance}
+                </Link>
+                <Link
+                  href="/#contact"
+                  className="text-slate-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-300"
+                  onClick={toggleMobileMenu}
+                >
+                  {t.nav.contact}
                 </Link>
                 <div className="flex items-center space-x-4">
                   <Button
