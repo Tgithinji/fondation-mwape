@@ -47,12 +47,88 @@ export default function HomePage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { isDarkMode, toggleDarkMode, mounted } = useDarkMode();
 
+  // Contact form state
+  const [contactForm, setContactForm] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    message: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<
+    "idle" | "success" | "error"
+  >("idle");
+
   const toggleLanguage = () => {
     setLanguage((prev) => (prev === "fr" ? "en" : "fr"));
   };
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen((prev) => !prev);
+  };
+
+  const handleContactInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    const { name, value } = e.target;
+    setContactForm((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleContactSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus("idle");
+
+    try {
+      // Create FormData object for Google Form submission
+      const googleFormData = new FormData();
+
+      // Map form fields to Google Form entry IDs
+      googleFormData.append("entry.131189408", contactForm.firstName);
+      googleFormData.append("entry.857802779", contactForm.lastName);
+      googleFormData.append("entry.2004383498", contactForm.email);
+      googleFormData.append("entry.484732165", contactForm.message);
+
+      // Submit to Google Form
+      const response = await fetch(
+        "https://docs.google.com/forms/d/e/1FAIpQLSfmjPWomcYdWcg_3vufURBFZLVdP_M1hi6BYw24wR7ziunpgA/formResponse",
+        {
+          method: "POST",
+          mode: "no-cors", // Required for Google Forms
+          body: googleFormData,
+        },
+      );
+
+      // Since we're using no-cors mode, we can't check response status
+      // Assume success if no error is thrown
+      setSubmitStatus("success");
+
+      // Reset form
+      setContactForm({
+        firstName: "",
+        lastName: "",
+        email: "",
+        message: "",
+      });
+
+      // Auto-hide success message after 5 seconds
+      setTimeout(() => {
+        setSubmitStatus("idle");
+      }, 5000);
+    } catch (error) {
+      console.error("Contact form submission error:", error);
+      setSubmitStatus("error");
+
+      // Auto-hide error message after 5 seconds
+      setTimeout(() => {
+        setSubmitStatus("idle");
+      }, 5000);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleSmoothScroll = (
@@ -1336,7 +1412,44 @@ export default function HomePage() {
                 <h3 className="font-serif text-2xl font-bold text-slate-900 dark:text-white mb-6 transition-colors duration-300">
                   {t.contact.sendMessage}
                 </h3>
-                <form className="space-y-6">
+
+                {/* Success Message */}
+                {submitStatus === "success" && (
+                  <div className="mb-6 p-4 bg-green-100 dark:bg-green-900 border border-green-300 dark:border-green-700 rounded-lg">
+                    <p className="text-green-800 dark:text-green-200 font-medium">
+                      {language === "fr"
+                        ? "✅ Votre message a été envoyé avec succès ! Nous vous répondrons bientôt."
+                        : "✅ Your message has been sent successfully! We will respond to you soon."}
+                    </p>
+                  </div>
+                )}
+
+                {/* Error Message */}
+                {submitStatus === "error" && (
+                  <div className="mb-6 p-4 bg-red-100 dark:bg-red-900 border border-red-300 dark:border-red-700 rounded-lg">
+                    <p className="text-red-800 dark:text-red-200 font-medium">
+                      {language === "fr"
+                        ? "❌ Une erreur s'est produite lors de l'envoi. Veuillez réessayer."
+                        : "❌ An error occurred while sending. Please try again."}
+                    </p>
+                  </div>
+                )}
+
+                {/* Loading Message */}
+                {isSubmitting && (
+                  <div className="mb-6 p-4 bg-blue-100 dark:bg-blue-900 border border-blue-300 dark:border-blue-700 rounded-lg">
+                    <div className="flex items-center justify-center space-x-3">
+                      <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-blue-600"></div>
+                      <p className="text-blue-800 dark:text-blue-200 font-medium">
+                        {language === "fr"
+                          ? "Envoi de votre message en cours..."
+                          : "Sending your message..."}
+                      </p>
+                    </div>
+                  </div>
+                )}
+
+                <form className="space-y-6" onSubmit={handleContactSubmit}>
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-sm font-medium text-slate-700 dark:text-gray-300 mb-2 transition-colors duration-300">
@@ -1344,7 +1457,12 @@ export default function HomePage() {
                       </label>
                       <input
                         type="text"
-                        className="w-full px-4 py-3 border border-slate-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent bg-white dark:bg-gray-700 text-slate-900 dark:text-white transition-colors duration-300"
+                        name="firstName"
+                        value={contactForm.firstName}
+                        onChange={handleContactInputChange}
+                        required
+                        disabled={isSubmitting}
+                        className="w-full px-4 py-3 border border-slate-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent bg-white dark:bg-gray-700 text-slate-900 dark:text-white transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                         placeholder={
                           language === "fr" ? "Votre prénom" : "Your first name"
                         }
@@ -1356,7 +1474,12 @@ export default function HomePage() {
                       </label>
                       <input
                         type="text"
-                        className="w-full px-4 py-3 border border-slate-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent bg-white dark:bg-gray-700 text-slate-900 dark:text-white transition-colors duration-300"
+                        name="lastName"
+                        value={contactForm.lastName}
+                        onChange={handleContactInputChange}
+                        required
+                        disabled={isSubmitting}
+                        className="w-full px-4 py-3 border border-slate-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent bg-white dark:bg-gray-700 text-slate-900 dark:text-white transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                         placeholder={
                           language === "fr" ? "Votre nom" : "Your last name"
                         }
@@ -1369,7 +1492,12 @@ export default function HomePage() {
                     </label>
                     <input
                       type="email"
-                      className="w-full px-4 py-3 border border-slate-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent bg-white dark:bg-gray-700 text-slate-900 dark:text-white transition-colors duration-300"
+                      name="email"
+                      value={contactForm.email}
+                      onChange={handleContactInputChange}
+                      required
+                      disabled={isSubmitting}
+                      className="w-full px-4 py-3 border border-slate-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent bg-white dark:bg-gray-700 text-slate-900 dark:text-white transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                       placeholder={
                         language === "fr" ? "votre@email.com" : "your@email.com"
                       }
@@ -1381,7 +1509,12 @@ export default function HomePage() {
                     </label>
                     <textarea
                       rows={4}
-                      className="w-full px-4 py-3 border border-slate-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent bg-white dark:bg-gray-700 text-slate-900 dark:text-white transition-colors duration-300"
+                      name="message"
+                      value={contactForm.message}
+                      onChange={handleContactInputChange}
+                      required
+                      disabled={isSubmitting}
+                      className="w-full px-4 py-3 border border-slate-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent bg-white dark:bg-gray-700 text-slate-900 dark:text-white transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                       placeholder={
                         language === "fr"
                           ? "Votre message..."
@@ -1389,8 +1522,16 @@ export default function HomePage() {
                       }
                     ></textarea>
                   </div>
-                  <Button className="w-full bg-gradient-to-r from-indigo-500 to-sky-400 hover:from-indigo-600 hover:to-sky-500 text-white rounded-lg py-3 text-lg font-medium transition-all duration-300">
-                    {t.contact.sendBtn}
+                  <Button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full bg-gradient-to-r from-indigo-500 to-sky-400 hover:from-indigo-600 hover:to-sky-500 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-lg py-3 text-lg font-medium transition-all duration-300"
+                  >
+                    {isSubmitting
+                      ? language === "fr"
+                        ? "Envoi en cours..."
+                        : "Sending..."
+                      : t.contact.sendBtn}
                   </Button>
                 </form>
               </CardContent>
