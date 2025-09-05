@@ -18,6 +18,7 @@ import {
   MessageCircle,
 } from "lucide-react";
 import Link from "next/link";
+import { Footer } from "@/components/footer";
 
 export default function VolunteerThankYouPage() {
   const [language, setLanguage] = useState<"fr" | "en">("fr");
@@ -411,6 +412,9 @@ export default function VolunteerThankYouPage() {
           </div>
         </div>
       </section>
+
+      {/* Footer */}
+      <Footer language={language} />
     </div>
   );
 }

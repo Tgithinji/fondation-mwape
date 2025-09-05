@@ -23,6 +23,7 @@ import {
 } from "lucide-react";
 import { WhatsAppButton } from "@/components/whatsapp-button";
 import { BackToTopButton } from "@/components/back-to-top-button";
+import { Footer } from "@/components/footer";
 
 export default function GovernancePage() {
   // Local language toggle
@@ -954,6 +955,9 @@ export default function GovernancePage() {
           </div>
         </section>
       </div>
+
+      {/* Footer */}
+      <Footer language={language} />
 
       {/* Floating Buttons */}
       <WhatsAppButton />

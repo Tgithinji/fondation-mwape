@@ -29,6 +29,7 @@ import { useDarkMode } from "@/hooks/use-dark-mode";
 import { WhatsAppButton } from "@/components/whatsapp-button";
 import { BackToTopButton } from "@/components/back-to-top-button";
 import Link from "next/link";
+import { Footer } from "@/components/footer";
 
 export default function DonatePage() {
   const [language, setLanguage] = useState<"fr" | "en">("fr");
@@ -62,10 +63,19 @@ export default function DonatePage() {
         title: "Votre Impact",
         description: "Découvrez comment vos dons transforment des vies",
         stats: [
-          { amount: "50$", impact: "Nourrit 10 enfants orphelins pendant une semaine" },
-          { amount: "100$", impact: "Équipe médical pour 5 personnes handicapées" },
+          {
+            amount: "50$",
+            impact: "Nourrit 10 enfants orphelins pendant une semaine",
+          },
+          {
+            amount: "100$",
+            impact: "Équipe médical pour 5 personnes handicapées",
+          },
           { amount: "200$", impact: "Formation professionnelle pour 3 femmes" },
-          { amount: "500$", impact: "Matériel éducatif pour une classe entière" },
+          {
+            amount: "500$",
+            impact: "Matériel éducatif pour une classe entière",
+          },
         ],
       },
       donation: {
@@ -154,7 +164,10 @@ export default function DonatePage() {
           { amount: "$50", impact: "Feeds 10 orphaned children for a week" },
           { amount: "$100", impact: "Medical equipment for 5 disabled people" },
           { amount: "$200", impact: "Professional training for 3 women" },
-          { amount: "$500", impact: "Educational materials for an entire class" },
+          {
+            amount: "$500",
+            impact: "Educational materials for an entire class",
+          },
         ],
       },
       donation: {
@@ -239,10 +252,14 @@ export default function DonatePage() {
               </div>
               <div className="hidden sm:block">
                 <div className="font-serif text-lg font-bold text-slate-900 dark:text-white transition-colors duration-300">
-                  {language === "fr" ? "Fondation Marie Mwape" : "Marie Mwape Foundation"}
+                  {language === "fr"
+                    ? "Fondation Marie Mwape"
+                    : "Marie Mwape Foundation"}
                 </div>
                 <div className="text-xs text-slate-600 dark:text-gray-400 transition-colors duration-300">
-                  {language === "fr" ? "pour le Progrès Social" : "for Social Progress"}
+                  {language === "fr"
+                    ? "pour le Progrès Social"
+                    : "for Social Progress"}
                 </div>
               </div>
             </Link>
@@ -465,7 +482,12 @@ export default function DonatePage() {
 
           <div className="grid md:grid-cols-3 gap-8">
             {t.donation.options.map((option, index) => {
-              const IconComponent = option.icon === "Gift" ? Gift : option.icon === "Calendar" ? Calendar : Heart;
+              const IconComponent =
+                option.icon === "Gift"
+                  ? Gift
+                  : option.icon === "Calendar"
+                    ? Calendar
+                    : Heart;
 
               return (
                 <Card
@@ -486,7 +508,10 @@ export default function DonatePage() {
                   <CardContent>
                     <ul className="space-y-3">
                       {option.features.map((feature, featureIndex) => (
-                        <li key={featureIndex} className="flex items-center space-x-3">
+                        <li
+                          key={featureIndex}
+                          className="flex items-center space-x-3"
+                        >
                           <Check className="w-5 h-5 text-green-500 flex-shrink-0" />
                           <span className="text-slate-600 dark:text-gray-300 transition-colors duration-300">
                             {feature}
@@ -519,7 +544,9 @@ export default function DonatePage() {
                 {/* Amount Selection */}
                 <div>
                   <label className="block text-lg font-semibold text-slate-900 dark:text-white mb-4 transition-colors duration-300">
-                    {language === "fr" ? "Choisissez un montant" : "Choose an amount"}
+                    {language === "fr"
+                      ? "Choisissez un montant"
+                      : "Choose an amount"}
                   </label>
                   <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mb-4">
                     {t.payment.amounts.map((amount) => (
@@ -528,7 +555,8 @@ export default function DonatePage() {
                         className="p-4 border-2 border-slate-200 dark:border-gray-600 rounded-lg text-center hover:border-indigo-500 hover:bg-indigo-50 dark:hover:bg-indigo-900/20 transition-colors duration-300"
                       >
                         <div className="text-lg font-bold text-slate-900 dark:text-white">
-                          {t.payment.currency}{amount}
+                          {t.payment.currency}
+                          {amount}
                         </div>
                       </button>
                     ))}
@@ -607,37 +635,7 @@ export default function DonatePage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-slate-900 dark:bg-gray-950 text-white transition-colors duration-300">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="text-center space-y-6">
-            <div className="flex items-center justify-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-to-r from-indigo-500 to-sky-400 rounded-full flex items-center justify-center">
-                <Heart className="w-6 h-6 text-white" />
-              </div>
-              <div>
-                <h3 className="font-serif text-xl font-bold">
-                  {language === "fr" ? "Fondation Marie Mwape" : "Marie Mwape Foundation"}
-                </h3>
-                <p className="text-sm text-slate-300 dark:text-gray-400 transition-colors duration-300">
-                  {language === "fr" ? "pour le Progrès Social" : "for Social Progress"}
-                </p>
-              </div>
-            </div>
-            <p className="text-slate-400 dark:text-gray-500 transition-colors duration-300">
-              {language === "fr"
-                ? "Transformant des vies et créant de l'espoir dans la communauté de Kisangani depuis 2018."
-                : "Transforming lives and creating hope in the Kisangani community since 2018."}
-            </p>
-            <div className="pt-4 border-t border-slate-700 dark:border-gray-700">
-              <p className="text-sm text-slate-400 dark:text-gray-500 transition-colors duration-300">
-                {language === "fr"
-                  ? "© 2024 Fondation Marie Mwape pour le Progrès Social. Tous droits réservés."
-                  : "© 2024 Marie Mwape Foundation for Social Progress. All rights reserved."}
-              </p>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer language={language} />
 
       {/* Floating Buttons */}
       <WhatsAppButton />

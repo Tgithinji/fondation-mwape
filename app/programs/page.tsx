@@ -28,6 +28,7 @@ import { useDarkMode } from "@/hooks/use-dark-mode";
 import { WhatsAppButton } from "@/components/whatsapp-button";
 import { BackToTopButton } from "@/components/back-to-top-button";
 import Link from "next/link";
+import { Footer } from "@/components/footer";
 
 export default function ProgramsPage() {
   const [language, setLanguage] = useState<"fr" | "en">("fr");
@@ -686,41 +687,7 @@ export default function ProgramsPage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-slate-900 dark:bg-gray-950 text-white transition-colors duration-300">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="text-center space-y-6">
-            <div className="flex items-center justify-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-to-r from-indigo-500 to-sky-400 rounded-full flex items-center justify-center">
-                <Heart className="w-6 h-6 text-white" />
-              </div>
-              <div>
-                <h3 className="font-serif text-xl font-bold">
-                  {language === "fr"
-                    ? "Fondation Marie Mwape"
-                    : "Marie Mwape Foundation"}
-                </h3>
-                <p className="text-sm text-slate-300 dark:text-gray-400 transition-colors duration-300">
-                  {language === "fr"
-                    ? "pour le Progrès Social"
-                    : "for Social Progress"}
-                </p>
-              </div>
-            </div>
-            <p className="text-slate-400 dark:text-gray-500 transition-colors duration-300">
-              {language === "fr"
-                ? "Transformant des vies et créant de l'espoir dans la communauté de Kisangani depuis 2018."
-                : "Transforming lives and creating hope in the Kisangani community since 2018."}
-            </p>
-            <div className="pt-4 border-t border-slate-700 dark:border-gray-700">
-              <p className="text-sm text-slate-400 dark:text-gray-500 transition-colors duration-300">
-                {language === "fr"
-                  ? "© 2024 Fondation Marie Mwape pour le Progrès Social. Tous droits réservés."
-                  : "© 2024 Marie Mwape Foundation for Social Progress. All rights reserved."}
-              </p>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer language={language} />
 
       {/* Floating Buttons */}
       <WhatsAppButton />

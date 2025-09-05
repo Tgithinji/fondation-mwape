@@ -41,6 +41,7 @@ import Link from "next/link";
 import { WhatsAppButton } from "@/components/whatsapp-button";
 import { useDarkMode } from "@/hooks/use-dark-mode";
 import { BackToTopButton } from "@/components/back-to-top-button";
+import { Footer } from "@/components/footer";
 
 export default function HomePage() {
   const [language, setLanguage] = useState<"fr" | "en">("fr");
@@ -1541,126 +1542,7 @@ export default function HomePage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-slate-900 dark:bg-gray-950 text-white py-16 transition-colors duration-300">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-4 gap-8">
-            <div className="space-y-4">
-              <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 bg-gradient-to-r from-indigo-500 to-sky-400 rounded-full flex items-center justify-center">
-                  <Heart className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <h3 className="font-serif text-xl font-bold">
-                    {t.logo.title}
-                  </h3>
-                  <p className="text-sm text-slate-300 dark:text-gray-400 transition-colors duration-300">
-                    {t.logo.subtitle}
-                  </p>
-                </div>
-              </div>
-              <p className="text-slate-300 dark:text-gray-400 leading-relaxed transition-colors duration-300">
-                {t.footer.tagline}
-              </p>
-            </div>
-
-            <div>
-              <h4 className="font-bold text-lg mb-4">{t.footer.programs}</h4>
-              <ul className="space-y-2 text-slate-300 dark:text-gray-400 transition-colors duration-300">
-                {t.footer.programsList.map((program, index) => (
-                  <li key={index}>{program}</li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="font-bold text-lg mb-4">{t.footer.quickLinks}</h4>
-              <ul className="space-y-2 text-slate-300 dark:text-gray-400 transition-colors duration-300">
-                <li>
-                  <a
-                    href="#about"
-                    onClick={(e) => handleSmoothScroll(e, "about")}
-                    className="hover:text-white transition-colors"
-                  >
-                    {t.nav.about}
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#programs"
-                    onClick={(e) => handleSmoothScroll(e, "programs")}
-                    className="hover:text-white transition-colors"
-                  >
-                    {t.nav.programs}
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#impact"
-                    onClick={(e) => handleSmoothScroll(e, "impact")}
-                    className="hover:text-white transition-colors"
-                  >
-                    {t.nav.impact}
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#contact"
-                    onClick={(e) => handleSmoothScroll(e, "contact")}
-                    className="hover:text-white transition-colors"
-                  >
-                    {t.nav.contact}
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#governance"
-                    onClick={(e) => handleSmoothScroll(e, "governance")}
-                    className="hover:text-white transition-colors"
-                  >
-                    {t.nav.governance}
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="font-bold text-lg mb-4">Contact</h4>
-              <div className="space-y-2 text-slate-300 dark:text-gray-400 transition-colors duration-300">
-                <p>Kisangani, RDC</p>
-                <p>contact@fondationmariemwape.org</p>
-                <p>+243 XXX XXX XXX</p>
-              </div>
-              <div className="flex space-x-3 mt-4">
-                <Button
-                  size="icon"
-                  variant="ghost"
-                  className="text-slate-300 dark:text-gray-400 hover:text-white hover:bg-slate-800 dark:hover:bg-gray-800 transition-colors duration-300"
-                >
-                  <Facebook className="w-5 h-5" />
-                </Button>
-                <Button
-                  size="icon"
-                  variant="ghost"
-                  className="text-slate-300 dark:text-gray-400 hover:text-white hover:bg-slate-800 dark:hover:bg-gray-800 transition-colors duration-300"
-                >
-                  <Twitter className="w-5 h-5" />
-                </Button>
-                <Button
-                  size="icon"
-                  variant="ghost"
-                  className="text-slate-300 dark:text-gray-400 hover:text-white hover:bg-slate-800 dark:hover:bg-gray-800 transition-colors duration-300"
-                >
-                  <Instagram className="w-5 h-5" />
-                </Button>
-              </div>
-            </div>
-          </div>
-
-          <div className="border-t border-slate-800 dark:border-gray-800 mt-12 pt-8 text-center text-slate-400 dark:text-gray-500 transition-colors duration-300">
-            <p>{t.footer.copyright}</p>
-          </div>
-        </div>
-      </footer>
+      <Footer language={language} />
 
       {/* WhatsApp Button */}
       <WhatsAppButton />
