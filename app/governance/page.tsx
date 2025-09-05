@@ -24,6 +24,7 @@ import {
 import { WhatsAppButton } from "@/components/whatsapp-button";
 import { BackToTopButton } from "@/components/back-to-top-button";
 import { Footer } from "@/components/footer";
+import { Button } from "@/components/ui/button";
 
 export default function GovernancePage() {
   // Local language toggle
@@ -531,9 +532,11 @@ export default function GovernancePage() {
               </a>
 
               {/* Dark Mode Toggle */}
-              <button
+              <Button
                 onClick={mounted ? toggleDarkMode : undefined}
-                className="text-slate-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400"
+                variant="ghost"
+                size="sm"
+                className="p-2 text-slate-700 dark:text-gray-300 hover:bg-slate-100 dark:hover:bg-gray-700 rounded-lg transition-colors duration-300"
                 aria-label="Toggle dark mode"
                 disabled={!mounted}
               >
@@ -542,22 +545,27 @@ export default function GovernancePage() {
                 ) : (
                   <Moon className="w-4 h-4" />
                 )}
-              </button>
+              </Button>
 
               {/* Language Toggle */}
-              <button
+              <Button
                 onClick={() => setLanguage(language === "en" ? "fr" : "en")}
-                className="text-slate-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400"
+                variant="outline"
+                size="sm"
+                className="border-slate-200 dark:border-gray-600 text-slate-700 dark:text-gray-300 hover:bg-slate-50 dark:hover:bg-gray-700 rounded-lg px-3 py-2 text-sm font-medium bg-transparent transition-colors duration-300"
               >
-                {language === "fr" ? "EN" : "FR"}
-              </button>
+                <Globe className="w-4 h-4 mr-2" />
+                {language === "fr" ? "🇫🇷 FR" : "🇬🇧 EN"}
+              </Button>
             </div>
 
             {/* Mobile menu button */}
             <div className="md:hidden">
-              <button
+              <Button
                 onClick={toggleMobileMenu}
-                className="text-slate-600 dark:text-gray-300"
+                variant="ghost"
+                size="sm"
+                className="p-2 text-slate-700 dark:text-gray-300 hover:bg-slate-100 dark:hover:bg-gray-700 rounded-lg transition-colors duration-300"
                 aria-label="Toggle mobile menu"
                 aria-expanded={mobileMenuOpen}
               >
@@ -566,56 +574,82 @@ export default function GovernancePage() {
                 ) : (
                   <Menu className="w-6 h-6" />
                 )}
-              </button>
+              </Button>
             </div>
           </div>
 
           {/* Mobile Navigation */}
           {mobileMenuOpen && (
-            <div className="md:hidden py-4 border-t border-slate-200 dark:border-gray-700">
-              <div className="flex flex-col space-y-4">
+            <div className="md:hidden border-t border-slate-200 dark:border-gray-700 transition-colors duration-300">
+              <div className="px-2 pt-2 pb-3 space-y-1">
+                {/* Navigation Links */}
                 <a
                   href="/"
-                  className="text-slate-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-300"
+                  className="block px-3 py-2 text-slate-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-50 dark:hover:bg-gray-700 rounded-md transition-colors font-medium"
                   onClick={toggleMobileMenu}
                 >
                   {language === "fr" ? "Accueil" : "Home"}
                 </a>
                 <a
                   href="/programs"
-                  className="text-slate-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-300"
+                  className="block px-3 py-2 text-slate-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-50 dark:hover:bg-gray-700 rounded-md transition-colors font-medium"
                   onClick={toggleMobileMenu}
                 >
                   {language === "fr" ? "Programmes" : "Programs"}
                 </a>
-                <span className="text-indigo-600 dark:text-indigo-400 font-medium">
+                <span className="block px-3 py-2 text-indigo-600 dark:text-indigo-400 font-semibold">
                   {language === "fr" ? "Gouvernance" : "Governance"}
                 </span>
                 <a
                   href="/#contact"
-                  className="text-slate-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-300"
+                  className="block px-3 py-2 text-slate-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-50 dark:hover:bg-gray-700 rounded-md transition-colors font-medium"
                   onClick={toggleMobileMenu}
                 >
                   Contact
                 </a>
-                <div className="flex items-center space-x-4">
-                  <button
-                    onClick={mounted ? toggleDarkMode : undefined}
-                    className="text-slate-600 dark:text-gray-300"
-                    disabled={!mounted}
-                  >
-                    {mounted && isDarkMode ? (
-                      <Sun className="w-4 h-4" />
-                    ) : (
-                      <Moon className="w-4 h-4" />
-                    )}
-                  </button>
-                  <button
-                    onClick={() => setLanguage(language === "en" ? "fr" : "en")}
-                    className="text-slate-600 dark:text-gray-300"
-                  >
-                    {language === "fr" ? "EN" : "FR"}
-                  </button>
+
+                {/* Divider */}
+                <div className="border-t border-gray-200 dark:border-gray-600 my-3"></div>
+
+                {/* Mobile Controls */}
+                <div className="space-y-3 px-3">
+                  {/* Language and Dark Mode Toggle Row */}
+                  <div className="flex items-center justify-between space-x-3">
+                    {/* Language Toggle */}
+                    <Button
+                      onClick={() =>
+                        setLanguage(language === "en" ? "fr" : "en")
+                      }
+                      variant="outline"
+                      size="sm"
+                      className="flex-1 border-slate-200 dark:border-gray-600 text-slate-700 dark:text-gray-300 hover:bg-slate-50 dark:hover:bg-gray-700 rounded-lg px-3 py-2 text-sm font-medium bg-transparent transition-colors duration-300"
+                    >
+                      <Globe className="w-4 h-4 mr-2" />
+                      {language === "fr" ? "🇫🇷 FR" : "🇬🇧 EN"}
+                    </Button>
+
+                    {/* Dark Mode Toggle */}
+                    <Button
+                      onClick={mounted ? toggleDarkMode : undefined}
+                      variant="outline"
+                      size="sm"
+                      className="flex-1 border-slate-200 dark:border-gray-600 text-slate-700 dark:text-gray-300 hover:bg-slate-50 dark:hover:bg-gray-700 rounded-lg px-3 py-2 text-sm font-medium bg-transparent transition-colors duration-300"
+                      aria-label="Toggle dark mode"
+                      disabled={!mounted}
+                    >
+                      {mounted && isDarkMode ? (
+                        <>
+                          <Sun className="w-4 h-4 mr-2" />
+                          {language === "fr" ? "Clair" : "Light"}
+                        </>
+                      ) : (
+                        <>
+                          <Moon className="w-4 h-4 mr-2" />
+                          {language === "fr" ? "Sombre" : "Dark"}
+                        </>
+                      )}
+                    </Button>
+                  </div>
                 </div>
               </div>
             </div>

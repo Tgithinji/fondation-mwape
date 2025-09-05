@@ -9,7 +9,7 @@ import {
   X,
   Sun,
   Moon,
-  Languages,
+  Globe,
   CheckCircle,
   Heart,
   Users,
@@ -201,76 +201,137 @@ export default function VolunteerThankYouPage() {
               </Link>
             </div>
 
-            {/* Controls */}
-            <div className="flex items-center space-x-4">
-              <button
-                onClick={toggleLanguage}
-                className="p-2 text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200"
-                aria-label="Toggle language"
-              >
-                <Languages className="w-5 h-5" />
-              </button>
-
-              <button
-                onClick={toggleDarkMode}
-                className="p-2 text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200"
+            {/* Desktop Controls - Hidden on mobile */}
+            <div className="hidden lg:flex items-center space-x-3">
+              {/* Dark Mode Toggle */}
+              <Button
+                onClick={mounted ? toggleDarkMode : undefined}
+                variant="ghost"
+                size="sm"
+                className="p-2 text-slate-700 dark:text-gray-300 hover:bg-slate-100 dark:hover:bg-gray-700 rounded-lg transition-colors duration-300"
                 aria-label="Toggle dark mode"
+                disabled={!mounted}
               >
-                {isDarkMode ? (
-                  <Sun className="w-5 h-5" />
+                {mounted && isDarkMode ? (
+                  <Sun className="w-4 h-4" />
                 ) : (
-                  <Moon className="w-5 h-5" />
+                  <Moon className="w-4 h-4" />
                 )}
-              </button>
+              </Button>
 
-              <button
+              {/* Language Toggle */}
+              <Button
+                onClick={toggleLanguage}
+                variant="outline"
+                size="sm"
+                className="border-slate-200 dark:border-gray-600 text-slate-700 dark:text-gray-300 hover:bg-slate-50 dark:hover:bg-gray-700 rounded-lg px-3 py-2 text-sm font-medium bg-transparent transition-colors duration-300"
+              >
+                <Globe className="w-4 h-4 mr-2" />
+                {language === "fr" ? "🇫🇷 FR" : "🇬🇧 EN"}
+              </Button>
+            </div>
+
+            {/* Mobile Hamburger Menu Button - Only visible on mobile */}
+            <div className="lg:hidden">
+              <Button
                 onClick={toggleMobileMenu}
-                className="lg:hidden p-2 text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200"
+                variant="ghost"
+                size="sm"
+                className="p-2 text-slate-700 dark:text-gray-300 hover:bg-slate-100 dark:hover:bg-gray-700 rounded-lg transition-colors duration-300"
                 aria-label="Toggle mobile menu"
+                aria-expanded={mobileMenuOpen}
               >
                 {mobileMenuOpen ? (
                   <X className="w-6 h-6" />
                 ) : (
                   <Menu className="w-6 h-6" />
                 )}
-              </button>
+              </Button>
             </div>
           </div>
 
-          {/* Mobile Menu */}
+          {/* Mobile Menu Dropdown - Only visible when hamburger is clicked */}
           {mobileMenuOpen && (
-            <div className="lg:hidden border-t border-slate-200 dark:border-gray-700 py-4">
-              <div className="flex flex-col space-y-4">
+            <div className="lg:hidden border-t border-slate-200 dark:border-gray-700 transition-colors duration-300">
+              <div className="px-2 pt-2 pb-3 space-y-1">
+                {/* Navigation Links */}
                 <Link
                   href="/"
-                  className="text-slate-700 dark:text-slate-200 hover:text-indigo-600 dark:hover:text-indigo-400 font-medium transition-colors duration-200"
+                  className="block px-3 py-2 text-slate-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-50 dark:hover:bg-gray-700 rounded-md transition-colors font-medium"
+                  onClick={() => setMobileMenuOpen(false)}
                 >
                   {t.nav.home}
                 </Link>
                 <Link
                   href="/programs"
-                  className="text-slate-700 dark:text-slate-200 hover:text-indigo-600 dark:hover:text-indigo-400 font-medium transition-colors duration-200"
+                  className="block px-3 py-2 text-slate-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-50 dark:hover:bg-gray-700 rounded-md transition-colors font-medium"
+                  onClick={() => setMobileMenuOpen(false)}
                 >
                   {t.nav.programs}
                 </Link>
                 <Link
                   href="/governance"
-                  className="text-slate-700 dark:text-slate-200 hover:text-indigo-600 dark:hover:text-indigo-400 font-medium transition-colors duration-200"
+                  className="block px-3 py-2 text-slate-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-50 dark:hover:bg-gray-700 rounded-md transition-colors font-medium"
+                  onClick={() => setMobileMenuOpen(false)}
                 >
                   {t.nav.governance}
                 </Link>
                 <Link
                   href="/contact"
-                  className="text-slate-700 dark:text-slate-200 hover:text-indigo-600 dark:hover:text-indigo-400 font-medium transition-colors duration-200"
+                  className="block px-3 py-2 text-slate-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-50 dark:hover:bg-gray-700 rounded-md transition-colors font-medium"
+                  onClick={() => setMobileMenuOpen(false)}
                 >
                   {t.nav.contact}
                 </Link>
                 <Link
                   href="/volunteer"
-                  className="text-indigo-600 dark:text-indigo-400 font-semibold"
+                  className="block px-3 py-2 text-indigo-600 dark:text-indigo-400 hover:bg-slate-50 dark:hover:bg-gray-700 rounded-md transition-colors font-semibold"
+                  onClick={() => setMobileMenuOpen(false)}
                 >
                   {t.nav.volunteer}
                 </Link>
+
+                {/* Divider */}
+                <div className="border-t border-gray-200 dark:border-gray-600 my-3"></div>
+
+                {/* Mobile Controls */}
+                <div className="space-y-3 px-3">
+                  {/* Language and Dark Mode Toggle Row */}
+                  <div className="flex items-center justify-between space-x-3">
+                    {/* Language Toggle */}
+                    <Button
+                      onClick={toggleLanguage}
+                      variant="outline"
+                      size="sm"
+                      className="flex-1 border-slate-200 dark:border-gray-600 text-slate-700 dark:text-gray-300 hover:bg-slate-50 dark:hover:bg-gray-700 rounded-lg px-3 py-2 text-sm font-medium bg-transparent transition-colors duration-300"
+                    >
+                      <Globe className="w-4 h-4 mr-2" />
+                      {language === "fr" ? "🇫🇷 FR" : "🇬🇧 EN"}
+                    </Button>
+
+                    {/* Dark Mode Toggle */}
+                    <Button
+                      onClick={mounted ? toggleDarkMode : undefined}
+                      variant="outline"
+                      size="sm"
+                      className="flex-1 border-slate-200 dark:border-gray-600 text-slate-700 dark:text-gray-300 hover:bg-slate-50 dark:hover:bg-gray-700 rounded-lg px-3 py-2 text-sm font-medium bg-transparent transition-colors duration-300"
+                      aria-label="Toggle dark mode"
+                      disabled={!mounted}
+                    >
+                      {mounted && isDarkMode ? (
+                        <>
+                          <Sun className="w-4 h-4 mr-2" />
+                          {language === "fr" ? "Clair" : "Light"}
+                        </>
+                      ) : (
+                        <>
+                          <Moon className="w-4 h-4 mr-2" />
+                          {language === "fr" ? "Sombre" : "Dark"}
+                        </>
+                      )}
+                    </Button>
+                  </div>
+                </div>
               </div>
             </div>
           )}

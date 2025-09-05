@@ -22,6 +22,7 @@ import {
   Sun,
   Menu,
   X,
+  Globe,
 } from "lucide-react";
 import Image from "next/image";
 import { useDarkMode } from "@/hooks/use-dark-mode";
@@ -388,10 +389,10 @@ export default function ProgramsPage() {
 
               {/* Dark Mode Toggle */}
               <Button
+                onClick={mounted ? toggleDarkMode : undefined}
                 variant="ghost"
                 size="sm"
-                onClick={toggleDarkMode}
-                className="text-slate-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400"
+                className="p-2 text-slate-700 dark:text-gray-300 hover:bg-slate-100 dark:hover:bg-gray-700 rounded-lg transition-colors duration-300"
                 aria-label="Toggle dark mode"
                 disabled={!mounted}
               >
@@ -404,12 +405,13 @@ export default function ProgramsPage() {
 
               {/* Language Toggle */}
               <Button
-                variant="ghost"
-                size="sm"
                 onClick={toggleLanguage}
-                className="text-slate-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400"
+                variant="outline"
+                size="sm"
+                className="border-slate-200 dark:border-gray-600 text-slate-700 dark:text-gray-300 hover:bg-slate-50 dark:hover:bg-gray-700 rounded-lg px-3 py-2 text-sm font-medium bg-transparent transition-colors duration-300"
               >
-                {language === "fr" ? "EN" : "FR"}
+                <Globe className="w-4 h-4 mr-2" />
+                {language === "fr" ? "🇫🇷 FR" : "🇬🇧 EN"}
               </Button>
 
               <Button
@@ -470,39 +472,60 @@ export default function ProgramsPage() {
                 >
                   {t.nav.contact}
                 </Link>
-                <div className="flex items-center space-x-4">
+
+                {/* Divider */}
+                <div className="border-t border-gray-200 dark:border-gray-600 my-3"></div>
+
+                {/* Mobile Controls */}
+                <div className="space-y-3 px-3">
+                  {/* Support Button */}
                   <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={toggleDarkMode}
-                    className="text-slate-600 dark:text-gray-300"
-                    disabled={!mounted}
+                    className="w-full bg-gradient-to-r from-indigo-500 to-sky-400 hover:from-indigo-600 hover:to-sky-500 text-white rounded-lg py-3 text-sm font-medium transition-all duration-300"
+                    onClick={() => {
+                      const element = document.getElementById("support");
+                      element?.scrollIntoView({ behavior: "smooth" });
+                      toggleMobileMenu();
+                    }}
                   >
-                    {mounted && isDarkMode ? (
-                      <Sun className="w-4 h-4" />
-                    ) : (
-                      <Moon className="w-4 h-4" />
-                    )}
+                    {t.nav.support}
                   </Button>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={toggleLanguage}
-                    className="text-slate-600 dark:text-gray-300"
-                  >
-                    {language === "fr" ? "EN" : "FR"}
-                  </Button>
+
+                  {/* Language and Dark Mode Toggle Row */}
+                  <div className="flex items-center justify-between space-x-3">
+                    {/* Language Toggle */}
+                    <Button
+                      onClick={toggleLanguage}
+                      variant="outline"
+                      size="sm"
+                      className="flex-1 border-slate-200 dark:border-gray-600 text-slate-700 dark:text-gray-300 hover:bg-slate-50 dark:hover:bg-gray-700 rounded-lg px-3 py-2 text-sm font-medium bg-transparent transition-colors duration-300"
+                    >
+                      <Globe className="w-4 h-4 mr-2" />
+                      {language === "fr" ? "🇫🇷 FR" : "🇬🇧 EN"}
+                    </Button>
+
+                    {/* Dark Mode Toggle */}
+                    <Button
+                      onClick={mounted ? toggleDarkMode : undefined}
+                      variant="outline"
+                      size="sm"
+                      className="flex-1 border-slate-200 dark:border-gray-600 text-slate-700 dark:text-gray-300 hover:bg-slate-50 dark:hover:bg-gray-700 rounded-lg px-3 py-2 text-sm font-medium bg-transparent transition-colors duration-300"
+                      aria-label="Toggle dark mode"
+                      disabled={!mounted}
+                    >
+                      {mounted && isDarkMode ? (
+                        <>
+                          <Sun className="w-4 h-4 mr-2" />
+                          {language === "fr" ? "Clair" : "Light"}
+                        </>
+                      ) : (
+                        <>
+                          <Moon className="w-4 h-4 mr-2" />
+                          {language === "fr" ? "Sombre" : "Dark"}
+                        </>
+                      )}
+                    </Button>
+                  </div>
                 </div>
-                <Button
-                  className="bg-gradient-to-r from-indigo-500 to-sky-400 hover:from-indigo-600 hover:to-sky-500 text-white w-full"
-                  onClick={() => {
-                    const element = document.getElementById("support");
-                    element?.scrollIntoView({ behavior: "smooth" });
-                    toggleMobileMenu();
-                  }}
-                >
-                  {t.nav.support}
-                </Button>
               </div>
             </div>
           )}
