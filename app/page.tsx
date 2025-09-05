@@ -170,11 +170,11 @@ export default function HomePage() {
       },
       about: {
         badge: "Notre Histoire",
-        title: "Marie Mwape Kashimbo",
+        title: "Fondation Marie Mwape pour le Progrès Social",
         description1:
-          "Fondatrice et présidente de la Fondation Marie Mwape pour le Progrès Social, Marie Mwape Kashimbo est une philanthrope passionnée qui a consacré sa vie à améliorer les conditions de vie des plus vulnérables à Kisangani.",
+          "Fondée en 2018, la Fondation Marie Mwape pour le Progrès Social a été créée avec la mission d'élever les communautés vulnérables de Kisangani et au-delà.",
         description2:
-          "Née d'une vision profonde de justice sociale et d'égalité, notre fondation travaille sans relâche pour offrir espoir, dignité et opportunités à ceux qui en ont le plus besoin. Chaque action que nous menons est guidée par l'amour, la compassion et la détermination à créer un changement durable.",
+          "Guidée par les principes d'équité, de compassion et d'impact durable, la fondation œuvre à travers des programmes qui soutiennent les orphelins, autonomisent les femmes, aident les personnes vivant avec un handicap, et promeuvent l'éducation et le développement communautaire. Depuis sa création, la fondation est devenue une force de changement de confiance — construisant des partenariats, mobilisant des bénévoles, et offrant des opportunités qui restaurent l'espoir et la dignité.",
         foundedYear: "Année de Fondation",
         activePrograms: "Programmes Actifs",
         quote: "Chaque vie compte, chaque rêve mérite d'être réalisé.",
@@ -372,11 +372,11 @@ export default function HomePage() {
       },
       about: {
         badge: "Our Story",
-        title: "Marie Mwape Kashimbo",
+        title: "Marie Mwape Foundation for Social Progress",
         description1:
-          "Founder and president of the Marie Mwape Foundation for Social Progress, Marie Mwape Kashimbo is a passionate philanthropist who has dedicated her life to improving the living conditions of the most vulnerable in Kisangani.",
+          "Founded in 2018, the Marie Mwape Foundation for Social Progress was established with the mission of uplifting vulnerable communities in Kisangani and beyond.",
         description2:
-          "Born from a deep vision of social justice and equality, our foundation works tirelessly to offer hope, dignity and opportunities to those who need it most. Every action we take is guided by love, compassion and determination to create lasting change.",
+          "Guided by principles of equity, compassion, and sustainable impact, the foundation works through programs that support orphans, empower women, assist people living with disabilities, and promote education and community development. Since its creation, the foundation has grown into a trusted force for change — building partnerships, mobilizing volunteers, and offering opportunities that restore hope and dignity.",
         foundedYear: "Year Founded",
         activePrograms: "Active Programs",
         quote: "Every life matters, every dream deserves to be realized.",
