@@ -31,11 +31,27 @@ import { useDarkMode } from "@/hooks/use-dark-mode";
 import { WhatsAppButton } from "@/components/whatsapp-button";
 import { BackToTopButton } from "@/components/back-to-top-button";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function VolunteerPage() {
   const [language, setLanguage] = useState<"fr" | "en">("fr");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { isDarkMode, toggleDarkMode, mounted } = useDarkMode();
+  const router = useRouter();
+
+  // Form state
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    phone: "",
+    availability: "",
+    skills: "",
+    motivation: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<
+    "idle" | "success" | "error"
+  >("idle");
 
   const toggleLanguage = () => {
     setLanguage((prev) => (prev === "fr" ? "en" : "fr"));
@@ -43,6 +59,70 @@ export default function VolunteerPage() {
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen((prev) => !prev);
+  };
+
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus("idle");
+
+    try {
+      // Create FormData object for Google Form submission
+      const googleFormData = new FormData();
+
+      // Map form fields to Google Form entry IDs (you'll need to inspect the Google Form to get these)
+      // These are placeholder entry IDs - replace with actual ones from your Google Form
+      googleFormData.append("entry.28324842", formData.fullName); // Replace with actual entry ID
+      googleFormData.append("entry.820610477", formData.email); // Replace with actual entry ID
+      googleFormData.append("entry.1081040339", formData.phone); // Replace with actual entry ID
+      googleFormData.append("entry.2066402697", formData.availability); // Replace with actual entry ID
+      googleFormData.append("entry.1910859079", formData.skills); // Replace with actual entry ID
+      googleFormData.append("entry.1376523727", formData.motivation); // Replace with actual entry ID
+
+      // Submit to Google Form
+      const response = await fetch(
+        "https://docs.google.com/forms/d/e/1FAIpQLSeHqKMt2d-vEHzfX5NROtBJIQCLYWw4ba_vmoe6Lxw7MsPnLg/formResponse",
+        {
+          method: "POST",
+          mode: "no-cors", // Required for Google Forms
+          body: googleFormData,
+        },
+      );
+
+      // Since we're using no-cors mode, we can't check response status
+      // Assume success if no error is thrown
+      setSubmitStatus("success");
+
+      // Reset form
+      setFormData({
+        fullName: "",
+        email: "",
+        phone: "",
+        availability: "",
+        skills: "",
+        motivation: "",
+      });
+
+      // Redirect to thank you page after a short delay
+      setTimeout(() => {
+        router.push("/volunteer/thank-you");
+      }, 1500);
+    } catch (error) {
+      console.error("Form submission error:", error);
+      setSubmitStatus("error");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const content = {
@@ -673,7 +753,30 @@ export default function VolunteerPage() {
 
           <Card className="border-slate-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-xl">
             <CardContent className="p-8">
-              <form className="space-y-6">
+              {isSubmitting && (
+                <div className="mb-6 p-4 bg-blue-100 dark:bg-blue-900 border border-blue-300 dark:border-blue-700 rounded-lg">
+                  <div className="flex items-center justify-center space-x-3">
+                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-blue-600"></div>
+                    <p className="text-blue-800 dark:text-blue-200 font-medium">
+                      {language === "fr"
+                        ? "Envoi de votre candidature en cours..."
+                        : "Submitting your application..."}
+                    </p>
+                  </div>
+                </div>
+              )}
+
+              {submitStatus === "error" && (
+                <div className="mb-6 p-4 bg-red-100 dark:bg-red-900 border border-red-300 dark:border-red-700 rounded-lg">
+                  <p className="text-red-800 dark:text-red-200 font-medium">
+                    {language === "fr"
+                      ? "Une erreur s'est produite lors de l'envoi. Veuillez réessayer."
+                      : "An error occurred while submitting. Please try again."}
+                  </p>
+                </div>
+              )}
+
+              <form className="space-y-6" onSubmit={handleSubmit}>
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
                     <label className="block text-sm font-semibold text-slate-900 dark:text-white mb-2">
@@ -681,6 +784,10 @@ export default function VolunteerPage() {
                     </label>
                     <input
                       type="text"
+                      name="fullName"
+                      value={formData.fullName}
+                      onChange={handleInputChange}
+                      required
                       className="w-full px-4 py-3 border border-slate-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent bg-white dark:bg-gray-700 text-slate-900 dark:text-white transition-colors duration-300"
                     />
                   </div>
@@ -690,6 +797,10 @@ export default function VolunteerPage() {
                     </label>
                     <input
                       type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      required
                       className="w-full px-4 py-3 border border-slate-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent bg-white dark:bg-gray-700 text-slate-900 dark:text-white transition-colors duration-300"
                     />
                   </div>
@@ -702,6 +813,10 @@ export default function VolunteerPage() {
                     </label>
                     <input
                       type="tel"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      required
                       className="w-full px-4 py-3 border border-slate-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent bg-white dark:bg-gray-700 text-slate-900 dark:text-white transition-colors duration-300"
                     />
                   </div>
@@ -711,6 +826,10 @@ export default function VolunteerPage() {
                     </label>
                     <input
                       type="text"
+                      name="availability"
+                      value={formData.availability}
+                      onChange={handleInputChange}
+                      required
                       className="w-full px-4 py-3 border border-slate-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent bg-white dark:bg-gray-700 text-slate-900 dark:text-white transition-colors duration-300"
                     />
                   </div>
@@ -722,6 +841,10 @@ export default function VolunteerPage() {
                   </label>
                   <textarea
                     rows={4}
+                    name="skills"
+                    value={formData.skills}
+                    onChange={handleInputChange}
+                    required
                     className="w-full px-4 py-3 border border-slate-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent bg-white dark:bg-gray-700 text-slate-900 dark:text-white transition-colors duration-300"
                   />
                 </div>
@@ -732,17 +855,27 @@ export default function VolunteerPage() {
                   </label>
                   <textarea
                     rows={4}
+                    name="motivation"
+                    value={formData.motivation}
+                    onChange={handleInputChange}
+                    required
                     className="w-full px-4 py-3 border border-slate-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent bg-white dark:bg-gray-700 text-slate-900 dark:text-white transition-colors duration-300"
                   />
                 </div>
 
                 <div className="text-center">
                   <Button
+                    type="submit"
                     size="lg"
-                    className="bg-gradient-to-r from-indigo-500 to-sky-400 hover:from-indigo-600 hover:to-sky-500 text-white px-12 py-4 text-lg font-medium transition-all duration-300"
+                    disabled={isSubmitting}
+                    className="bg-gradient-to-r from-indigo-500 to-sky-400 hover:from-indigo-600 hover:to-sky-500 disabled:opacity-50 disabled:cursor-not-allowed text-white px-12 py-4 text-lg font-medium transition-all duration-300"
                   >
                     <Users className="w-5 h-5 mr-3" />
-                    {t.application.form.submit}
+                    {isSubmitting
+                      ? language === "fr"
+                        ? "Envoi en cours..."
+                        : "Submitting..."
+                      : t.application.form.submit}
                   </Button>
                 </div>
               </form>
