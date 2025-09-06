@@ -1,0 +1,71 @@
+{
+  "name": "Fondation Marie Mwape pour le Progrès Social",
+  "short_name": "Fondation Marie Mwape",
+  "description": "Site officiel de la Fondation Marie Mwape — œuvrant pour les orphelins, les femmes, les personnes handicapées et la santé mentale à Kisangani.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#4f46e5",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "fr",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ],
+  "categories": ["social", "nonprofit", "education"],
+  "shortcuts": [
+    {
+      "name": "Faire un Don",
+      "short_name": "Don",
+      "description": "Soutenez notre mission",
+      "url": "/donate",
+      "icons": [
+        {
+          "src": "/logo.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Programmes",
+      "short_name": "Programmes",
+      "description": "Découvrez nos programmes",
+      "url": "/programs",
+      "icons": [
+        {
+          "src": "/logo.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Bénévolat",
+      "short_name": "Bénévolat",
+      "description": "Rejoignez notre équipe",
+      "url": "/volunteer",
+      "icons": [
+        {
+          "src": "/logo.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ]
+}

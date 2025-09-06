@@ -28,6 +28,7 @@ import Image from "next/image";
 import { useDarkMode } from "@/hooks/use-dark-mode";
 import { WhatsAppButton } from "@/components/whatsapp-button";
 import { BackToTopButton } from "@/components/back-to-top-button";
+import { Logo } from "@/components/ui/logo";
 import Link from "next/link";
 import { Footer } from "@/components/footer";
 
@@ -345,22 +346,12 @@ export default function ProgramsPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
-            <Link href="/" className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-to-r from-indigo-500 to-sky-400 rounded-full flex items-center justify-center">
-                <Heart className="w-6 h-6 text-white" />
-              </div>
-              <div className="hidden sm:block">
-                <div className="font-serif text-lg font-bold text-slate-900 dark:text-white transition-colors duration-300">
-                  {language === "fr"
-                    ? "Fondation Marie Mwape"
-                    : "Marie Mwape Foundation"}
-                </div>
-                <div className="text-xs text-slate-600 dark:text-gray-400 transition-colors duration-300">
-                  {language === "fr"
-                    ? "pour le Progrès Social"
-                    : "for Social Progress"}
-                </div>
-              </div>
+            <Link href="/">
+              <Logo
+                size="md"
+                showText={true}
+                className="flex items-center space-x-3"
+              />
             </Link>
 
             {/* Desktop Navigation */}

@@ -2,13 +2,9 @@
 
 import React from "react";
 import { Button } from "@/components/ui/button";
-import {
-  Heart,
-  Facebook,
-  Twitter,
-  Instagram,
-} from "lucide-react";
+import { Heart, Facebook, Twitter, Instagram } from "lucide-react";
 import Link from "next/link";
+import { Logo } from "@/components/ui/logo";
 
 interface FooterProps {
   language: "fr" | "en";
@@ -88,19 +84,12 @@ export function Footer({ language }: FooterProps) {
         <div className="grid md:grid-cols-4 gap-8">
           {/* Brand Section */}
           <div className="space-y-4">
-            <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-to-r from-indigo-500 to-sky-400 rounded-full flex items-center justify-center">
-                <Heart className="w-6 h-6 text-white" />
-              </div>
-              <div>
-                <h3 className="font-serif text-xl font-bold">
-                  {t.logo.title}
-                </h3>
-                <p className="text-sm text-slate-300 dark:text-gray-400 transition-colors duration-300">
-                  {t.logo.subtitle}
-                </p>
-              </div>
-            </div>
+            <Logo
+              size="md"
+              showText={true}
+              className="flex items-center space-x-3"
+              textClassName="text-white"
+            />
             <p className="text-slate-300 dark:text-gray-400 leading-relaxed transition-colors duration-300">
               {t.footer.tagline}
             </p>
@@ -121,10 +110,7 @@ export function Footer({ language }: FooterProps) {
             <h4 className="font-bold text-lg mb-4">{t.footer.quickLinks}</h4>
             <ul className="space-y-2 text-slate-300 dark:text-gray-400 transition-colors duration-300">
               <li>
-                <Link
-                  href="/"
-                  className="hover:text-white transition-colors"
-                >
+                <Link href="/" className="hover:text-white transition-colors">
                   {t.nav.home}
                 </Link>
               </li>

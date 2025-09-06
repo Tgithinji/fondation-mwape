@@ -42,6 +42,7 @@ import { WhatsAppButton } from "@/components/whatsapp-button";
 import { useDarkMode } from "@/hooks/use-dark-mode";
 import { BackToTopButton } from "@/components/back-to-top-button";
 import { Footer } from "@/components/footer";
+import { Logo } from "@/components/ui/logo";
 
 export default function HomePage() {
   const [language, setLanguage] = useState<"fr" | "en">("fr");
@@ -560,18 +561,13 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-3">
             {/* Logo Section - Always visible */}
-            <div className="flex items-center space-x-3 flex-shrink-0">
-              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-r from-indigo-500 to-sky-400 rounded-full flex items-center justify-center">
-                <Heart className="w-4 h-4 sm:w-6 sm:h-6 text-white" />
-              </div>
-              <div className="min-w-0">
-                <h1 className="font-serif text-base sm:text-xl font-bold text-slate-900 dark:text-white leading-tight transition-colors duration-300">
-                  <span className="block">{t.logo.title}</span>
-                </h1>
-                <p className="text-xs sm:text-sm text-slate-600 dark:text-gray-300 transition-colors duration-300">
-                  {t.logo.subtitle}
-                </p>
-              </div>
+            <div className="flex-shrink-0">
+              <Logo
+                size="md"
+                showText={true}
+                className="flex items-center space-x-3"
+                textClassName="min-w-0"
+              />
             </div>
 
             {/* Desktop Navigation - Hidden on mobile */}
@@ -767,11 +763,41 @@ export default function HomePage() {
       </nav>
 
       {/* Hero Section */}
-      <section className="py-20 lg:py-32">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-20 lg:py-32 relative bg-white dark:bg-gray-800 transition-colors duration-300 overflow-hidden">
+        {/* Background Image - Desktop (covers entire section) */}
+        <div className="hidden lg:block absolute inset-0 z-0">
+          <Image
+            src="/hero-background.jpg"
+            alt="Hero Background"
+            fill
+            className="object-cover opacity-70 dark:opacity-60"
+            sizes="100vw"
+            quality={75}
+            loading="lazy"
+            placeholder="blur"
+            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
+          />
+          <div className="absolute inset-0 bg-white/20 dark:bg-gray-800/30"></div>
+        </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div className="space-y-8">
-              <div className="space-y-6">
+            <div className="space-y-8 relative overflow-hidden lg:overflow-visible">
+              {/* Background Image - Mobile only (behind text content) */}
+              <div className="lg:hidden absolute inset-0 z-0">
+                <Image
+                  src="/hero-background.jpg"
+                  alt="Hero Background"
+                  fill
+                  className="object-cover opacity-60 dark:opacity-50"
+                  sizes="100vw"
+                  quality={75}
+                  loading="lazy"
+                  placeholder="blur"
+                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
+                />
+                <div className="absolute inset-0 bg-white/30 dark:bg-gray-800/40"></div>
+              </div>
+              <div className="space-y-6 relative z-10">
                 <Badge className="bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 border-indigo-200 dark:border-indigo-700 rounded-full px-4 py-2 font-medium transition-colors duration-300">
                   {t.hero.location}
                 </Badge>
@@ -782,11 +808,11 @@ export default function HomePage() {
                     {t.hero.titleHighlight}
                   </span>
                 </h1>
-                <p className="text-xl text-slate-600 dark:text-gray-300 leading-relaxed transition-colors duration-300">
+                <p className="text-xl font-semibold text-slate-800 dark:text-gray-200 leading-relaxed transition-colors duration-300">
                   {t.hero.description}
                 </p>
               </div>
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row gap-4 relative z-10">
                 <Button
                   size="lg"
                   className="bg-gradient-to-r from-indigo-500 to-sky-400 hover:from-indigo-600 hover:to-sky-500 text-white rounded-lg px-8 py-4 text-lg font-medium transition-all duration-300"
@@ -812,6 +838,11 @@ export default function HomePage() {
                   width={500}
                   height={600}
                   className="w-full h-auto object-cover"
+                  loading="lazy"
+                  quality={80}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 500px"
+                  placeholder="blur"
+                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/30 to-transparent"></div>
               </div>
@@ -888,6 +919,11 @@ export default function HomePage() {
                   width={500}
                   height={600}
                   className="w-full h-auto object-cover"
+                  loading="lazy"
+                  quality={80}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 500px"
+                  placeholder="blur"
+                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QUFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
                 />
               </div>
               <div className="absolute -top-6 -right-6 bg-gradient-to-r from-indigo-500 to-sky-400 rounded-xl p-6 text-white shadow-xl">
@@ -1016,6 +1052,11 @@ export default function HomePage() {
                       width={120}
                       height={120}
                       className="w-24 h-24 rounded-full mx-auto object-cover border-4 border-white dark:border-gray-700 shadow-lg transition-colors duration-300"
+                      loading="lazy"
+                      quality={80}
+                      sizes="96px"
+                      placeholder="blur"
+                      blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
                     />
                     <div className="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-r from-indigo-500 to-sky-400 rounded-full flex items-center justify-center">
                       <Quote className="w-4 h-4 text-white" />
@@ -1097,8 +1138,23 @@ export default function HomePage() {
       </section>
 
       {/* About the Founder Section */}
-      <section className="py-20 bg-white dark:bg-gray-800 transition-colors duration-300">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-20 relative bg-white dark:bg-gray-800 transition-colors duration-300 overflow-hidden">
+        {/* Background Image - Desktop (covers entire section including titles) */}
+        <div className="hidden lg:block absolute inset-0 -top-20 -bottom-20 z-0">
+          <Image
+            src="/foundation-logo.jpg"
+            alt="Foundation Logo Background"
+            fill
+            className="object-cover opacity-70 dark:opacity-60 scale-x-[-1]"
+            sizes="100vw"
+            quality={75}
+            loading="lazy"
+            placeholder="blur"
+            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
+          />
+          <div className="absolute inset-0 bg-white/20 dark:bg-gray-800/30"></div>
+        </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center space-y-4 mb-16">
             <Badge className="bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 border-indigo-200 dark:border-indigo-700 rounded-full px-4 py-2 font-medium transition-colors duration-300">
               {t.founder.badge}
@@ -1112,11 +1168,16 @@ export default function HomePage() {
             <div className="relative">
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                 <Image
-                  src="/placeholder.svg?height=600&width=500"
+                  src="/founder-pic.jpg"
                   alt="Marie Mwape Kashimbo, Fondatrice"
                   width={500}
                   height={600}
-                  className="w-full h-auto object-cover"
+                  className="w-full h-auto object-cover rounded-2xl"
+                  priority
+                  quality={85}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 500px"
+                  placeholder="blur"
+                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
                 />
               </div>
               <div className="absolute -bottom-6 -right-6 bg-gradient-to-r from-indigo-500 to-sky-400 rounded-xl p-6 text-white shadow-xl">
@@ -1125,15 +1186,30 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="space-y-8">
-              <div className="space-y-6">
-                <p className="text-lg text-slate-600 dark:text-gray-300 leading-relaxed transition-colors duration-300">
+            <div className="space-y-8 relative overflow-hidden lg:overflow-visible">
+              {/* Background Image - Mobile only (behind text content) */}
+              <div className="lg:hidden absolute inset-0 z-0">
+                <Image
+                  src="/foundation-logo.jpg"
+                  alt="Foundation Logo Background"
+                  fill
+                  className="object-cover opacity-60 dark:opacity-50 scale-x-[-1]"
+                  sizes="100vw"
+                  quality={75}
+                  loading="lazy"
+                  placeholder="blur"
+                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QUFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
+                />
+                <div className="absolute inset-0 bg-white/30 dark:bg-gray-800/40"></div>
+              </div>
+              <div className="space-y-6 relative z-10">
+                <p className="text-lg font-semibold text-slate-800 dark:text-gray-200 leading-relaxed transition-colors duration-300">
                   {t.founder.bio1}
                 </p>
-                <p className="text-lg text-slate-600 dark:text-gray-300 leading-relaxed transition-colors duration-300">
+                <p className="text-lg font-semibold text-slate-800 dark:text-gray-200 leading-relaxed transition-colors duration-300">
                   {t.founder.bio2}
                 </p>
-                <blockquote className="border-l-4 border-indigo-500 dark:border-indigo-400 pl-6 italic text-indigo-700 dark:text-indigo-300 text-xl transition-colors duration-300">
+                <blockquote className="border-l-4 border-indigo-500 dark:border-indigo-400 pl-6 italic text-indigo-800 dark:text-indigo-200 text-xl font-bold transition-colors duration-300">
                   "{t.founder.quote}"
                 </blockquote>
               </div>
@@ -1265,6 +1341,11 @@ export default function HomePage() {
                     width={400}
                     height={300}
                     className="w-full h-full object-cover"
+                    loading="lazy"
+                    quality={80}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 400px"
+                    placeholder="blur"
+                    blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 to-transparent"></div>
                 </div>
