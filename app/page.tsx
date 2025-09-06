@@ -833,7 +833,7 @@ export default function HomePage() {
             <div className="relative">
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                 <Image
-                  src="/placeholder.svg?height=600&width=500"
+                  src="/hero-image.jpg"
                   alt="Enfants souriants au centre communautaire"
                   width={500}
                   height={600}
@@ -914,7 +914,7 @@ export default function HomePage() {
             <div className="relative">
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                 <Image
-                  src="/placeholder.svg?height=600&width=500"
+                  src="/about-image.jpg"
                   alt="Marie Mwape Kashimbo, Fondatrice"
                   width={500}
                   height={600}
@@ -926,7 +926,7 @@ export default function HomePage() {
                   blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QUFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
                 />
               </div>
-              <div className="absolute -top-6 -right-6 bg-gradient-to-r from-indigo-500 to-sky-400 rounded-xl p-6 text-white shadow-xl">
+              <div className="absolute -bottom-20 -right-6 bg-gradient-to-r from-indigo-500 to-sky-400 rounded-xl p-6 text-white shadow-xl">
                 <Quote className="w-8 h-8 mb-2" />
                 <p className="font-medium text-sm">"{t.about.quote}"</p>
               </div>
