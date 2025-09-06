@@ -187,29 +187,29 @@ export default function HomePage() {
           "Nous concentrons nos efforts sur cinq domaines clés pour créer un impact durable dans la communauté de Kisangani.",
         items: [
           {
-            title: "Soutien aux Orphelins",
+            title: "Soutien à la Santé Physique et Mentale",
             description:
-              "Nous offrons un foyer, une éducation et un avenir aux enfants orphelins de Kisangani.",
+              "Offrir des soins de santé holistiques grâce à l'aide médicale, la thérapie et la sensibilisation.",
           },
           {
-            title: "Aide aux Personnes Handicapées",
+            title: "Soutien aux Personnes Aveugles",
             description:
-              "Programmes d'inclusion et de soutien pour les personnes en situation de handicap.",
+              "Favoriser l'inclusion et l'autonomie des personnes aveugles grâce à l'éducation et aux outils adaptés.",
           },
           {
-            title: "Récupération des Femmes",
+            title: "Soutien aux Jeunes Athlètes",
             description:
-              "Accompagnement et réinsertion sociale des femmes en situation de détresse.",
+              "Accompagner les jeunes athlètes avec des formations, du matériel et des opportunités de développement.",
           },
           {
-            title: "Soutien aux Personnes Albinos",
+            title: "Soutien aux Veuves et Mères Célibataires",
             description:
-              "Protection, sensibilisation et intégration des personnes albinos dans la société.",
+              "Aider les veuves et mères célibataires à atteindre l'indépendance grâce à la formation et au soutien.",
           },
           {
-            title: "Aide en Santé Mentale",
+            title: "Soutien aux Personnes Atteintes d'Albinisme",
             description:
-              "Services de soutien psychologique et de sensibilisation à la santé mentale.",
+              "Protéger et autonomiser les personnes atteintes d'albinisme grâce à la sensibilisation, l'éducation et le plaidoyer.",
           },
         ],
       },
@@ -298,23 +298,12 @@ export default function HomePage() {
         readMore: "Lire la suite",
         articles: [
           {
-            title: "Nouvelle école pour orphelins inaugurée à Kisangani",
-            date: "15 Décembre 2024",
-            summary:
-              "Nous avons inauguré une nouvelle école qui accueillera 100 enfants orphelins de Kisangani, offrant un environnement d'apprentissage moderne et sécurisé.",
-          },
-          {
             title:
-              "Réinsertion réussie d'une femme souffrant de troubles mentaux",
-            date: "8 Octobre 2024",
+              "FMMPS nominée à la 5ᵉ édition du prix Actu Stars Awards : Marie Mwape Kashimbo au rescousse des Boyomais",
+            date: "20 Novembre 2022",
             summary:
-              "Grâce à notre programme de soutien psychologique, Mama Beatrice a retrouvé sa stabilité et peut maintenant subvenir aux besoins de sa famille.",
-          },
-          {
-            title: "Programme de formation professionnelle pour femmes",
-            date: "1 Septembre 2024",
-            summary:
-              "Lancement d'un programme de formation en couture et menuiserie pour 50 femmes en détresse, leur offrant de nouvelles opportunités économiques.",
+              "Marie Mwape Kashimbo, fondatrice de la FMMPS, s'est rendue dans la commune de Lubunga pour rencontrer les populations de Boyomaise et leur apporter assistance et dons, tout en incarnant les valeurs de l'amour et de l'action sociale.",
+            link: "https://times.cd/index.php/2022/11/20/fmmps-nominee-a-la-5-eme-edition-du-prix-actu-stars-awards-marie-mwape-kashimbo-au-rescousse-de-boyomais-de-la-commune-de-lubunga/",
           },
         ],
       },
@@ -389,29 +378,29 @@ export default function HomePage() {
           "We focus our efforts on five key areas to create lasting impact in the Kisangani community.",
         items: [
           {
-            title: "Support for Orphans",
+            title: "Physical and Mental Health Support",
             description:
-              "We provide a home, education and future for orphaned children in Kisangani.",
+              "Providing holistic health care through medical aid, therapy, and community awareness.",
           },
           {
-            title: "Assistance for People with Disabilities",
+            title: "Support for the Blind",
             description:
-              "Inclusion and support programs for people with disabilities.",
+              "Promoting inclusion and independence for the blind through education and assistive tools.",
           },
           {
-            title: "Women's Recovery",
+            title: "Support for Young Athletes",
             description:
-              "Support and social reintegration for women in distress.",
+              "Empowering young athletes with training, equipment, and opportunities for growth.",
+          },
+          {
+            title: "Support for Widows and Single Mothers",
+            description:
+              "Helping widows and single mothers achieve independence through training and support.",
           },
           {
             title: "Support for People with Albinism",
             description:
-              "Protection, awareness and integration of people with albinism in society.",
-          },
-          {
-            title: "Mental Health Support",
-            description:
-              "Psychological support services and mental health awareness.",
+              "Protecting and empowering people with albinism through awareness, education, and advocacy.",
           },
         ],
       },
@@ -500,23 +489,12 @@ export default function HomePage() {
         readMore: "Read more",
         articles: [
           {
-            title: "New school for orphans inaugurated in Kisangani",
-            date: "December 15, 2024",
-            summary:
-              "We inaugurated a new school that will welcome 100 orphaned children from Kisangani, providing a modern and secure learning environment.",
-          },
-          {
             title:
-              "Successful reintegration of a woman with mental health issues",
-            date: "October 8, 2024",
+              "FMMPS nominated for the 5th edition of Actu Stars Awards: Marie Mwape Kashimbo to the rescue of Boyomais",
+            date: "November 20, 2022",
             summary:
-              "Thanks to our psychological support program, Mama Beatrice has regained her stability and can now provide for my family's needs.",
-          },
-          {
-            title: "Professional training program for women",
-            date: "September 1, 2024",
-            summary:
-              "Launch of a sewing and carpentry training program for 50 women in distress, offering them new economic opportunities.",
+              "Marie Mwape Kashimbo, founder of FMMPS, went to the commune of Lubunga to meet the Boyomaise populations and provide them with assistance and donations, while embodying the values of love and social action.",
+            link: "https://times.cd/index.php/2022/11/20/fmmps-nominee-a-la-5-eme-edition-du-prix-actu-stars-awards-marie-mwape-kashimbo-au-rescousse-de-boyomais-de-la-commune-de-lubunga/",
           },
         ],
       },
@@ -763,56 +741,38 @@ export default function HomePage() {
       </nav>
 
       {/* Hero Section */}
-      <section className="py-20 lg:py-32 relative bg-white dark:bg-gray-800 transition-colors duration-300 overflow-hidden">
-        {/* Background Image - Desktop (covers entire section) */}
-        <div className="hidden lg:block absolute inset-0 z-0">
+      <section className="py-20 lg:py-32 relative overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
           <Image
             src="/hero-background.jpg"
             alt="Hero Background"
             fill
-            className="object-cover opacity-70 dark:opacity-60"
-            sizes="100vw"
-            quality={75}
-            loading="lazy"
-            placeholder="blur"
-            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
+            className="object-cover object-center"
+            priority
           />
-          <div className="absolute inset-0 bg-white/20 dark:bg-gray-800/30"></div>
+          {/* Overlay for better text readability */}
+          <div className="absolute inset-0 bg-black/50 dark:bg-black/60"></div>
         </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div className="space-y-8 relative overflow-hidden lg:overflow-visible">
-              {/* Background Image - Mobile only (behind text content) */}
-              <div className="lg:hidden absolute inset-0 z-0">
-                <Image
-                  src="/hero-background.jpg"
-                  alt="Hero Background"
-                  fill
-                  className="object-cover opacity-60 dark:opacity-50"
-                  sizes="100vw"
-                  quality={75}
-                  loading="lazy"
-                  placeholder="blur"
-                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
-                />
-                <div className="absolute inset-0 bg-white/30 dark:bg-gray-800/40"></div>
-              </div>
-              <div className="space-y-6 relative z-10">
-                <Badge className="bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 border-indigo-200 dark:border-indigo-700 rounded-full px-4 py-2 font-medium transition-colors duration-300">
+            <div className="space-y-8">
+              <div className="space-y-6">
+                <Badge className="bg-white/10 backdrop-blur-sm text-white border-white/20 rounded-full px-4 py-2 font-medium">
                   {t.hero.location}
                 </Badge>
-                <h1 className="font-serif text-5xl lg:text-7xl font-bold text-slate-900 dark:text-white leading-tight transition-colors duration-300">
+                <h1 className="font-serif text-5xl lg:text-7xl font-bold text-white leading-tight drop-shadow-lg">
                   {t.hero.title}
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-sky-400">
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 to-sky-300">
                     {" "}
                     {t.hero.titleHighlight}
                   </span>
                 </h1>
-                <p className="text-xl font-semibold text-slate-800 dark:text-gray-200 leading-relaxed transition-colors duration-300">
+                <p className="text-xl font-semibold text-white/90 leading-relaxed drop-shadow-md">
                   {t.hero.description}
                 </p>
               </div>
-              <div className="flex flex-col sm:flex-row gap-4 relative z-10">
+              <div className="flex flex-col sm:flex-row gap-4">
                 <Button
                   size="lg"
                   className="bg-gradient-to-r from-indigo-500 to-sky-400 hover:from-indigo-600 hover:to-sky-500 text-white rounded-lg px-8 py-4 text-lg font-medium transition-all duration-300"
@@ -824,7 +784,7 @@ export default function HomePage() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-2 border-slate-300 dark:border-gray-600 text-slate-700 dark:text-gray-300 hover:bg-slate-50 dark:hover:bg-gray-800 rounded-lg px-8 py-4 text-lg font-medium bg-transparent transition-colors duration-300"
+                  className="border-2 border-white/30 text-white hover:bg-white/10 rounded-lg px-8 py-4 text-lg font-medium bg-transparent backdrop-blur-sm transition-all duration-300"
                 >
                   {t.hero.learnBtn}
                 </Button>
@@ -846,16 +806,16 @@ export default function HomePage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/30 to-transparent"></div>
               </div>
-              <div className="absolute -bottom-6 -left-6 bg-white dark:bg-gray-800 rounded-xl p-6 shadow-xl border border-gray-100 dark:border-gray-700 transition-colors duration-300">
+              <div className="absolute -bottom-6 -left-6 bg-white/10 backdrop-blur-sm rounded-xl p-6 shadow-xl border border-white/20">
                 <div className="flex items-center space-x-4">
                   <div className="w-12 h-12 bg-gradient-to-r from-indigo-500 to-sky-400 rounded-full flex items-center justify-center">
                     <Users className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <p className="font-bold text-2xl text-slate-900 dark:text-white transition-colors duration-300">
+                    <p className="font-bold text-2xl text-white drop-shadow-md">
                       500+
                     </p>
-                    <p className="text-slate-600 dark:text-gray-300 transition-colors duration-300">
+                    <p className="text-white/90 drop-shadow-sm">
                       {t.hero.statsLabel}
                     </p>
                   </div>
@@ -956,31 +916,26 @@ export default function HomePage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                icon: Heart,
                 color: "from-red-500 to-pink-500",
                 bgColor: "bg-red-50 dark:bg-red-900/20",
                 borderColor: "border-red-200 dark:border-red-800",
               },
               {
-                icon: Shield,
                 color: "from-blue-500 to-indigo-500",
                 bgColor: "bg-blue-50 dark:bg-blue-900/20",
                 borderColor: "border-blue-200 dark:border-blue-800",
               },
               {
-                icon: Users,
                 color: "from-purple-500 to-pink-500",
                 bgColor: "bg-purple-50 dark:bg-purple-900/20",
                 borderColor: "border-purple-200 dark:border-purple-800",
               },
               {
-                icon: Star,
                 color: "from-yellow-500 to-orange-500",
                 bgColor: "bg-yellow-50 dark:bg-yellow-900/20",
                 borderColor: "border-yellow-200 dark:border-yellow-800",
               },
               {
-                icon: Lightbulb,
                 color: "from-green-500 to-teal-500",
                 bgColor: "bg-green-50 dark:bg-green-900/20",
                 borderColor: "border-green-200 dark:border-green-800",
@@ -992,9 +947,15 @@ export default function HomePage() {
               >
                 <CardHeader className="text-center pb-4">
                   <div
-                    className={`w-16 h-16 mx-auto rounded-full bg-gradient-to-r ${program.color} flex items-center justify-center mb-4`}
+                    className={`w-16 h-16 mx-auto rounded-full bg-gradient-to-r ${program.color} flex items-center justify-center mb-4 overflow-hidden`}
                   >
-                    <program.icon className="w-8 h-8 text-white" />
+                    <Image
+                      src="/logo.jpg"
+                      alt="Foundation Logo"
+                      width={32}
+                      height={32}
+                      className="w-8 h-8 object-contain"
+                    />
                   </div>
                   <CardTitle className="font-serif text-xl text-slate-900 dark:text-white transition-colors duration-300">
                     {t.programs.items[index].title}
@@ -1138,28 +1099,25 @@ export default function HomePage() {
       </section>
 
       {/* About the Founder Section */}
-      <section className="py-20 relative bg-white dark:bg-gray-800 transition-colors duration-300 overflow-hidden">
-        {/* Background Image - Desktop (covers entire section including titles) */}
-        <div className="hidden lg:block absolute inset-0 -top-20 -bottom-20 z-0">
+      <section className="py-20 relative overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
           <Image
             src="/foundation-logo.jpg"
-            alt="Foundation Logo Background"
+            alt="Foundation Background"
             fill
-            className="object-cover opacity-70 dark:opacity-60 scale-x-[-1]"
-            sizes="100vw"
-            quality={75}
-            loading="lazy"
-            placeholder="blur"
-            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
+            className="object-cover object-center scale-x-[-1]"
+            priority
           />
-          <div className="absolute inset-0 bg-white/20 dark:bg-gray-800/30"></div>
+          {/* Overlay for better text readability */}
+          <div className="absolute inset-0 bg-black/50 dark:bg-black/60"></div>
         </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center space-y-4 mb-16">
-            <Badge className="bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 border-indigo-200 dark:border-indigo-700 rounded-full px-4 py-2 font-medium transition-colors duration-300">
+            <Badge className="bg-white/10 backdrop-blur-sm text-white border-white/20 rounded-full px-4 py-2 font-medium">
               {t.founder.badge}
             </Badge>
-            <h2 className="font-serif text-4xl font-bold text-slate-900 dark:text-white transition-colors duration-300">
+            <h2 className="font-serif text-4xl font-bold text-white drop-shadow-lg">
               {t.founder.title}
             </h2>
           </div>
@@ -1186,30 +1144,15 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="space-y-8 relative overflow-hidden lg:overflow-visible">
-              {/* Background Image - Mobile only (behind text content) */}
-              <div className="lg:hidden absolute inset-0 z-0">
-                <Image
-                  src="/foundation-logo.jpg"
-                  alt="Foundation Logo Background"
-                  fill
-                  className="object-cover opacity-60 dark:opacity-50 scale-x-[-1]"
-                  sizes="100vw"
-                  quality={75}
-                  loading="lazy"
-                  placeholder="blur"
-                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QUFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
-                />
-                <div className="absolute inset-0 bg-white/30 dark:bg-gray-800/40"></div>
-              </div>
-              <div className="space-y-6 relative z-10">
-                <p className="text-lg font-semibold text-slate-800 dark:text-gray-200 leading-relaxed transition-colors duration-300">
+            <div className="space-y-8">
+              <div className="space-y-6">
+                <p className="text-lg font-semibold text-white/90 leading-relaxed drop-shadow-md">
                   {t.founder.bio1}
                 </p>
-                <p className="text-lg font-semibold text-slate-800 dark:text-gray-200 leading-relaxed transition-colors duration-300">
+                <p className="text-lg font-semibold text-white/90 leading-relaxed drop-shadow-md">
                   {t.founder.bio2}
                 </p>
-                <blockquote className="border-l-4 border-indigo-500 dark:border-indigo-400 pl-6 italic text-indigo-800 dark:text-indigo-200 text-xl font-bold transition-colors duration-300">
+                <blockquote className="border-l-4 border-white/30 pl-6 italic text-white text-xl font-bold drop-shadow-md">
                   "{t.founder.quote}"
                 </blockquote>
               </div>
@@ -1336,7 +1279,7 @@ export default function HomePage() {
               >
                 <div className="relative h-48 overflow-hidden">
                   <Image
-                    src="/placeholder.svg?height=300&width=400"
+                    src="/article_1.jpg"
                     alt={article.title}
                     width={400}
                     height={300}
@@ -1344,8 +1287,6 @@ export default function HomePage() {
                     loading="lazy"
                     quality={80}
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 400px"
-                    placeholder="blur"
-                    blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 to-transparent"></div>
                 </div>
@@ -1371,9 +1312,16 @@ export default function HomePage() {
                   <Button
                     variant="ghost"
                     className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/20 p-0 mt-4 transition-colors duration-300"
+                    asChild
                   >
-                    {t.blog.readMore}
-                    <ArrowRight className="ml-2 w-4 h-4" />
+                    <a
+                      href={article.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {t.blog.readMore}
+                      <ArrowRight className="ml-2 w-4 h-4" />
+                    </a>
                   </Button>
                 </CardContent>
               </Card>

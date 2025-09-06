@@ -20,12 +20,16 @@ import {
   Sun,
   Menu,
   X,
+  ArrowLeft,
 } from "lucide-react";
 import { WhatsAppButton } from "@/components/whatsapp-button";
 import { BackToTopButton } from "@/components/back-to-top-button";
 import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { Logo } from "@/components/ui/logo";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function GovernancePage() {
   // Local language toggle
@@ -650,13 +654,44 @@ export default function GovernancePage() {
 
       <div className="py-12 px-6">
         {/* Hero */}
-        <section className="max-w-5xl mx-auto text-center mb-16">
-          <h1 className="text-4xl font-bold text-slate-900 dark:text-white mb-6 transition-colors duration-300">
-            {t.hero.title}
-          </h1>
-          <p className="text-xl text-slate-600 dark:text-gray-300 transition-colors duration-300 max-w-4xl mx-auto leading-relaxed">
-            {t.hero.description}
-          </p>
+        <section className="relative py-16 min-h-[60vh] flex items-center justify-center overflow-hidden mb-16">
+          {/* Background Image */}
+          <div className="absolute inset-0 z-0">
+            <Image
+              src="/governance-background.jpg"
+              alt="Governance Background"
+              fill
+              className="object-cover object-center"
+              priority
+            />
+            {/* Overlay for better text readability */}
+            <div className="absolute inset-0 bg-black/50 dark:bg-black/60"></div>
+          </div>
+
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center space-y-6">
+              {/* Back to Home Link */}
+              <div className="flex justify-center">
+                <Link
+                  href="/"
+                  className="inline-flex items-center text-white/90 hover:text-white transition-colors duration-300"
+                >
+                  <ArrowLeft className="w-4 h-4 mr-2" />
+                  {t.closing.backHome}
+                </Link>
+              </div>
+
+              <Badge className="bg-white/10 backdrop-blur-sm text-white border-white/20 rounded-full px-4 py-2 font-medium">
+                {language === "fr" ? "Gouvernance" : "Governance"}
+              </Badge>
+              <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-white drop-shadow-lg">
+                {t.hero.title}
+              </h1>
+              <p className="text-xl text-white/90 max-w-4xl mx-auto drop-shadow-md">
+                {t.hero.description}
+              </p>
+            </div>
+          </div>
         </section>
 
         {/* Foundation Objectives */}

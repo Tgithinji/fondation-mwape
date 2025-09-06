@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -23,6 +23,7 @@ import {
   Menu,
   X,
   Globe,
+  ChevronLeft,
 } from "lucide-react";
 import Image from "next/image";
 import { useDarkMode } from "@/hooks/use-dark-mode";
@@ -31,6 +32,587 @@ import { BackToTopButton } from "@/components/back-to-top-button";
 import { Logo } from "@/components/ui/logo";
 import Link from "next/link";
 import { Footer } from "@/components/footer";
+
+// HealthImageSlider Component
+function HealthImageSlider() {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const images = ["/programs-background.jpg", "/2.jpg"];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) =>
+        prevIndex === images.length - 1 ? 0 : prevIndex + 1,
+      );
+    }, 3000); // Change image every 3 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const nextImage = () => {
+    setCurrentImageIndex(
+      currentImageIndex === images.length - 1 ? 0 : currentImageIndex + 1,
+    );
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex(
+      currentImageIndex === 0 ? images.length - 1 : currentImageIndex - 1,
+    );
+  };
+
+  return (
+    <div className="relative aspect-video rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-700">
+      {images.map((src, index) => (
+        <div
+          key={index}
+          className={`absolute inset-0 transition-opacity duration-500 ${
+            index === currentImageIndex ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          <Image
+            src={src}
+            alt={`Physical and mental health support ${index + 1}`}
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 50vw"
+            quality={85}
+          />
+        </div>
+      ))}
+
+      {/* Navigation Buttons */}
+      <button
+        onClick={prevImage}
+        className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-all duration-200"
+        aria-label="Previous image"
+      >
+        <ChevronLeft className="w-4 h-4" />
+      </button>
+
+      <button
+        onClick={nextImage}
+        className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-all duration-200"
+        aria-label="Next image"
+      >
+        <ChevronRight className="w-4 h-4" />
+      </button>
+
+      {/* Image Indicators */}
+      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
+        {images.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentImageIndex(index)}
+            className={`w-2 h-2 rounded-full transition-all duration-200 ${
+              index === currentImageIndex
+                ? "bg-white"
+                : "bg-white/50 hover:bg-white/70"
+            }`}
+            aria-label={`Go to image ${index + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// BlindImageSlider Component
+function BlindImageSlider() {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const images = ["/blind_1.jpg", "/blind_2.jpg"];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) =>
+        prevIndex === images.length - 1 ? 0 : prevIndex + 1,
+      );
+    }, 3000); // Change image every 3 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const nextImage = () => {
+    setCurrentImageIndex(
+      currentImageIndex === images.length - 1 ? 0 : currentImageIndex + 1,
+    );
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex(
+      currentImageIndex === 0 ? images.length - 1 : currentImageIndex - 1,
+    );
+  };
+
+  return (
+    <div className="relative aspect-video rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-700">
+      {images.map((src, index) => (
+        <div
+          key={index}
+          className={`absolute inset-0 transition-opacity duration-500 ${
+            index === currentImageIndex ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          <Image
+            src={src}
+            alt={`Support for the blind ${index + 1}`}
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 50vw"
+            quality={85}
+          />
+        </div>
+      ))}
+
+      {/* Navigation Buttons */}
+      <button
+        onClick={prevImage}
+        className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-all duration-200"
+        aria-label="Previous image"
+      >
+        <ChevronLeft className="w-4 h-4" />
+      </button>
+
+      <button
+        onClick={nextImage}
+        className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-all duration-200"
+        aria-label="Next image"
+      >
+        <ChevronRight className="w-4 h-4" />
+      </button>
+
+      {/* Image Indicators */}
+      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
+        {images.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentImageIndex(index)}
+            className={`w-2 h-2 rounded-full transition-all duration-200 ${
+              index === currentImageIndex
+                ? "bg-white"
+                : "bg-white/50 hover:bg-white/70"
+            }`}
+            aria-label={`Go to image ${index + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// AthletesImageSlider Component
+function AthletesImageSlider() {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const images = ["/boys_1.jpg", "/boys_2.jpg"];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) =>
+        prevIndex === images.length - 1 ? 0 : prevIndex + 1,
+      );
+    }, 3000); // Change image every 3 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const nextImage = () => {
+    setCurrentImageIndex(
+      currentImageIndex === images.length - 1 ? 0 : currentImageIndex + 1,
+    );
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex(
+      currentImageIndex === 0 ? images.length - 1 : currentImageIndex - 1,
+    );
+  };
+
+  return (
+    <div className="relative aspect-video rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-700">
+      {images.map((src, index) => (
+        <div
+          key={index}
+          className={`absolute inset-0 transition-opacity duration-500 ${
+            index === currentImageIndex ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          <Image
+            src={src}
+            alt={`Support for young athletes ${index + 1}`}
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 50vw"
+            quality={85}
+          />
+        </div>
+      ))}
+
+      {/* Navigation Buttons */}
+      <button
+        onClick={prevImage}
+        className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-all duration-200"
+        aria-label="Previous image"
+      >
+        <ChevronLeft className="w-4 h-4" />
+      </button>
+
+      <button
+        onClick={nextImage}
+        className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-all duration-200"
+        aria-label="Next image"
+      >
+        <ChevronRight className="w-4 h-4" />
+      </button>
+
+      {/* Image Indicators */}
+      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
+        {images.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentImageIndex(index)}
+            className={`w-2 h-2 rounded-full transition-all duration-200 ${
+              index === currentImageIndex
+                ? "bg-white"
+                : "bg-white/50 hover:bg-white/70"
+            }`}
+            aria-label={`Go to image ${index + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// WomenImageSlider Component
+function WomenImageSlider() {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const images = ["/womenr_1.jpg", "/womenr_2.jpg", "/hero-background.jpg"];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) =>
+        prevIndex === images.length - 1 ? 0 : prevIndex + 1,
+      );
+    }, 3000); // Change image every 3 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const nextImage = () => {
+    setCurrentImageIndex(
+      currentImageIndex === images.length - 1 ? 0 : currentImageIndex + 1,
+    );
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex(
+      currentImageIndex === 0 ? images.length - 1 : currentImageIndex - 1,
+    );
+  };
+
+  return (
+    <div className="relative aspect-video rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-700">
+      {images.map((src, index) => (
+        <div
+          key={index}
+          className={`absolute inset-0 transition-opacity duration-500 ${
+            index === currentImageIndex ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          <Image
+            src={src}
+            alt={`Support for widows and single mothers ${index + 1}`}
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 50vw"
+            quality={85}
+          />
+        </div>
+      ))}
+
+      {/* Navigation Buttons */}
+      <button
+        onClick={prevImage}
+        className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-all duration-200"
+        aria-label="Previous image"
+      >
+        <ChevronLeft className="w-4 h-4" />
+      </button>
+
+      <button
+        onClick={nextImage}
+        className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-all duration-200"
+        aria-label="Next image"
+      >
+        <ChevronRight className="w-4 h-4" />
+      </button>
+
+      {/* Image Indicators */}
+      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
+        {images.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentImageIndex(index)}
+            className={`w-2 h-2 rounded-full transition-all duration-200 ${
+              index === currentImageIndex
+                ? "bg-white"
+                : "bg-white/50 hover:bg-white/70"
+            }`}
+            aria-label={`Go to image ${index + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// VideoGallery Component
+function VideoGallery({ language }: { language: "fr" | "en" }) {
+  const [currentStartIndex, setCurrentStartIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+
+  const videos = [
+    "/VID-20250905-WA0002.mp4",
+    "/VID-20250905-WA0007.mp4",
+    "/VID-20250905-WA0013.mp4",
+    "/VID-20250905-WA0032.mp4",
+    "/VID-20250905-WA0036.mp4",
+    "/VID-20250905-WA0059.mp4",
+    "/VID-20250905-WA0062.mp4",
+  ];
+
+  // Handle responsive behavior
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  const content = {
+    fr: {
+      title: "Nos Actions en Images",
+      description:
+        "Découvrez nos programmes en action à travers ces moments capturés sur le terrain.",
+      previous: "Précédent",
+      next: "Suivant",
+    },
+    en: {
+      title: "Our Work in Action",
+      description:
+        "Discover our programs in action through these moments captured in the field.",
+      previous: "Previous",
+      next: "Next",
+    },
+  };
+
+  const t = content[language];
+  const visibleVideos = isMobile ? 1 : 3;
+  const maxStartIndex = Math.max(0, videos.length - visibleVideos);
+
+  const nextVideos = () => {
+    setCurrentStartIndex((prev) => Math.min(prev + 1, maxStartIndex));
+  };
+
+  const prevVideos = () => {
+    setCurrentStartIndex((prev) => Math.max(prev - 1, 0));
+  };
+
+  // Pause all videos when component unmounts or index changes
+  useEffect(() => {
+    videoRefs.current.forEach((video) => {
+      if (video) video.pause();
+    });
+  }, [currentStartIndex]);
+
+  return (
+    <div className="space-y-6">
+      <div className="text-center space-y-4">
+        <h3 className="font-serif text-2xl md:text-3xl font-bold text-white drop-shadow-lg">
+          {t.title}
+        </h3>
+        <p className="text-lg text-white/90 max-w-2xl mx-auto drop-shadow-md">
+          {t.description}
+        </p>
+      </div>
+
+      <div className="relative">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {videos
+            .slice(currentStartIndex, currentStartIndex + visibleVideos)
+            .map((videoSrc, index) => (
+              <div
+                key={currentStartIndex + index}
+                className="relative aspect-video rounded-lg overflow-hidden bg-gray-900 shadow-xl"
+              >
+                <video
+                  ref={(el) => {
+                    videoRefs.current[currentStartIndex + index] = el;
+                  }}
+                  className="w-full h-full object-cover"
+                  controls
+                  preload="metadata"
+                  playsInline
+                  muted
+                >
+                  <source src={videoSrc} type="video/mp4" />
+                  Votre navigateur ne supporte pas la lecture vidéo.
+                </video>
+              </div>
+            ))}
+        </div>
+
+        {/* Navigation Buttons */}
+        {videos.length > 1 && (
+          <>
+            <button
+              onClick={prevVideos}
+              disabled={currentStartIndex === 0}
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-6 bg-white/10 backdrop-blur-sm hover:bg-white/20 disabled:opacity-50 disabled:cursor-not-allowed text-white p-2 md:p-3 rounded-full transition-all duration-200 shadow-lg z-10"
+              aria-label={t.previous}
+            >
+              <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
+            </button>
+
+            <button
+              onClick={nextVideos}
+              disabled={currentStartIndex >= maxStartIndex}
+              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-6 bg-white/10 backdrop-blur-sm hover:bg-white/20 disabled:opacity-50 disabled:cursor-not-allowed text-white p-2 md:p-3 rounded-full transition-all duration-200 shadow-lg z-10"
+              aria-label={t.next}
+            >
+              <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
+            </button>
+          </>
+        )}
+
+        {/* Video Indicators */}
+        {videos.length > 1 && (
+          <div className="flex justify-center mt-6 gap-2">
+            {isMobile ? (
+              // Mobile: Show indicator for each video
+              <>
+                {videos.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentStartIndex(index)}
+                    className={`w-2 h-2 rounded-full transition-all duration-200 ${
+                      index === currentStartIndex
+                        ? "bg-white"
+                        : "bg-white/40 hover:bg-white/60"
+                    }`}
+                    aria-label={`Go to video ${index + 1}`}
+                  />
+                ))}
+              </>
+            ) : (
+              // Desktop: Show indicator for each set
+              <>
+                {Array.from({ length: maxStartIndex + 1 }, (_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentStartIndex(index)}
+                    className={`w-3 h-3 rounded-full transition-all duration-200 ${
+                      index === currentStartIndex
+                        ? "bg-white"
+                        : "bg-white/40 hover:bg-white/60"
+                    }`}
+                    aria-label={`Go to video set ${index + 1}`}
+                  />
+                ))}
+              </>
+            )}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+// AlbinismImageSlider Component
+function AlbinismImageSlider() {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const images = ["/albino.jpg", "/albino_1.jpg"];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) =>
+        prevIndex === images.length - 1 ? 0 : prevIndex + 1,
+      );
+    }, 3000); // Change image every 3 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const nextImage = () => {
+    setCurrentImageIndex(
+      currentImageIndex === images.length - 1 ? 0 : currentImageIndex + 1,
+    );
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex(
+      currentImageIndex === 0 ? images.length - 1 : currentImageIndex - 1,
+    );
+  };
+
+  return (
+    <div className="relative aspect-video rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-700">
+      {images.map((src, index) => (
+        <div
+          key={index}
+          className={`absolute inset-0 transition-opacity duration-500 ${
+            index === currentImageIndex ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          <Image
+            src={src}
+            alt={`Support for people with albinism ${index + 1}`}
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 50vw"
+            quality={85}
+          />
+        </div>
+      ))}
+
+      {/* Navigation Buttons */}
+      <button
+        onClick={prevImage}
+        className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-all duration-200"
+        aria-label="Previous image"
+      >
+        <ChevronLeft className="w-4 h-4" />
+      </button>
+
+      <button
+        onClick={nextImage}
+        className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-all duration-200"
+        aria-label="Next image"
+      >
+        <ChevronRight className="w-4 h-4" />
+      </button>
+
+      {/* Image Indicators */}
+      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
+        {images.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentImageIndex(index)}
+            className={`w-2 h-2 rounded-full transition-all duration-200 ${
+              index === currentImageIndex
+                ? "bg-white"
+                : "bg-white/50 hover:bg-white/70"
+            }`}
+            aria-label={`Go to image ${index + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export default function ProgramsPage() {
   const [language, setLanguage] = useState<"fr" | "en">("fr");
@@ -63,93 +645,97 @@ export default function ProgramsPage() {
       programs: {
         items: [
           {
-            title: "Soutien aux Orphelins",
+            title: "Soutien à la Santé Physique et Mentale",
             shortDescription:
-              "Nous offrons un foyer, une éducation et un avenir aux enfants orphelins de Kisangani.",
+              "Programmes de soins holistiques répondant aux besoins de santé physique et mentale de la communauté.",
             fullDescription:
-              "Notre programme de soutien aux orphelins est au cœur de notre mission. Nous accueillons les enfants abandonnés ou orphelins dans un environnement sécurisé et aimant. Notre approche va au-delà de l'hébergement : nous offrons une éducation de qualité, un accompagnement psychologique, des activités récréatives et une préparation à la vie autonome. Chaque enfant bénéficie d'un suivi personnalisé pour développer ses talents et réaliser son potentiel.",
-            impact: {
-              beneficiaries: "150+",
-              description: "enfants soutenus depuis 2018",
-            },
-            activities: [
-              "Hébergement et soins quotidiens",
-              "Scolarisation et soutien scolaire",
-              "Accompagnement psychologique",
-              "Formation professionnelle pour les plus âgés",
-              "Activités culturelles et sportives",
-            ],
-          },
-          {
-            title: "Aide aux Personnes Handicapées",
-            shortDescription:
-              "Programmes d'inclusion et de soutien pour les personnes en situation de handicap.",
-            fullDescription:
-              "Nous croyons fermement que le handicap ne doit pas être un obstacle à l'épanouissement personnel. Notre programme vise l'inclusion sociale et économique des personnes handicapées à travers des services adaptés, de la formation professionnelle, et la sensibilisation communautaire. Nous travaillons à briser les stigmates et à créer une société plus inclusive où chacun peut contribuer selon ses capacités.",
-            impact: {
-              beneficiaries: "200+",
-              description: "personnes handicapées accompagnées",
-            },
-            activities: [
-              "Rééducation et thérapie physique",
-              "Formation professionnelle adaptée",
-              "Fourniture d'équipements d'assistance",
-              "Sensibilisation communautaire",
-              "Accompagnement à l'insertion professionnelle",
-            ],
-          },
-          {
-            title: "Récupération des Femmes",
-            shortDescription:
-              "Accompagnement et réinsertion sociale des femmes en situation de détresse.",
-            fullDescription:
-              "Les femmes en détresse trouvent chez nous un refuge sûr et un accompagnement complet vers la réinsertion sociale. Notre programme aborde les traumatismes, offre une formation professionnelle, et facilite l'accès aux soins de santé. Nous travaillons également sur l'autonomisation économique à travers des activités génératrices de revenus et la création de coopératives féminines.",
-            impact: {
-              beneficiaries: "75+",
-              description: "femmes réintégrées avec succès",
-            },
-            activities: [
-              "Accompagnement psychosocial",
-              "Formation en couture et artisanat",
-              "Microcrédit et activités génératrices de revenus",
-              "Soins de santé reproductive",
-              "Alphabétisation et éducation de base",
-            ],
-          },
-          {
-            title: "Soutien aux Personnes Albinos",
-            shortDescription:
-              "Protection, sensibilisation et intégration des personnes albinos dans la société.",
-            fullDescription:
-              "Face aux discriminations et dangers que vivent les personnes albinos, notre programme offre une protection complète et un accompagnement vers l'intégration sociale. Nous distribuons des crèmes solaires et équipements de protection, organisons des campagnes de sensibilisation, et facilitons l'accès à l'éducation et à l'emploi. Notre objectif est de créer un environnement où les personnes albinos peuvent vivre en sécurité et dignité.",
-            impact: {
-              beneficiaries: "45+",
-              description: "personnes albinos protégées et accompagnées",
-            },
-            activities: [
-              "Distribution de crèmes solaires et équipements",
-              "Campagnes de sensibilisation communautaire",
-              "Soutien scolaire spécialisé",
-              "Accompagnement psychologique",
-              "Plaidoyer pour leurs droits",
-            ],
-          },
-          {
-            title: "Aide en Santé Mentale",
-            shortDescription:
-              "Services de soutien psychologique et de sensibilisation à la santé mentale.",
-            fullDescription:
-              "La santé mentale étant souvent négligée dans notre contexte, nous offrons des services de consultation psychologique, de thérapie de groupe, et de sensibilisation communautaire. Notre équipe de psychologues formés accompagne les personnes souffrant de troubles mentaux et leurs familles. Nous travaillons également à déstigmatiser les maladies mentales et à promouvoir le bien-être psychologique dans la communauté.",
+              "Conscients que la santé ne se limite pas à l'absence de maladie, notre programme intègre à la fois des services de santé physique et mentale. Nous offrons des consultations psychologiques, des thérapies de groupe, des campagnes de sensibilisation et un soutien aux familles, tout en assurant également la rééducation physique et les soins de santé de base. Notre objectif est de créer des communautés plus saines et plus résilientes.",
             impact: {
               beneficiaries: "300+",
-              description: "consultations et séances de thérapie",
+              description:
+                "consultations, séances de thérapie et interventions de santé physique",
             },
             activities: [
               "Consultations psychologiques individuelles",
-              "Thérapie de groupe",
-              "Sensibilisation communautaire",
-              "Formation des familles d'accompagnement",
+              "Séances de thérapie de groupe",
+              "Campagnes de sensibilisation communautaire",
+              "Formation au soutien familial",
               "Réinsertion sociale des patients",
+              "Rééducation physique et soins de santé de base",
+            ],
+          },
+          {
+            title: "Soutien aux Personnes Aveugles",
+            shortDescription:
+              "Programmes inclusifs offrant soutien et autonomisation aux personnes malvoyantes.",
+            fullDescription:
+              "Les personnes aveugles et malvoyantes font souvent face à l'exclusion sociale et à des opportunités limitées. Notre programme est dédié à favoriser leur autonomie et leur inclusion en offrant une éducation adaptée, une formation à l'orientation et à la mobilité, l'accès aux technologies d'assistance et la défense de leurs droits. Nous croyons en une société où les personnes aveugles peuvent s'épanouir avec dignité et égalité des chances.",
+            impact: {
+              beneficiaries: "120+",
+              description: "personnes aveugles et malvoyantes accompagnées",
+            },
+            activities: [
+              "Éducation adaptée et alphabétisation en braille",
+              "Formation à l'orientation et à la mobilité",
+              "Fourniture de technologies d'assistance",
+              "Campagnes de sensibilisation communautaire",
+              "Plaidoyer pour les droits des personnes aveugles",
+            ],
+          },
+          {
+            title: "Soutien aux Jeunes Athlètes",
+            shortDescription:
+              "Programmes de développement et de soutien pour les jeunes sportifs à Kisangani.",
+            fullDescription:
+              "Le sport est un outil puissant d'éducation, d'intégration sociale et de développement personnel. Notre programme soutient les jeunes athlètes en leur offrant des formations, du matériel et des opportunités de valoriser leur talent. Nous promouvons également des valeurs telles que l'esprit d'équipe, la discipline et la persévérance, qui contribuent à former de jeunes leaders responsables et confiants.",
+            impact: {
+              beneficiaries: "100+",
+              description: "jeunes athlètes formés et accompagnés",
+            },
+            activities: [
+              "Séances d'entraînement sportif",
+              "Fourniture de matériel et uniformes",
+              "Participation aux compétitions locales et régionales",
+              "Ateliers sur la santé, la nutrition et la discipline",
+              "Mentorat par des athlètes expérimentés",
+            ],
+          },
+          {
+            title: "Soutien aux Veuves et Mères Célibataires",
+            shortDescription:
+              "Un programme holistique offrant sécurité, autonomisation et opportunités de réintégration aux veuves et mères célibataires.",
+            fullDescription:
+              "Les veuves et mères célibataires font souvent face à des difficultés économiques, à la stigmatisation sociale et à des défis émotionnels. Notre programme leur offre un espace sûr et un accompagnement complet pour reconstruire leur vie. Grâce au soutien psychosocial, à la formation professionnelle et à l'accès aux soins de santé, nous visons à donner à ces femmes les moyens d'atteindre l'indépendance et la stabilité. Nous favorisons également leur autonomisation économique à travers le microcrédit, les activités génératrices de revenus et la création de coopératives féminines.",
+            impact: {
+              beneficiaries: "75+",
+              description:
+                "veuves et mères célibataires accompagnées dans leur réintégration",
+            },
+            activities: [
+              "Conseil et soutien psychosocial",
+              "Formation professionnelle en couture et artisanat",
+              "Microcrédit et activités génératrices de revenus",
+              "Accès aux soins de santé généraux et reproductifs",
+              "Programmes d'alphabétisation et d'éducation de base",
+            ],
+          },
+          {
+            title: "Soutien aux Personnes Atteintes d'Albinisme",
+            shortDescription:
+              "Programmes de protection et d'intégration pour les personnes atteintes d'albinisme.",
+            fullDescription:
+              "Face à la discrimination et aux dangers vécus par les personnes atteintes d'albinisme, notre programme offre une protection complète et un accompagnement vers l'intégration sociale. Nous distribuons des crèmes solaires et des équipements de protection, organisons des campagnes de sensibilisation et facilitons l'accès à l'éducation et à l'emploi. Notre objectif est de créer un environnement où les personnes atteintes d'albinisme peuvent vivre en sécurité et dans la dignité.",
+            impact: {
+              beneficiaries: "45+",
+              description:
+                "personnes atteintes d'albinisme protégées et accompagnées",
+            },
+            activities: [
+              "Distribution de crèmes solaires et d'équipements",
+              "Campagnes de sensibilisation communautaire",
+              "Soutien scolaire spécialisé",
+              "Conseil psychologique",
+              "Plaidoyer pour leurs droits",
             ],
           },
         ],
@@ -193,63 +779,84 @@ export default function ProgramsPage() {
       programs: {
         items: [
           {
-            title: "Support for Orphans",
+            title: "Physical and Mental Health Support",
             shortDescription:
-              "We provide a home, education and future for orphaned children in Kisangani.",
+              "Holistic care programs addressing both physical and mental health needs in the community.",
             fullDescription:
-              "Our orphan support program is at the heart of our mission. We welcome abandoned or orphaned children in a safe and loving environment. Our approach goes beyond accommodation: we offer quality education, psychological support, recreational activities and preparation for independent living. Each child receives personalized follow-up to develop their talents and realize their potential.",
+              "Recognizing that health is more than the absence of disease, our program integrates both physical and mental health services. We provide psychological consultations, group therapy, community awareness, and family support while also addressing physical rehabilitation and general healthcare. Our goal is to create healthier and more resilient communities.",
             impact: {
-              beneficiaries: "150+",
-              description: "children supported since 2018",
+              beneficiaries: "300+",
+              description:
+                "consultations, therapy sessions, and physical health interventions",
             },
             activities: [
-              "Housing and daily care",
-              "Schooling and academic support",
-              "Psychological counseling",
-              "Professional training for older children",
-              "Cultural and sports activities",
+              "Individual psychological consultations",
+              "Group therapy sessions",
+              "Community awareness campaigns",
+              "Family support training",
+              "Social reintegration of patients",
+              "Physical rehabilitation and basic healthcare",
             ],
           },
           {
-            title: "Assistance for People with Disabilities",
+            title: "Support for the Blind",
             shortDescription:
-              "Inclusion and support programs for people with disabilities.",
+              "Inclusive programs providing support and empowerment for visually impaired individuals.",
             fullDescription:
-              "We firmly believe that disability should not be an obstacle to personal fulfillment. Our program aims at social and economic inclusion of people with disabilities through adapted services, professional training, and community awareness. We work to break stigma and create a more inclusive society where everyone can contribute according to their abilities.",
+              "Blind and visually impaired people often face social exclusion and limited opportunities. Our program is dedicated to fostering independence and inclusion by providing adapted education, orientation and mobility training, access to assistive technologies, and advocacy for their rights. We believe in creating a society where the blind can thrive with dignity and equal opportunities.",
             impact: {
-              beneficiaries: "200+",
-              description: "people with disabilities supported",
+              beneficiaries: "120+",
+              description: "blind and visually impaired individuals supported",
             },
             activities: [
-              "Rehabilitation and physical therapy",
-              "Adapted professional training",
-              "Provision of assistive equipment",
-              "Community awareness",
-              "Professional integration support",
+              "Braille literacy and adapted education",
+              "Orientation and mobility training",
+              "Provision of assistive technologies",
+              "Community awareness campaigns",
+              "Advocacy for the rights of the blind",
             ],
           },
           {
-            title: "Women's Recovery",
+            title: "Support for Young Athletes",
             shortDescription:
-              "Support and social reintegration for women in distress.",
+              "Development and support programs for young athletes in Kisangani.",
             fullDescription:
-              "Women in distress find with us a safe refuge and complete support towards social reintegration. Our program addresses trauma, offers professional training, and facilitates access to healthcare. We also work on economic empowerment through income-generating activities and the creation of women's cooperatives.",
+              "Sport is a powerful tool for education, social integration, and personal growth. Our program helps young athletes by providing training, equipment, and opportunities to showcase their talent. We also promote values such as teamwork, discipline, and perseverance, which contribute to building responsible and confident young leaders.",
+            impact: {
+              beneficiaries: "100+",
+              description: "young athletes trained and supported",
+            },
+            activities: [
+              "Sports training sessions",
+              "Provision of equipment and uniforms",
+              "Participation in local and regional competitions",
+              "Workshops on health, nutrition, and discipline",
+              "Mentorship by experienced athletes",
+            ],
+          },
+          {
+            title: "Support for Widows and Single Mothers",
+            shortDescription:
+              "A holistic program offering safety, empowerment, and reintegration opportunities for widows and single mothers.",
+            fullDescription:
+              "Widows and single mothers often face economic hardship, social stigma, and emotional challenges. Our program provides them with a safe space and comprehensive support to rebuild their lives. Through psychosocial care, vocational training, and access to healthcare, we aim to empower women to achieve independence and stability. We also promote economic empowerment through microcredit, income-generating activities, and the creation of women-led cooperatives.",
             impact: {
               beneficiaries: "75+",
-              description: "women successfully reintegrated",
+              description:
+                "widows and single mothers supported in their reintegration",
             },
             activities: [
-              "Psychosocial support",
-              "Training in sewing and crafts",
+              "Psychosocial counseling and support",
+              "Vocational training in sewing and crafts",
               "Microcredit and income-generating activities",
-              "Reproductive health care",
-              "Literacy and basic education",
+              "Access to reproductive and general healthcare",
+              "Literacy and basic education programs",
             ],
           },
           {
             title: "Support for People with Albinism",
             shortDescription:
-              "Protection, awareness and integration of people with albinism in society.",
+              "Protection and integration programs for people living with albinism.",
             fullDescription:
               "Faced with the discrimination and dangers experienced by people with albinism, our program offers comprehensive protection and support towards social integration. We distribute sunscreens and protective equipment, organize awareness campaigns, and facilitate access to education and employment. Our goal is to create an environment where people with albinism can live safely and with dignity.",
             impact: {
@@ -262,24 +869,6 @@ export default function ProgramsPage() {
               "Specialized school support",
               "Psychological counseling",
               "Advocacy for their rights",
-            ],
-          },
-          {
-            title: "Mental Health Support",
-            shortDescription:
-              "Psychological support services and mental health awareness.",
-            fullDescription:
-              "As mental health is often neglected in our context, we offer psychological consultation services, group therapy, and community awareness. Our team of trained psychologists supports people with mental disorders and their families. We also work to destigmatize mental illness and promote psychological well-being in the community.",
-            impact: {
-              beneficiaries: "300+",
-              description: "consultations and therapy sessions",
-            },
-            activities: [
-              "Individual psychological consultations",
-              "Group therapy",
-              "Community awareness",
-              "Family support training",
-              "Social reintegration of patients",
             ],
           },
         ],
@@ -309,8 +898,6 @@ export default function ProgramsPage() {
   };
 
   const t = content[language];
-
-  const programIcons = [Heart, Shield, Users, Star, Lightbulb];
   const programColors = [
     {
       color: "from-red-500 to-pink-500",
@@ -524,27 +1111,40 @@ export default function ProgramsPage() {
       </nav>
 
       {/* Hero Section */}
-      <section className="py-16 bg-white dark:bg-gray-800 transition-colors duration-300">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative py-16 min-h-[60vh] flex items-center justify-center overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/programs-background.jpg"
+            alt="Programs Background"
+            fill
+            className="object-cover object-center"
+            priority
+          />
+          {/* Overlay for better text readability */}
+          <div className="absolute inset-0 bg-black/50 dark:bg-black/60"></div>
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center space-y-6">
             {/* Back to Home Link */}
             <div className="flex justify-center">
               <Link
                 href="/"
-                className="inline-flex items-center text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors duration-300"
+                className="inline-flex items-center text-white/90 hover:text-white transition-colors duration-300"
               >
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 {language === "fr" ? "Retour à l'accueil" : "Back to Home"}
               </Link>
             </div>
 
-            <Badge className="bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 border-indigo-200 dark:border-indigo-700 rounded-full px-4 py-2 font-medium transition-colors duration-300">
+            <Badge className="bg-white/10 backdrop-blur-sm text-white border-white/20 rounded-full px-4 py-2 font-medium">
               {t.hero.badge}
             </Badge>
-            <h1 className="font-serif text-4xl md:text-5xl font-bold text-slate-900 dark:text-white transition-colors duration-300">
+            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-white drop-shadow-lg">
               {t.hero.title}
             </h1>
-            <p className="text-xl text-slate-600 dark:text-gray-300 max-w-4xl mx-auto transition-colors duration-300">
+            <p className="text-xl text-white/90 max-w-4xl mx-auto drop-shadow-md">
               {t.hero.description}
             </p>
           </div>
@@ -556,7 +1156,6 @@ export default function ProgramsPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="space-y-16">
             {t.programs.items.map((program, index) => {
-              const IconComponent = programIcons[index];
               const colorScheme = programColors[index];
 
               return (
@@ -569,9 +1168,15 @@ export default function ProgramsPage() {
                     <div className="space-y-6">
                       <div className="flex items-center space-x-4">
                         <div
-                          className={`w-16 h-16 rounded-full bg-gradient-to-r ${colorScheme.color} flex items-center justify-center`}
+                          className={`w-16 h-16 rounded-full bg-gradient-to-r ${colorScheme.color} flex items-center justify-center overflow-hidden`}
                         >
-                          <IconComponent className="w-8 h-8 text-white" />
+                          <Image
+                            src="/logo.jpg"
+                            alt="Foundation Logo"
+                            width={32}
+                            height={32}
+                            className="w-8 h-8 object-contain"
+                          />
                         </div>
                         <div>
                           <h2 className="font-serif text-2xl font-bold text-slate-900 dark:text-white transition-colors duration-300">
@@ -616,25 +1221,52 @@ export default function ProgramsPage() {
                       </div>
                     </div>
 
-                    {/* Program Image Placeholder */}
-                    <div className="relative">
-                      <div
-                        className={`aspect-video rounded-lg bg-gradient-to-br ${colorScheme.color} opacity-10 flex items-center justify-center`}
-                      >
-                        <IconComponent className="w-24 h-24 text-gray-400" />
+                    {/* Program Image - Special sliders for each program */}
+                    {index === 0 ? (
+                      <HealthImageSlider />
+                    ) : index === 1 ? (
+                      <BlindImageSlider />
+                    ) : index === 2 ? (
+                      <AthletesImageSlider />
+                    ) : index === 3 ? (
+                      <WomenImageSlider />
+                    ) : index === 4 ? (
+                      <AlbinismImageSlider />
+                    ) : (
+                      <div className="relative aspect-video rounded-lg overflow-hidden">
+                        <Image
+                          src="/logo.jpg"
+                          alt="Foundation Logo"
+                          fill
+                          className="object-contain p-8"
+                        />
                       </div>
-                      <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-black/20 to-black/40 flex items-center justify-center">
-                        <div className="text-center text-white">
-                          <IconComponent className="w-16 h-16 mx-auto mb-4 opacity-80" />
-                          <p className="text-lg font-medium">{program.title}</p>
-                        </div>
-                      </div>
-                    </div>
+                    )}
                   </div>
                 </Card>
               );
             })}
           </div>
+        </div>
+      </section>
+
+      {/* Video Gallery Section */}
+      <section className="py-20 relative overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/programs-background.jpg"
+            alt="Programs Background"
+            fill
+            className="object-cover object-center"
+            quality={75}
+          />
+          {/* Overlay for better content readability */}
+          <div className="absolute inset-0 bg-black/70"></div>
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <VideoGallery language={language} />
         </div>
       </section>
 

@@ -67,13 +67,15 @@ export function Logo({
         )}
       </div>
       {showText && (
-        <div className={`hidden sm:block ${textClassName}`}>
+        <div className={`${textClassName}`}>
           <div
-            className={`font-serif font-bold text-slate-900 dark:text-white transition-colors duration-300 ${textSizes[size]}`}
+            className={`font-serif font-bold transition-colors duration-300 ${textSizes[size]} ${textClassName || "text-slate-900 dark:text-white"}`}
           >
             Fondation Marie Mwape
           </div>
-          <div className="text-xs text-slate-500 dark:text-gray-400 transition-colors duration-300">
+          <div
+            className={`text-xs transition-colors duration-300 ${textClassName ? "opacity-80" : "text-slate-500 dark:text-gray-400"}`}
+          >
             pour le Progrès Social
           </div>
         </div>
