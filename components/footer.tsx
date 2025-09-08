@@ -19,7 +19,7 @@ export function Footer({ language }: FooterProps) {
       },
       footer: {
         tagline:
-          "Transformant des vies et créant de l'espoir dans la communauté de Kisangani depuis 2018.",
+          "Transformant des vies et créant de l'espoir dans la communauté de Kisangani depuis 2021.",
         programs: "Programmes",
         quickLinks: "Liens Rapides",
         programsList: [
@@ -50,7 +50,7 @@ export function Footer({ language }: FooterProps) {
       },
       footer: {
         tagline:
-          "Transforming lives and creating hope in the Kisangani community since 2018.",
+          "Transforming lives and creating hope in the Kisangani community since 2021.",
         programs: "Programs",
         quickLinks: "Quick Links",
         programsList: [
