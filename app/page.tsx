@@ -35,6 +35,8 @@ import {
   Target,
   UserCheck,
   ChevronRight,
+  Copy,
+  Check,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -47,6 +49,7 @@ import { Logo } from "@/components/ui/logo";
 export default function HomePage() {
   const [language, setLanguage] = useState<"fr" | "en">("fr");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [copiedField, setCopiedField] = useState<string | null>(null);
   const { isDarkMode, toggleDarkMode, mounted } = useDarkMode();
 
   // Contact form state
@@ -77,6 +80,28 @@ export default function HomePage() {
       ...prev,
       [name]: value,
     }));
+  };
+
+  const copyToClipboard = (text: string, field: string) => {
+    if (navigator && navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(() => {
+        setCopiedField(field);
+        setTimeout(() => setCopiedField(null), 2000);
+      });
+    } else {
+      // Fallback for browsers that don't support clipboard API
+      const textarea = document.createElement("textarea");
+      textarea.value = text;
+      textarea.style.position = "fixed";
+      textarea.style.opacity = "0";
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand("copy");
+      document.body.removeChild(textarea);
+
+      setCopiedField(field);
+      setTimeout(() => setCopiedField(null), 2000);
+    }
   };
 
   const handleContactSubmit = async (e: React.FormEvent) => {
@@ -1375,11 +1400,30 @@ export default function HomePage() {
                       <div className="w-12 h-12 bg-gradient-to-r from-indigo-500 to-sky-400 rounded-full flex items-center justify-center flex-shrink-0">
                         <Mail className="w-6 h-6 text-white" />
                       </div>
-                      <div>
-                        <h3 className="font-bold text-lg text-slate-900 dark:text-white mb-2 transition-colors duration-300">
-                          Email
-                        </h3>
-                        <p className="text-slate-600 dark:text-gray-300 transition-colors duration-300">
+                      <div className="flex-1">
+                        <div className="flex items-center justify-between mb-2">
+                          <h3 className="font-bold text-lg text-slate-900 dark:text-white transition-colors duration-300">
+                            Email
+                          </h3>
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            onClick={() =>
+                              copyToClipboard(
+                                "contact@fondationmariemwape.org",
+                                "email",
+                              )
+                            }
+                            className="h-6 px-2 text-xs"
+                          >
+                            {copiedField === "email" ? (
+                              <Check className="w-3 h-3" />
+                            ) : (
+                              <Copy className="w-3 h-3" />
+                            )}
+                          </Button>
+                        </div>
+                        <p className="text-slate-600 dark:text-gray-300 transition-colors duration-300 font-mono text-sm break-all">
                           contact@fondationmariemwape.org
                         </p>
                       </div>
@@ -1393,11 +1437,27 @@ export default function HomePage() {
                       <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-green-600 rounded-full flex items-center justify-center flex-shrink-0">
                         <MessageCircle className="w-6 h-6 text-white" />
                       </div>
-                      <div>
-                        <h3 className="font-bold text-lg text-slate-900 dark:text-white mb-2 transition-colors duration-300">
-                          WhatsApp
-                        </h3>
-                        <p className="text-slate-600 dark:text-gray-300 mb-3 transition-colors duration-300">
+                      <div className="flex-1">
+                        <div className="flex items-center justify-between mb-2">
+                          <h3 className="font-bold text-lg text-slate-900 dark:text-white transition-colors duration-300">
+                            WhatsApp
+                          </h3>
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            onClick={() =>
+                              copyToClipboard("+243 XXX XXX XXX", "phone")
+                            }
+                            className="h-6 px-2 text-xs"
+                          >
+                            {copiedField === "phone" ? (
+                              <Check className="w-3 h-3" />
+                            ) : (
+                              <Copy className="w-3 h-3" />
+                            )}
+                          </Button>
+                        </div>
+                        <p className="text-slate-600 dark:text-gray-300 mb-3 transition-colors duration-300 font-mono text-sm">
                           +243 XXX XXX XXX
                         </p>
                         <Button className="bg-green-600 hover:bg-green-700 text-white rounded-lg transition-all duration-300">

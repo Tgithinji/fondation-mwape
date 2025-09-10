@@ -24,6 +24,8 @@ import {
   Banknote,
   Gift,
   Calendar,
+  Copy,
+  Smartphone,
 } from "lucide-react";
 import { useDarkMode } from "@/hooks/use-dark-mode";
 import { WhatsAppButton } from "@/components/whatsapp-button";
@@ -35,6 +37,7 @@ import { Logo } from "@/components/ui/logo";
 export default function DonatePage() {
   const [language, setLanguage] = useState<"fr" | "en">("fr");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [copiedField, setCopiedField] = useState<string | null>(null);
   const { isDarkMode, toggleDarkMode, mounted } = useDarkMode();
 
   const toggleLanguage = () => {
@@ -43,6 +46,28 @@ export default function DonatePage() {
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen((prev) => !prev);
+  };
+
+  const copyToClipboard = (text: string, field: string) => {
+    if (navigator && navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(() => {
+        setCopiedField(field);
+        setTimeout(() => setCopiedField(null), 2000);
+      });
+    } else {
+      // Fallback for browsers that don't support clipboard API
+      const textarea = document.createElement("textarea");
+      textarea.value = text;
+      textarea.style.position = "fixed";
+      textarea.style.opacity = "0";
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand("copy");
+      document.body.removeChild(textarea);
+
+      setCopiedField(field);
+      setTimeout(() => setCopiedField(null), 2000);
+    }
   };
 
   const content = {
@@ -116,13 +141,54 @@ export default function DonatePage() {
         ],
       },
       payment: {
-        title: "Faire un Don Maintenant",
-        description: "Votre générosité change des vies",
-        amounts: ["25", "50", "100", "250", "500"],
-        customAmount: "Montant personnalisé",
-        currency: "USD",
-        donateButton: "Faire un Don",
-        securePayment: "Paiement sécurisé",
+        title: "Soutenez Notre Action",
+        description: "Choisissez votre méthode de paiement préférée",
+        methods: [
+          {
+            title: "Virement Bancaire",
+            description: "Transfert sécurisé via banque",
+            icon: "Banknote" as const,
+            details: {
+              accountName: "Fondation Mwape",
+              accountNumber: "FR76 1234 5678 9012 3456 789",
+              bankName: "Banque Internationale",
+              swiftCode: "BINTFRPP",
+              mpesaNumber: undefined,
+              airtelNumber: undefined,
+              email: undefined,
+            },
+          },
+          {
+            title: "Mobile Money",
+            description: "M-Pesa, Airtel Money",
+            icon: "Smartphone" as const,
+            details: {
+              mpesaNumber: "+243 901 234 567",
+              airtelNumber: "+243 902 345 678",
+              accountName: "Fondation Mwape",
+              accountNumber: undefined,
+              bankName: undefined,
+              swiftCode: undefined,
+              email: undefined,
+            },
+          },
+          {
+            title: "PayPal",
+            description: "Paiement en ligne sécurisé",
+            icon: "CreditCard" as const,
+            details: {
+              email: "donate@fondation-mwape.org",
+              accountName: "Fondation Mwape",
+              accountNumber: undefined,
+              bankName: undefined,
+              swiftCode: undefined,
+              mpesaNumber: undefined,
+              airtelNumber: undefined,
+            },
+          },
+        ],
+        copyButton: "Copier",
+        copied: "Copié !",
       },
       contact: {
         title: "Autres Moyens de Donner",
@@ -208,13 +274,54 @@ export default function DonatePage() {
         ],
       },
       payment: {
-        title: "Donate Now",
-        description: "Your generosity changes lives",
-        amounts: ["25", "50", "100", "250", "500"],
-        customAmount: "Custom amount",
-        currency: "USD",
-        donateButton: "Donate Now",
-        securePayment: "Secure payment",
+        title: "Support Our Work",
+        description: "Choose your preferred payment method",
+        methods: [
+          {
+            title: "Bank Transfer",
+            description: "Secure bank transfer",
+            icon: "Banknote" as const,
+            details: {
+              accountName: "Fondation Mwape",
+              accountNumber: "FR76 1234 5678 9012 3456 789",
+              bankName: "International Bank",
+              swiftCode: "BINTFRPP",
+              mpesaNumber: undefined,
+              airtelNumber: undefined,
+              email: undefined,
+            },
+          },
+          {
+            title: "Mobile Money",
+            description: "M-Pesa, Airtel Money",
+            icon: "Smartphone" as const,
+            details: {
+              mpesaNumber: "+243 901 234 567",
+              airtelNumber: "+243 902 345 678",
+              accountName: "Fondation Mwape",
+              accountNumber: undefined,
+              bankName: undefined,
+              swiftCode: undefined,
+              email: undefined,
+            },
+          },
+          {
+            title: "PayPal",
+            description: "Secure online payment",
+            icon: "CreditCard" as const,
+            details: {
+              email: "donate@fondation-mwape.org",
+              accountName: "Fondation Mwape",
+              accountNumber: undefined,
+              bankName: undefined,
+              swiftCode: undefined,
+              mpesaNumber: undefined,
+              airtelNumber: undefined,
+            },
+          },
+        ],
+        copyButton: "Copy",
+        copied: "Copied!",
       },
       contact: {
         title: "Other Ways to Give",
@@ -537,109 +644,313 @@ export default function DonatePage() {
         </div>
       </section>
 
-      {/* Payment Section */}
+      {/* Payment Methods Section */}
       <section className="py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Card className="border-slate-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-xl">
-            <CardHeader className="text-center">
-              <CardTitle className="font-serif text-3xl text-slate-900 dark:text-white transition-colors duration-300">
-                {t.payment.title}
-              </CardTitle>
-              <CardDescription className="text-xl text-slate-600 dark:text-gray-300 transition-colors duration-300">
-                {t.payment.description}
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="p-8">
-              <div className="space-y-8">
-                {/* Amount Selection */}
-                <div>
-                  <label className="block text-lg font-semibold text-slate-900 dark:text-white mb-4 transition-colors duration-300">
-                    {language === "fr"
-                      ? "Choisissez un montant"
-                      : "Choose an amount"}
-                  </label>
-                  <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mb-4">
-                    {t.payment.amounts.map((amount) => (
-                      <button
-                        key={amount}
-                        className="p-4 border-2 border-slate-200 dark:border-gray-600 rounded-lg text-center hover:border-indigo-500 hover:bg-indigo-50 dark:hover:bg-indigo-900/20 transition-colors duration-300"
-                      >
-                        <div className="text-lg font-bold text-slate-900 dark:text-white">
-                          {t.payment.currency}
-                          {amount}
-                        </div>
-                      </button>
-                    ))}
-                  </div>
-                  <div className="mb-6">
-                    <input
-                      type="number"
-                      placeholder={t.payment.customAmount}
-                      className="w-full px-4 py-3 border border-slate-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent bg-white dark:bg-gray-700 text-slate-900 dark:text-white transition-colors duration-300"
-                    />
-                  </div>
-                </div>
-
-                {/* Donate Button */}
-                <div className="text-center">
-                  <Button
-                    size="lg"
-                    className="bg-gradient-to-r from-indigo-500 to-sky-400 hover:from-indigo-600 hover:to-sky-500 text-white px-12 py-4 text-lg font-medium transition-all duration-300"
-                  >
-                    <CreditCard className="w-5 h-5 mr-3" />
-                    {t.payment.donateButton}
-                  </Button>
-                  <p className="mt-3 text-sm text-slate-500 dark:text-gray-400 transition-colors duration-300">
-                    🔒 {t.payment.securePayment}
-                  </p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-
-      {/* Alternative Payment Methods */}
-      <section className="py-20 bg-white dark:bg-gray-800 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center space-y-6 mb-16">
             <h2 className="font-serif text-3xl md:text-4xl font-bold text-slate-900 dark:text-white transition-colors duration-300">
-              {t.contact.title}
+              {t.payment.title}
             </h2>
             <p className="text-xl text-slate-600 dark:text-gray-300 max-w-3xl mx-auto transition-colors duration-300">
-              {t.contact.description}
+              {t.payment.description}
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {t.contact.methods.map((method, index) => (
-              <Card
-                key={index}
-                className="border-slate-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:shadow-lg transition-all duration-300"
-              >
-                <CardContent className="p-6 text-center">
-                  <div className="w-12 h-12 bg-gradient-to-r from-indigo-500 to-sky-400 rounded-lg flex items-center justify-center mx-auto mb-4">
-                    <Banknote className="w-6 h-6 text-white" />
-                  </div>
-                  <h3 className="font-serif text-xl font-bold text-slate-900 dark:text-white mb-2 transition-colors duration-300">
-                    {method.title}
-                  </h3>
-                  <p className="text-slate-600 dark:text-gray-300 transition-colors duration-300">
-                    {method.description}
-                  </p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8">
+            {t.payment.methods.map((method, index) => {
+              const IconComponent =
+                method.icon === "Banknote"
+                  ? Banknote
+                  : method.icon === "Smartphone"
+                    ? Smartphone
+                    : CreditCard;
+              const qrImage =
+                method.icon === "Banknote"
+                  ? "/qr-bank.svg"
+                  : method.icon === "Smartphone"
+                    ? "/qr-mobile.svg"
+                    : "/qr-paypal.svg";
 
-          <div className="text-center mt-12">
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-2 border-green-500 text-green-600 hover:bg-green-50 dark:hover:bg-green-900/20 px-8 py-3 text-lg font-medium transition-all duration-300"
-            >
-              {t.contact.whatsapp}
-            </Button>
+              return (
+                <Card
+                  key={index}
+                  className="border-slate-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:shadow-lg transition-all duration-300 h-full"
+                >
+                  <CardHeader className="text-center">
+                    <div className="w-12 h-12 bg-gradient-to-r from-indigo-500 to-sky-400 rounded-lg flex items-center justify-center mx-auto mb-4">
+                      <IconComponent className="w-6 h-6 text-white" />
+                    </div>
+                    <CardTitle className="font-serif text-xl font-bold text-slate-900 dark:text-white transition-colors duration-300">
+                      {method.title}
+                    </CardTitle>
+                    <CardDescription className="text-slate-600 dark:text-gray-300 transition-colors duration-300">
+                      {method.description}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="p-4 sm:p-6">
+                    {/* QR Code */}
+                    <div className="flex justify-center mb-4 sm:mb-6">
+                      <img
+                        src={qrImage}
+                        alt={`QR Code for ${method.title}`}
+                        className="w-20 h-20 sm:w-24 sm:h-24 border border-slate-200 dark:border-gray-600 rounded-lg"
+                      />
+                    </div>
+
+                    {/* Payment Details */}
+                    <div className="space-y-3 sm:space-y-4">
+                      {method.icon === "Banknote" && (
+                        <>
+                          <div className="space-y-1 sm:space-y-2">
+                            <div className="flex items-center justify-between">
+                              <span className="text-sm font-medium text-slate-700 dark:text-gray-300">
+                                {language === "fr"
+                                  ? "Nom du compte:"
+                                  : "Account Name:"}
+                              </span>
+                              <Button
+                                size="sm"
+                                variant="outline"
+                                onClick={() =>
+                                  copyToClipboard(
+                                    method.details.accountName || "",
+                                    `${index}-accountName`,
+                                  )
+                                }
+                                className="h-6 px-1 sm:px-2 text-xs"
+                              >
+                                {copiedField === `${index}-accountName` ? (
+                                  <Check className="w-3 h-3" />
+                                ) : (
+                                  <Copy className="w-3 h-3" />
+                                )}
+                              </Button>
+                            </div>
+                            <p className="text-xs sm:text-sm text-slate-900 dark:text-white font-mono bg-slate-100 dark:bg-gray-700 p-2 rounded break-all">
+                              {method.details.accountName || ""}
+                            </p>
+                          </div>
+
+                          <div className="space-y-1 sm:space-y-2">
+                            <div className="flex items-center justify-between">
+                              <span className="text-sm font-medium text-slate-700 dark:text-gray-300">
+                                {language === "fr"
+                                  ? "Numéro de compte:"
+                                  : "Account Number:"}
+                              </span>
+                              <Button
+                                size="sm"
+                                variant="outline"
+                                onClick={() =>
+                                  copyToClipboard(
+                                    method.details.accountNumber || "",
+                                    `${index}-accountNumber`,
+                                  )
+                                }
+                                className="h-6 px-1 sm:px-2 text-xs"
+                              >
+                                {copiedField === `${index}-accountNumber` ? (
+                                  <Check className="w-3 h-3" />
+                                ) : (
+                                  <Copy className="w-3 h-3" />
+                                )}
+                              </Button>
+                            </div>
+                            <p className="text-xs sm:text-sm text-slate-900 dark:text-white font-mono bg-slate-100 dark:bg-gray-700 p-2 rounded break-all">
+                              {method.details.accountNumber || ""}
+                            </p>
+                          </div>
+
+                          <div className="space-y-1 sm:space-y-2">
+                            <div className="flex items-center justify-between">
+                              <span className="text-sm font-medium text-slate-700 dark:text-gray-300">
+                                {language === "fr"
+                                  ? "Code SWIFT:"
+                                  : "SWIFT Code:"}
+                              </span>
+                              <Button
+                                size="sm"
+                                variant="outline"
+                                onClick={() =>
+                                  copyToClipboard(
+                                    method.details.swiftCode || "",
+                                    `${index}-swiftCode`,
+                                  )
+                                }
+                                className="h-6 px-1 sm:px-2 text-xs"
+                              >
+                                {copiedField === `${index}-swiftCode` ? (
+                                  <Check className="w-3 h-3" />
+                                ) : (
+                                  <Copy className="w-3 h-3" />
+                                )}
+                              </Button>
+                            </div>
+                            <p className="text-xs sm:text-sm text-slate-900 dark:text-white font-mono bg-slate-100 dark:bg-gray-700 p-2 rounded break-all">
+                              {method.details.swiftCode || ""}
+                            </p>
+                          </div>
+                        </>
+                      )}
+
+                      {method.icon === "Smartphone" && (
+                        <>
+                          <div className="space-y-1 sm:space-y-2">
+                            <div className="flex items-center justify-between">
+                              <span className="text-sm font-medium text-slate-700 dark:text-gray-300">
+                                M-Pesa:
+                              </span>
+                              <Button
+                                size="sm"
+                                variant="outline"
+                                onClick={() =>
+                                  copyToClipboard(
+                                    method.details.mpesaNumber || "",
+                                    `${index}-mpesa`,
+                                  )
+                                }
+                                className="h-6 px-1 sm:px-2 text-xs"
+                              >
+                                {copiedField === `${index}-mpesa` ? (
+                                  <Check className="w-3 h-3" />
+                                ) : (
+                                  <Copy className="w-3 h-3" />
+                                )}
+                              </Button>
+                            </div>
+                            <p className="text-xs sm:text-sm text-slate-900 dark:text-white font-mono bg-slate-100 dark:bg-gray-700 p-2 rounded break-all">
+                              {method.details.mpesaNumber || ""}
+                            </p>
+                          </div>
+
+                          <div className="space-y-1 sm:space-y-2">
+                            <div className="flex items-center justify-between">
+                              <span className="text-sm font-medium text-slate-700 dark:text-gray-300">
+                                Airtel Money:
+                              </span>
+                              <Button
+                                size="sm"
+                                variant="outline"
+                                onClick={() =>
+                                  copyToClipboard(
+                                    method.details.airtelNumber || "",
+                                    `${index}-airtel`,
+                                  )
+                                }
+                                className="h-6 px-1 sm:px-2 text-xs"
+                              >
+                                {copiedField === `${index}-airtel` ? (
+                                  <Check className="w-3 h-3" />
+                                ) : (
+                                  <Copy className="w-3 h-3" />
+                                )}
+                              </Button>
+                            </div>
+                            <p className="text-xs sm:text-sm text-slate-900 dark:text-white font-mono bg-slate-100 dark:bg-gray-700 p-2 rounded break-all">
+                              {method.details.airtelNumber || ""}
+                            </p>
+                          </div>
+
+                          <div className="space-y-1 sm:space-y-2">
+                            <div className="flex items-center justify-between">
+                              <span className="text-sm font-medium text-slate-700 dark:text-gray-300">
+                                {language === "fr"
+                                  ? "Nom du compte:"
+                                  : "Account Name:"}
+                              </span>
+                              <Button
+                                size="sm"
+                                variant="outline"
+                                onClick={() =>
+                                  copyToClipboard(
+                                    method.details.accountName || "",
+                                    `${index}-mobileAccountName`,
+                                  )
+                                }
+                                className="h-6 px-1 sm:px-2 text-xs"
+                              >
+                                {copiedField ===
+                                `${index}-mobileAccountName` ? (
+                                  <Check className="w-3 h-3" />
+                                ) : (
+                                  <Copy className="w-3 h-3" />
+                                )}
+                              </Button>
+                            </div>
+                            <p className="text-xs sm:text-sm text-slate-900 dark:text-white font-mono bg-slate-100 dark:bg-gray-700 p-2 rounded break-all">
+                              {method.details.accountName || ""}
+                            </p>
+                          </div>
+                        </>
+                      )}
+
+                      {method.icon === "CreditCard" && (
+                        <>
+                          <div className="space-y-1 sm:space-y-2">
+                            <div className="flex items-center justify-between">
+                              <span className="text-sm font-medium text-slate-700 dark:text-gray-300">
+                                Email:
+                              </span>
+                              <Button
+                                size="sm"
+                                variant="outline"
+                                onClick={() =>
+                                  copyToClipboard(
+                                    method.details.email || "",
+                                    `${index}-email`,
+                                  )
+                                }
+                                className="h-6 px-1 sm:px-2 text-xs"
+                              >
+                                {copiedField === `${index}-email` ? (
+                                  <Check className="w-3 h-3" />
+                                ) : (
+                                  <Copy className="w-3 h-3" />
+                                )}
+                              </Button>
+                            </div>
+                            <p className="text-xs sm:text-sm text-slate-900 dark:text-white font-mono bg-slate-100 dark:bg-gray-700 p-2 rounded break-all">
+                              {method.details.email || ""}
+                            </p>
+                          </div>
+
+                          <div className="space-y-1 sm:space-y-2">
+                            <div className="flex items-center justify-between">
+                              <span className="text-sm font-medium text-slate-700 dark:text-gray-300">
+                                {language === "fr"
+                                  ? "Nom du compte:"
+                                  : "Account Name:"}
+                              </span>
+                              <Button
+                                size="sm"
+                                variant="outline"
+                                onClick={() =>
+                                  copyToClipboard(
+                                    method.details.accountName || "",
+                                    `${index}-paypalAccountName`,
+                                  )
+                                }
+                                className="h-6 px-1 sm:px-2 text-xs"
+                              >
+                                {copiedField ===
+                                `${index}-paypalAccountName` ? (
+                                  <Check className="w-3 h-3" />
+                                ) : (
+                                  <Copy className="w-3 h-3" />
+                                )}
+                              </Button>
+                            </div>
+                            <p className="text-xs sm:text-sm text-slate-900 dark:text-white font-mono bg-slate-100 dark:bg-gray-700 p-2 rounded break-all">
+                              {method.details.accountName || ""}
+                            </p>
+                          </div>
+                        </>
+                      )}
+                    </div>
+                  </CardContent>
+                </Card>
+              );
+            })}
           </div>
         </div>
       </section>
