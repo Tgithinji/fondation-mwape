@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://fondation-mwape.vercel.app
+
+# Sitemaps
+Sitemap: https://fondation-mwape.vercel.app/sitemap.xml
