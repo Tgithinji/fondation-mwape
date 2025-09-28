@@ -7,7 +7,7 @@ import { Providers } from "./providers";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://fondation-mwape.vercel.app"),
+  metadataBase: new URL("https://fmmps.org"),
   title: "Fondation Marie Mwape pour le Progrès Social",
   description:
     "Site officiel de la Fondation Marie Mwape — œuvrant pour les orphelins, les femmes, les personnes handicapées et la santé mentale à Kisangani.",
@@ -67,17 +67,17 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link
           rel="alternate"
-          href="https://fondation-mwape.vercel.app/fr"
+          href="https://fmmps.org/fr"
           hrefLang="fr"
         />
         <link
           rel="alternate"
-          href="https://fondation-mwape.vercel.app/en"
+          href="https://fmmps.org/en"
           hrefLang="en"
         />
         <link
           rel="alternate"
-          href="https://fondation-mwape.vercel.app"
+          href="https://fmmps.org"
           hrefLang="x-default"
         />
         <meta name="theme-color" content="#4f46e5" />
@@ -90,8 +90,8 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "NGO",
               name: "Fondation Marie Mwape pour le Progrès Social",
-              url: "https://fondation-mwape.vercel.app",
-              logo: "https://fondation-mwape.vercel.app/logo.png",
+              url: "https://fmmps.org",
+              logo: "https://fmmps.org/logo.png",
               founder: "Marie Mwape Kashimbo",
               address: {
                 "@type": "PostalAddress",

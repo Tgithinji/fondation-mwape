@@ -1438,7 +1438,7 @@ export default function HomePage() {
                             size="sm"
                             variant="outline"
                             onClick={() =>
-                              copyToClipboard("+243 XXX XXX XXX", "phone")
+                              copyToClipboard("+243 842 528 132", "phone")
                             }
                             className="h-6 px-2 text-xs"
                           >
@@ -1450,7 +1450,7 @@ export default function HomePage() {
                           </Button>
                         </div>
                         <p className="text-slate-600 dark:text-gray-300 mb-3 transition-colors duration-300 font-mono text-sm">
-                          +243 XXX XXX XXX
+                          +243 842 528 132
                         </p>
                         <Button className="bg-green-600 hover:bg-green-700 text-white rounded-lg transition-all duration-300">
                           {t.contact.whatsappBtn}
@@ -1467,12 +1467,14 @@ export default function HomePage() {
                   {t.contact.followUs}
                 </h3>
                 <div className="flex space-x-4">
-                  <Button
-                    size="icon"
-                    className="bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-all duration-300"
-                  >
-                    <Facebook className="w-5 h-5" />
-                  </Button>
+                  <Link href="https://www.facebook.com/share/1BHua16PHc/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer">
+                    <Button
+                      size="icon"
+                      className="bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-all duration-300"
+                    >
+                      <Facebook className="w-5 h-5" />
+                    </Button>
+                  </Link>
                   <Button
                     size="icon"
                     className="bg-sky-500 hover:bg-sky-600 text-white rounded-lg transition-all duration-300"

@@ -160,7 +160,7 @@ export default function DonatePage() {
           },
           {
             title: "Mobile Money",
-            description: "M-Pesa, Airtel Money",
+            description: "M-Pesa",
             icon: "Smartphone" as const,
             details: {
               mpesaNumber: "+243 842 528 132",
@@ -169,20 +169,6 @@ export default function DonatePage() {
               bankName: undefined,
               swiftCode: undefined,
               email: undefined,
-            },
-          },
-          {
-            title: "PayPal",
-            description: "Paiement en ligne sécurisé",
-            icon: "CreditCard" as const,
-            details: {
-              email: "donate@fondation-mwape.org",
-              accountName: "Fondation Mwape",
-              accountNumber: undefined,
-              bankName: undefined,
-              swiftCode: undefined,
-              mpesaNumber: undefined,
-              airtelNumber: undefined,
             },
           },
         ],
@@ -292,30 +278,15 @@ export default function DonatePage() {
           },
           {
             title: "Mobile Money",
-            description: "M-Pesa, Airtel Money",
+            description: "M-Pesa",
             icon: "Smartphone" as const,
             details: {
               mpesaNumber: "+243 901 234 567",
-              airtelNumber: "+243 902 345 678",
               accountName: "Fondation Mwape",
               accountNumber: undefined,
               bankName: undefined,
               swiftCode: undefined,
               email: undefined,
-            },
-          },
-          {
-            title: "PayPal",
-            description: "Secure online payment",
-            icon: "CreditCard" as const,
-            details: {
-              email: "donate@fondation-mwape.org",
-              accountName: "Fondation Mwape",
-              accountNumber: undefined,
-              bankName: undefined,
-              swiftCode: undefined,
-              mpesaNumber: undefined,
-              airtelNumber: undefined,
             },
           },
         ],
@@ -821,35 +792,6 @@ export default function DonatePage() {
                               {method.details.mpesaNumber || ""}
                             </p>
                           </div>
-
-                          <div className="space-y-1 sm:space-y-2">
-                            <div className="flex items-center justify-between">
-                              <span className="text-sm font-medium text-slate-700 dark:text-gray-300">
-                                Airtel Money:
-                              </span>
-                              <Button
-                                size="sm"
-                                variant="outline"
-                                onClick={() =>
-                                  copyToClipboard(
-                                    method.details.airtelNumber || "",
-                                    `${index}-airtel`,
-                                  )
-                                }
-                                className="h-6 px-1 sm:px-2 text-xs"
-                              >
-                                {copiedField === `${index}-airtel` ? (
-                                  <Check className="w-3 h-3" />
-                                ) : (
-                                  <Copy className="w-3 h-3" />
-                                )}
-                              </Button>
-                            </div>
-                            <p className="text-xs sm:text-sm text-slate-900 dark:text-white font-mono bg-slate-100 dark:bg-gray-700 p-2 rounded break-all">
-                              {method.details.airtelNumber || ""}
-                            </p>
-                          </div>
-
                           <div className="space-y-1 sm:space-y-2">
                             <div className="flex items-center justify-between">
                               <span className="text-sm font-medium text-slate-700 dark:text-gray-300">
@@ -870,69 +812,6 @@ export default function DonatePage() {
                               >
                                 {copiedField ===
                                 `${index}-mobileAccountName` ? (
-                                  <Check className="w-3 h-3" />
-                                ) : (
-                                  <Copy className="w-3 h-3" />
-                                )}
-                              </Button>
-                            </div>
-                            <p className="text-xs sm:text-sm text-slate-900 dark:text-white font-mono bg-slate-100 dark:bg-gray-700 p-2 rounded break-all">
-                              {method.details.accountName || ""}
-                            </p>
-                          </div>
-                        </>
-                      )}
-
-                      {method.icon === "CreditCard" && (
-                        <>
-                          <div className="space-y-1 sm:space-y-2">
-                            <div className="flex items-center justify-between">
-                              <span className="text-sm font-medium text-slate-700 dark:text-gray-300">
-                                Email:
-                              </span>
-                              <Button
-                                size="sm"
-                                variant="outline"
-                                onClick={() =>
-                                  copyToClipboard(
-                                    method.details.email || "",
-                                    `${index}-email`,
-                                  )
-                                }
-                                className="h-6 px-1 sm:px-2 text-xs"
-                              >
-                                {copiedField === `${index}-email` ? (
-                                  <Check className="w-3 h-3" />
-                                ) : (
-                                  <Copy className="w-3 h-3" />
-                                )}
-                              </Button>
-                            </div>
-                            <p className="text-xs sm:text-sm text-slate-900 dark:text-white font-mono bg-slate-100 dark:bg-gray-700 p-2 rounded break-all">
-                              {method.details.email || ""}
-                            </p>
-                          </div>
-
-                          <div className="space-y-1 sm:space-y-2">
-                            <div className="flex items-center justify-between">
-                              <span className="text-sm font-medium text-slate-700 dark:text-gray-300">
-                                {language === "fr"
-                                  ? "Nom du compte:"
-                                  : "Account Name:"}
-                              </span>
-                              <Button
-                                size="sm"
-                                variant="outline"
-                                onClick={() =>
-                                  copyToClipboard(
-                                    method.details.accountName || "",
-                                    `${index}-paypalAccountName`,
-                                  )
-                                }
-                                className="h-6 px-1 sm:px-2 text-xs"
-                              >
-                                {copiedField ===
-                                `${index}-paypalAccountName` ? (
                                   <Check className="w-3 h-3" />
                                 ) : (
                                   <Copy className="w-3 h-3" />
