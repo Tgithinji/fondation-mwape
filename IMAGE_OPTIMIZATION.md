@@ -21,6 +21,7 @@ images: {
 ```
 
 ### Key Features:
+
 - **Modern Formats**: WebP and AVIF support for better compression
 - **Responsive Breakpoints**: Optimized for various device sizes
 - **Long-term Caching**: 1-year cache TTL for better performance
@@ -31,6 +32,7 @@ images: {
 ### 1. Logo Component (`/components/ui/logo/index.tsx`)
 
 **Optimization Features:**
+
 - `priority`: Ensures logo loads immediately (above fold)
 - `quality={90}`: High quality for branding consistency
 - `sizes`: Responsive sizing for different breakpoints
@@ -55,6 +57,7 @@ images: {
 ### 2. Founder Profile Image (`/app/page.tsx`)
 
 **Optimization Features:**
+
 - `priority`: Critical above-the-fold content
 - `quality={85}`: Balance between quality and file size
 - Responsive sizing for different viewports
@@ -78,12 +81,14 @@ images: {
 ### 3. Background Images
 
 **Foundation Logo Backgrounds:**
+
 - `loading="lazy"`: Deferred loading for background elements
 - `quality={75}`: Lower quality for backgrounds
 - `sizes="100vw"`: Full viewport width coverage
 - Blur placeholders for smooth transitions
 
 **Desktop Background:**
+
 ```tsx
 <Image
   src="/foundation-logo.jpg"
@@ -101,6 +106,7 @@ images: {
 ### 4. Content Images
 
 **Gallery and Article Images:**
+
 - `loading="lazy"`: Performance optimization
 - `quality={80}`: Good balance for content images
 - Responsive sizes based on container
@@ -109,37 +115,42 @@ images: {
 ## Performance Benefits
 
 ### 1. **Format Optimization**
+
 - Automatic WebP/AVIF conversion
 - Up to 50% smaller file sizes
 - Fallback to JPEG/PNG for older browsers
 
 ### 2. **Responsive Images**
+
 - Device-appropriate image sizes
 - Reduced bandwidth usage on mobile
 - Faster loading on smaller screens
 
 ### 3. **Loading Strategy**
+
 - `priority` for above-the-fold images
 - `loading="lazy"` for below-the-fold content
 - Progressive loading with blur placeholders
 
 ### 4. **Caching Strategy**
+
 - Long-term browser caching (1 year)
 - CDN-optimized delivery
 - Automatic cache invalidation on updates
 
 ## Image Quality Settings
 
-| Image Type | Quality | Reasoning |
-|-----------|---------|-----------|
-| Logo | 90% | High quality for branding |
-| Profile Photos | 85% | Good quality for portraits |
-| Background Images | 75% | Lower quality acceptable |
-| Content Images | 80% | Balance quality/performance |
+| Image Type        | Quality | Reasoning                   |
+| ----------------- | ------- | --------------------------- |
+| Logo              | 90%     | High quality for branding   |
+| Profile Photos    | 85%     | Good quality for portraits  |
+| Background Images | 75%     | Lower quality acceptable    |
+| Content Images    | 80%     | Balance quality/performance |
 
 ## Responsive Breakpoints
 
 ### Logo Sizes
+
 ```
 (max-width: 768px) 32px    // Mobile
 (max-width: 1024px) 40px   // Tablet
@@ -147,6 +158,7 @@ images: {
 ```
 
 ### Content Images
+
 ```
 (max-width: 768px) 100vw   // Mobile full width
 (max-width: 1024px) 50vw   // Tablet half width
@@ -156,6 +168,7 @@ images: {
 ## Blur Placeholders
 
 All images include base64-encoded blur placeholders for smooth loading:
+
 - Prevents layout shift
 - Provides visual feedback during loading
 - Improves perceived performance
@@ -174,6 +187,7 @@ All images include base64-encoded blur placeholders for smooth loading:
 ## Performance Metrics
 
 Expected improvements:
+
 - **50% smaller** image file sizes (WebP/AVIF)
 - **Faster loading** times on mobile
 - **Better Core Web Vitals** scores
@@ -183,6 +197,7 @@ Expected improvements:
 ## Maintenance
 
 ### Adding New Images:
+
 1. Use Next.js `Image` component
 2. Set appropriate `quality` value
 3. Add responsive `sizes` attribute
@@ -190,6 +205,7 @@ Expected improvements:
 5. Set proper `loading` strategy
 
 ### Image File Guidelines:
+
 - Use JPG for photos
 - Use PNG for logos/graphics
 - Compress images before upload

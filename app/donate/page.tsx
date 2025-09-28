@@ -163,8 +163,7 @@ export default function DonatePage() {
             description: "M-Pesa, Airtel Money",
             icon: "Smartphone" as const,
             details: {
-              mpesaNumber: "+243 901 234 567",
-              airtelNumber: "+243 902 345 678",
+              mpesaNumber: "+243 842 528 132",
               accountName: "Fondation Mwape",
               accountNumber: undefined,
               bankName: undefined,

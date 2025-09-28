@@ -162,7 +162,7 @@ export function Footer({ language }: FooterProps) {
             <h4 className="font-bold text-lg mb-4">Contact</h4>
             <div className="space-y-2 text-slate-300 dark:text-gray-400 transition-colors duration-300">
               <p>Kisangani, RDC</p>
-              <p>contact@fondationmariemwape.org</p>
+              <p>contact@fmmps.org</p>
               <p>+243 999 123 456</p>
             </div>
             <div className="flex space-x-3 mt-4">

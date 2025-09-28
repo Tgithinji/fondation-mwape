@@ -102,7 +102,9 @@ function sendEmail(e) {
       "🙏 MERCI POUR VOTRE MESSAGE !\n\n" +
       "Nous avons bien reçu votre message et nous vous remercions de votre intérêt pour la Fondation Marie Mwape.\n\n" +
       "📋 VOTRE MESSAGE:\n" +
-      "\"" + message + "\"\n\n" +
+      '"' +
+      message +
+      '"\n\n' +
       "⏰ DÉLAI DE RÉPONSE:\n" +
       "Notre équipe vous répondra dans les 24-48 heures ouvrables.\n\n" +
       "❓ URGENT ? Contactez-nous directement:\n" +
@@ -118,7 +120,9 @@ function sendEmail(e) {
       "🙏 THANK YOU FOR YOUR MESSAGE!\n\n" +
       "We have successfully received your message and thank you for your interest in Fondation Marie Mwape.\n\n" +
       "📋 YOUR MESSAGE:\n" +
-      "\"" + message + "\"\n\n" +
+      '"' +
+      message +
+      '"\n\n' +
       "⏰ RESPONSE TIME:\n" +
       "Our team will respond to you within 24-48 business hours.\n\n" +
       "❓ URGENT? Contact us directly:\n" +

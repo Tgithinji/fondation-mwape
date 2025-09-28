@@ -1,16 +1,18 @@
-"use client"
+"use client";
 
-import { MessageCircle } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { MessageCircle } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export function WhatsAppButton() {
   const handleWhatsAppClick = () => {
     // Replace with actual WhatsApp number
-    const phoneNumber = "+243XXXXXXXXX"
-    const message = encodeURIComponent("Bonjour, je souhaite en savoir plus sur la Fondation Marie Mwape.")
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`
-    window.open(whatsappUrl, "_blank")
-  }
+    const phoneNumber = "+243XXXXXXXXX";
+    const message = encodeURIComponent(
+      "Bonjour, je souhaite en savoir plus sur la Fondation Marie Mwape.",
+    );
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+    window.open(whatsappUrl, "_blank");
+  };
 
   return (
     <Button
@@ -20,5 +22,5 @@ export function WhatsAppButton() {
     >
       <MessageCircle className="w-6 h-6" />
     </Button>
-  )
+  );
 }

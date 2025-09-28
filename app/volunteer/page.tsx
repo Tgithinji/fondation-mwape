@@ -79,49 +79,48 @@ export default function VolunteerPage() {
     setSubmitStatus("idle");
 
     try {
-      // Create FormData object for Google Form submission
-      const googleFormData = new FormData();
-
-      // Map form fields to Google Form entry IDs (you'll need to inspect the Google Form to get these)
-      // These are placeholder entry IDs - replace with actual ones from your Google Form
-      googleFormData.append("entry.28324842", formData.fullName); // Replace with actual entry ID
-      googleFormData.append("entry.820610477", formData.email); // Replace with actual entry ID
-      googleFormData.append("entry.1081040339", formData.phone); // Replace with actual entry ID
-      googleFormData.append("entry.2066402697", formData.availability); // Replace with actual entry ID
-      googleFormData.append("entry.1910859079", formData.skills); // Replace with actual entry ID
-      googleFormData.append("entry.1376523727", formData.motivation); // Replace with actual entry ID
-
-      // Submit to Google Form
-      const response = await fetch(
-        "https://docs.google.com/forms/d/e/1FAIpQLSeHqKMt2d-vEHzfX5NROtBJIQCLYWw4ba_vmoe6Lxw7MsPnLg/formResponse",
-        {
-          method: "POST",
-          mode: "no-cors", // Required for Google Forms
-          body: googleFormData,
+      const response = await fetch("/api/volunteer", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
-
-      // Since we're using no-cors mode, we can't check response status
-      // Assume success if no error is thrown
-      setSubmitStatus("success");
-
-      // Reset form
-      setFormData({
-        fullName: "",
-        email: "",
-        phone: "",
-        availability: "",
-        skills: "",
-        motivation: "",
+        body: JSON.stringify(formData),
       });
 
-      // Redirect to thank you page after a short delay
+      const result = await response.json();
+
+      if (response.ok) {
+        setSubmitStatus("success");
+        // Reset form
+        setFormData({
+          fullName: "",
+          email: "",
+          phone: "",
+          availability: "",
+          skills: "",
+          motivation: "",
+        });
+
+        // Redirect to thank you page after a short delay
+        setTimeout(() => {
+          router.push("/volunteer/thank-you");
+        }, 1500);
+      } else {
+        console.error("Volunteer form submission error:", result.error);
+        setSubmitStatus("error");
+      }
+
+      // Auto-hide message after 5 seconds
       setTimeout(() => {
-        router.push("/volunteer/thank-you");
-      }, 1500);
+        setSubmitStatus("idle");
+      }, 5000);
     } catch (error) {
-      console.error("Form submission error:", error);
+      console.error("Volunteer form submission error:", error);
       setSubmitStatus("error");
+      // Auto-hide error message after 5 seconds
+      setTimeout(() => {
+        setSubmitStatus("idle");
+      }, 5000);
     } finally {
       setIsSubmitting(false);
     }

@@ -3,6 +3,7 @@
 This is the official website for **Fondation Marie Mwape pour le Progrès Social (FMMPS)** — a humanitarian nonprofit based in Kisangani, Democratic Republic of Congo, founded by Marie Mwape Kashimbo.
 
 The foundation focuses on empowering vulnerable communities including:
+
 - Orphans
 - Women in distress
 - People with disabilities
@@ -10,6 +11,7 @@ The foundation focuses on empowering vulnerable communities including:
 - Mental health cases
 
 ## 🔗 Live Website
+
 👉 [https://fondation-mwape.vercel.app](https://fondation-mwape.vercel.app)
 
 ## 📸 Features

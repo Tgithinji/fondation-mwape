@@ -110,45 +110,37 @@ export default function HomePage() {
     setSubmitStatus("idle");
 
     try {
-      // Create FormData object for Google Form submission
-      const googleFormData = new FormData();
-
-      // Map form fields to Google Form entry IDs
-      googleFormData.append("entry.131189408", contactForm.firstName);
-      googleFormData.append("entry.857802779", contactForm.lastName);
-      googleFormData.append("entry.2004383498", contactForm.email);
-      googleFormData.append("entry.484732165", contactForm.message);
-
-      // Submit to Google Form
-      const response = await fetch(
-        "https://docs.google.com/forms/d/e/1FAIpQLSfmjPWomcYdWcg_3vufURBFZLVdP_M1hi6BYw24wR7ziunpgA/formResponse",
-        {
-          method: "POST",
-          mode: "no-cors", // Required for Google Forms
-          body: googleFormData,
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
-
-      // Since we're using no-cors mode, we can't check response status
-      // Assume success if no error is thrown
-      setSubmitStatus("success");
-
-      // Reset form
-      setContactForm({
-        firstName: "",
-        lastName: "",
-        email: "",
-        message: "",
+        body: JSON.stringify(contactForm),
       });
 
-      // Auto-hide success message after 5 seconds
+      const result = await response.json();
+
+      if (response.ok) {
+        setSubmitStatus("success");
+        // Reset form
+        setContactForm({
+          firstName: "",
+          lastName: "",
+          email: "",
+          message: "",
+        });
+      } else {
+        console.error("Contact form submission error:", result.error);
+        setSubmitStatus("error");
+      }
+
+      // Auto-hide message after 5 seconds
       setTimeout(() => {
         setSubmitStatus("idle");
       }, 5000);
     } catch (error) {
       console.error("Contact form submission error:", error);
       setSubmitStatus("error");
-
       // Auto-hide error message after 5 seconds
       setTimeout(() => {
         setSubmitStatus("idle");
@@ -1410,7 +1402,7 @@ export default function HomePage() {
                             variant="outline"
                             onClick={() =>
                               copyToClipboard(
-                                "contact@fondationmariemwape.org",
+                                "contact@fmmps.org",
                                 "email",
                               )
                             }
@@ -1424,7 +1416,7 @@ export default function HomePage() {
                           </Button>
                         </div>
                         <p className="text-slate-600 dark:text-gray-300 transition-colors duration-300 font-mono text-sm break-all">
-                          contact@fondationmariemwape.org
+                          contact@fmmps.org
                         </p>
                       </div>
                     </div>
